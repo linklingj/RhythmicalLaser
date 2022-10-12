@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    void Start()
-    {
-        Enemy e1 = new Enemy();
-        e1.hp = 1;
+    [Header("Enemy Prefab")]
+    public GameObject dia;
+    [Header("EnemyParent")]
+    public GameObject parentObj;
+    List<GameObject> activeEnemies;
+    void Start() {
+        StartCoroutine("Test");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         
     }
+    IEnumerator Test() {
+        SpawnDia();
+        yield return new WaitForSeconds(3);
+        SpawnDia();
+    }
+
+    void SpawnDia() {
+        GameObject e = Instantiate(dia, new Vector3(3,3,0), Quaternion.identity);
+        e.transform.parent = parentObj.transform;
+        //e.GetComponent<Enemy>().hp = 1;
+        //activeEnemies.Add(e);
+    }
+
 }

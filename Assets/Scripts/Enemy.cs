@@ -6,6 +6,6 @@ public class Enemy : MonoBehaviour
 {
     public int hp;
     public void Die() {
-        Debug.Log("Dead");
+        Destroy(gameObject);
     }
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public Camera cam;
+    [Header("Movement")]
     public float turnSmoothTime;
     public float drag;
     public float maxVel;
     public float shootForce;
     public float laserForce;
+    [Header("hp")]
+    public int maxHP;
     Rigidbody2D rb;
     Vector2 mousePos;
     float turnSmoothVelocity;
@@ -45,5 +48,11 @@ public class PlayerController : MonoBehaviour {
     void Laser() {
         rb.velocity = -transform.right * laserForce;
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
+    }
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (col.CompareTag("Enemy")) {
+            GameObject contactEnemy = col.transform.gameObject;
+            contactEnemy.GetComponent<Enemy>().Die();
+        }
     }
 }
