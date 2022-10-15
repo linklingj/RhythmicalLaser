@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteManager : MonoBehaviour
 {
     public MusicPlayer musicPlayer;
+    public PlayerController playerController;
     [Header("Notes")]
     public int noteSpeed;
     [Header("Transform")]
@@ -24,6 +25,7 @@ public class NoteManager : MonoBehaviour
             t_note.transform.position = noteSpawnPos1.position;
             t_note.SetActive(true);
             t_note.GetComponent<Note>().noteActive = true;
+            playerController.Shoot();
             currentTime -= 60d / currentBPM;
         }
     }

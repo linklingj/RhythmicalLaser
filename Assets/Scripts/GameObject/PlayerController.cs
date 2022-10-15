@@ -41,11 +41,11 @@ public class PlayerController : MonoBehaviour {
         float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * turnSmoothTime);
         rb.rotation = angle;
     }
-    void Shoot() {
+    public void Shoot() {
         rb.AddForce(-transform.right * shootForce,ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
     }
-    void Laser() {
+    public void Laser() {
         rb.velocity = -transform.right * laserForce;
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
     }
