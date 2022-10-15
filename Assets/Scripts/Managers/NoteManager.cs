@@ -6,10 +6,8 @@ public class NoteManager : MonoBehaviour
 {
     public MusicPlayer musicPlayer;
     [Header("Notes")]
-    public GameObject note;
     public int noteSpeed;
     [Header("Transform")]
-    public Transform noteParent;
     public Transform noteSpawnPos1, noteSpawnPos2, destroyPos;
     int currentBPM;
     double currentTime;
@@ -23,8 +21,9 @@ public class NoteManager : MonoBehaviour
 
         if (currentTime >= 60d / currentBPM) {
             GameObject t_note = ObjectPool.instance.noteQueue.Dequeue();
-            GameObject n = Instantiate(note, noteSpawnPos1.position, Quaternion.identity);
-            n.transform.SetParent(noteParent);
+            t_note.transform.position = noteSpawnPos1.position;
+            t_note.SetActive(true);
+            t_note.GetComponent<Note>().noteActive = true;
             currentTime -= 60d / currentBPM;
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     public NoteManager noteManager;
+    public bool noteActive = false;
     int noteSpeed;
     float destroyY;
     void Start() {
@@ -14,7 +15,13 @@ public class Note : MonoBehaviour
     }
 
     void Update() {
-        transform.localPosition += Vector3.down * noteManager.noteSpeed * Time.deltaTime;
-        if (transform.localPosition.y <= destroyY);
+        if (noteActive)
+            transform.localPosition += Vector3.down * noteSpeed * Time.deltaTime;
+
+        if (transform.localPosition.y <= destroyY) {
+            ObjectPool.instance.noteQueue.Enqueue(gameObject);
+            gameObject.SetActive(false);
+            noteActive = false;
+        }
     }
 }

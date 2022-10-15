@@ -7,7 +7,7 @@ public class ObjectInfo
 {
     public GameObject prefab;
     public int count;
-    public Transform poolParent;
+    public Transform objParent;
 }
 public class ObjectPool : MonoBehaviour
 {
@@ -25,8 +25,8 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < p_objectInfo.count; i++) {
             GameObject t_clone = Instantiate(p_objectInfo.prefab, transform.position, Quaternion.identity);
             t_clone.SetActive(false);
-            if (p_objectInfo.poolParent != null)
-                t_clone.transform.SetParent(p_objectInfo.poolParent);
+            if (p_objectInfo.objParent != null)
+                t_clone.transform.SetParent(p_objectInfo.objParent);
             else
                 t_clone.transform.SetParent(this.transform);
             t_Queue.Enqueue(t_clone);
