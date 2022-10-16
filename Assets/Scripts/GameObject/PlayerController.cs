@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour {
         rb.rotation = angle;
     }
     public void Shoot() {
-        rb.AddForce(-transform.right * shootForce,ForceMode2D.Impulse);
+        rb.velocity = -transform.right * shootForce;
+        //rb.AddForce(transform.right * shootForce,ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
     }
     public void Laser() {
