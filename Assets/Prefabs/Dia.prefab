@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4872110311875470321}
   - component: {fileID: 4872110311875470320}
   - component: {fileID: 7831538208626803432}
+  - component: {fileID: -4926665973872930740}
   m_Layer: 0
   m_Name: Dia
   m_TagString: Enemy
@@ -98,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e0f42df39b7ed4eacb77ddd251e8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 1
+  moveSpeed: 0.5
+  turnSmoothTime: 3
 --- !u!60 &7831538208626803432
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +138,24 @@ PolygonCollider2D:
       - {x: 0.41574657, y: 0.046416327}
       - {x: 0.005726263, y: 0.2515308}
       - {x: 0.0034812093, y: 0.25074255}
+--- !u!50 &-4926665973872930740
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872110311875470323}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

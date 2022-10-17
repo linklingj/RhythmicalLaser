@@ -1407,7 +1407,7 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.17
   inputDelayInMilliseconds: 0
-  fileLocation: test3.mid
+  fileLocation: test2.mid
 --- !u!1 &1126006115
 GameObject:
   m_ObjectHideFlags: 0
