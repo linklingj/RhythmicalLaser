@@ -1,3 +1,4 @@
+using Melanchall.DryWetMidi.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,5 +9,6 @@ public class Music : ScriptableObject
     public string title;
     public string artist;
     public int bpm;
-    public double duration;
+    public AudioClip audio;
+    public string midiFileLocation;
 }

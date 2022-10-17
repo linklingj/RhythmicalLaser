@@ -9,48 +9,85 @@ public class NoteManager : MonoBehaviour
     public PlayerController playerController;
     [Header("Notes")]
     public int noteSpeed;
-    public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
+    public Melanchall.DryWetMidi.MusicTheory.NoteName kickNoteRestriction;
+    public Melanchall.DryWetMidi.MusicTheory.NoteName snareNoteRestriction;
     [Header("Transform")]
-    public Transform noteSpawnPos1, noteSpawnPos2, destroyPos;
+    public Transform noteSpawnPos1, noteSpawnPos2, hitPos, destroyPos;
 
-    public List<double> timeStamp = new List<double>();
+    public List<double> kickTimeStamp = new List<double>();
+    public List<double> snareTimeStamp = new List<double>();
     int currentBPM;
-    float noteActiveTime;
-    int spawnIndex;
+    float noteActiveTime,noteMoveTime;
+    int k_spawnIndex, s_spawnIndex;
 
     void Start() {
         currentBPM = musicPlayer.currentMusic.bpm;
-        spawnIndex = 0;
+        k_spawnIndex = 0;
+        s_spawnIndex = 0;
+        noteMoveTime = (noteSpawnPos1.localPosition.y - hitPos.localPosition.y) / noteSpeed;
         noteActiveTime = (noteSpawnPos1.localPosition.y - destroyPos.localPosition.y) / noteSpeed;
     }
 
     void Update() {
-        if (spawnIndex < timeStamp.Count) {
-            if (SongManager.GetAudioSourceTime() >= timeStamp[spawnIndex] - noteActiveTime) {
+        if (k_spawnIndex < kickTimeStamp.Count) {
+            if (SongManager.GetAudioSourceTime() >= kickTimeStamp[k_spawnIndex] - noteMoveTime) {
+                SpawnNote(0);
+            }
+        }
+        if (s_spawnIndex < snareTimeStamp.Count) {
+            if (SongManager.GetAudioSourceTime() >= snareTimeStamp[s_spawnIndex] - noteMoveTime) {
+                SpawnNote(1);
+            }
+        }
+    }
+
+    private void SpawnNote(int identity) {
+
                 GameObject t_note = ObjectPool.instance.noteQueue.Dequeue();
-                t_note.transform.position = noteSpawnPos1.position;
+                if (identity == 0)
+                    t_note.transform.position = noteSpawnPos1.position;
+                else
+                    t_note.transform.position = noteSpawnPos2.position;
+
                 t_note.SetActive(true);
 
                 Note n = t_note.GetComponent<Note>();
                 n.noteActive = true;
+                n.beforeHit = true;
                 n.noteSpeed = noteSpeed;
                 n.spawnY = noteSpawnPos1.localPosition.y;
                 n.despawnY = destroyPos.localPosition.y;
                 n.timeInstantiated = SongManager.GetAudioSourceTime();
                 n.noteActiveTime = noteActiveTime;
-                n.assignedTime = (float)timeStamp[spawnIndex];
+                n.noteMoveTime = noteMoveTime;
+                n.noteIdentity = identity;
 
-                spawnIndex++;
-            }
-        }
+                if (identity == 0) {
+                    n.assignedTime = (float)kickTimeStamp[k_spawnIndex];
+                    k_spawnIndex++;
+                } else {
+                    n.assignedTime = (float)snareTimeStamp[s_spawnIndex];
+                    s_spawnIndex++;
+                }
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array) {
         foreach (var note in array) {
-            if (note.NoteName == noteRestriction) {
+            if (note.NoteName == kickNoteRestriction) {
                 var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
-                timeStamp.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                kickTimeStamp.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+            } else if (note.NoteName == snareNoteRestriction) {
+                var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
+                snareTimeStamp.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
             }
+        }
+    }
+
+    public void NoteHit(int identity) {
+        if (identity == 0) {
+            playerController.Kick();
+        } else if (identity == 1) {
+            playerController.Snare();
         }
     }
 }

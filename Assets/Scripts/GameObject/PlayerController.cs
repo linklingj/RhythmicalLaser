@@ -24,11 +24,12 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        //temporary
         if (Input.GetKeyDown(KeyCode.Z)) {
-            Shoot();
+            Kick();
         }
         if (Input.GetKeyDown(KeyCode.X)) {
-            Laser();
+            Snare();
         }
         
     }
@@ -41,13 +42,14 @@ public class PlayerController : MonoBehaviour {
         float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * turnSmoothTime);
         rb.rotation = angle;
     }
-    public void Shoot() {
+    public void Kick() {
         rb.velocity = -transform.right * shootForce;
-        //rb.AddForce(transform.right * shootForce,ForceMode2D.Impulse);
+        //rb.AddForce(-transform.right * shootForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
     }
-    public void Laser() {
+    public void Snare() {
         rb.velocity = -transform.right * laserForce;
+        //rb.AddForce(-transform.right * laserForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
     }
     private void OnTriggerEnter2D(Collider2D col) {
