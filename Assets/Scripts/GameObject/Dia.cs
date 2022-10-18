@@ -8,6 +8,8 @@ public class Dia : Enemy
     public float turnSmoothTime;
 
     void Start() {
+        player = GameObject.FindGameObjectsWithTag("Player")[0];
+        rb = GetComponent<Rigidbody2D>();
         hp = 1;
     }
 

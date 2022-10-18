@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Note
+  - Laser
   layers:
   - Default
   - TransparentFX

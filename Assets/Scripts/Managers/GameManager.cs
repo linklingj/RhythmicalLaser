@@ -15,6 +15,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState State;
+    public int point;
+    public int combo;
+    [Header("Balance")]
+    public int enemyPoint;
+
+    private void Start() {
+        point = 0;
+        combo = 0;
+    }
+
+
     public static event Action<GameState> OnGameStateChange;
     private void Awake() {
         if (Instance == null) {

@@ -10,29 +10,27 @@ using System;
 public class SongManager : MonoBehaviour
 {
     public static SongManager Instance;
+    public MusicPlayer musicPlayer;
     public AudioSource audioSource;
     public NoteManager noteManager;
     public float songDelayInSeconds;
     public double marginOfError;
 
     public int inputDelayInMilliseconds;
-    public string fileLocation;
 
     public static MidiFile midiFile;
     void Start() {
         Instance = this;
-        if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
-        {
+        if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
             StartCoroutine(ReadFromWebsite());
         }
-        else
-        {
+        else {
             ReadFromFile();
         }
     }
 
     private IEnumerator ReadFromWebsite() {
-        using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + '/' + fileLocation)) {
+        using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + '/' + musicPlayer.currentMusic.midiFileLocation)) {
             yield return www.SendWebRequest();
             if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
                 Debug.Log(www.error);
@@ -47,7 +45,7 @@ public class SongManager : MonoBehaviour
     }
 
     private void ReadFromFile() {
-        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
+        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + musicPlayer.currentMusic.midiFileLocation);
         GetDataFromMidi();
     }
 
@@ -64,7 +62,7 @@ public class SongManager : MonoBehaviour
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
     public void StartSong() {
-        audioSource.Play();
+        musicPlayer.StartMusic();
     }
 
 }

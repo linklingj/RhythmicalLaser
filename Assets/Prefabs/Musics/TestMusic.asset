@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Test
   artist: Jay
   bpm: 120
-  audio: {fileID: 8300000, guid: b70d1cb305e6e304dbea7c871e4faebc, type: 3}
+  audio: {fileID: 8300000, guid: 758465e3f6ea25748a5889d50249c81c, type: 3}
   midiFileLocation: test2.mid

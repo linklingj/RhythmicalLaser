@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    GameObject player;
-    Rigidbody2D rb;
+    public GameObject player;
+    public Rigidbody2D rb;
     public int hp;
     float turnSmoothVelocity;
 
     private void Start() {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        rb = GetComponent<Rigidbody2D>();
+        
     }
     public void Die() {
         Destroy(gameObject);
@@ -25,6 +24,12 @@ public class Enemy : MonoBehaviour
     }
 
     public void MoveToward(float speed) {
-        transform.Translate(Vector3.right * speed);
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (col.CompareTag("Laser")) {
+            Die();
+        }
     }
 }
