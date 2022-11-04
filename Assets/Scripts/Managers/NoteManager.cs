@@ -13,22 +13,34 @@ public class NoteManager : MonoBehaviour
     public Melanchall.DryWetMidi.MusicTheory.NoteName snareNoteRestriction;
     [Header("Transform")]
     public Transform noteSpawnPos1, noteSpawnPos2, hitPos, destroyPos;
-
+    [Header("Input")]
+    public KeyCode[] kickInput;
+    public KeyCode[] snareInput;
+    public float marginOfError;
+    [Header("")]
     public List<double> kickTimeStamp = new List<double>();
     public List<double> snareTimeStamp = new List<double>();
     int currentBPM;
     float noteActiveTime,noteMoveTime;
     int k_spawnIndex, s_spawnIndex;
+    int k_inputIndex, s_inputIndex;
 
     void Start() {
         currentBPM = musicPlayer.currentMusic.bpm;
         k_spawnIndex = 0;
         s_spawnIndex = 0;
+        k_inputIndex = 0;
+        s_inputIndex = 0;
         noteMoveTime = (noteSpawnPos1.localPosition.y - hitPos.localPosition.y) / noteSpeed;
         noteActiveTime = (noteSpawnPos1.localPosition.y - destroyPos.localPosition.y) / noteSpeed;
     }
 
     void Update() {
+        CheckNote();
+        CheckInput();
+    }
+
+    void CheckNote() {
         if (k_spawnIndex < kickTimeStamp.Count) {
             if (SongManager.GetAudioSourceTime() >= kickTimeStamp[k_spawnIndex] - noteMoveTime) {
                 SpawnNote(0);
@@ -41,34 +53,62 @@ public class NoteManager : MonoBehaviour
         }
     }
 
+    void CheckInput() {
+        /*
+        inputIndex는 항상 마지막 히트한 input의 인덱스 +1 를 가리킴
+        만약 이번 timeStamp와 현재시간의 차이가 다음 timeStamp와 현재시간의 차이보다 크면 inputIndex를 증가시킴
+        즉 격차가 최소가 되는 index를 찾음
+        */
+        foreach(var input in snareInput) {
+            if (Input.GetKeyDown(input)) {
+                double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
+                float curTimeDif = Mathf.Abs((float)(snareTimeStamp[s_inputIndex] - audioTime));
+                float nextTimeDif = Mathf.Abs((float)(snareTimeStamp[s_inputIndex+1] - audioTime));
+                while(curTimeDif > nextTimeDif) {
+                    s_inputIndex += 1;
+                    curTimeDif = nextTimeDif;
+                    nextTimeDif = Mathf.Abs((float)(snareTimeStamp[s_inputIndex+1] - audioTime));
+                }
+                double timeStamp = snareTimeStamp[s_inputIndex];
+                if (Mathf.Abs((float)(audioTime - timeStamp)) < marginOfError) {
+                    print($"Hit on {s_inputIndex} note");
+                    s_inputIndex++;
+                } else {
+                    print($"Hit inaccurate on {s_inputIndex} note with {Mathf.Abs((float)(audioTime - timeStamp))} delay");
+                }
+                break;
+            }
+        }
+    }
+
     private void SpawnNote(int identity) {
 
-                GameObject t_note = ObjectPool.instance.noteQueue.Dequeue();
-                if (identity == 0)
-                    t_note.transform.position = noteSpawnPos1.position;
-                else
-                    t_note.transform.position = noteSpawnPos2.position;
+        GameObject t_note = ObjectPool.instance.noteQueue.Dequeue();
+        if (identity == 0)
+            t_note.transform.position = noteSpawnPos1.position;
+        else
+            t_note.transform.position = noteSpawnPos2.position;
 
-                t_note.SetActive(true);
+        t_note.SetActive(true);
 
-                Note n = t_note.GetComponent<Note>();
-                n.noteActive = true;
-                n.beforeHit = true;
-                n.noteSpeed = noteSpeed;
-                n.spawnY = noteSpawnPos1.localPosition.y;
-                n.despawnY = destroyPos.localPosition.y;
-                n.timeInstantiated = SongManager.GetAudioSourceTime();
-                n.noteActiveTime = noteActiveTime;
-                n.noteMoveTime = noteMoveTime;
-                n.noteIdentity = identity;
+        Note n = t_note.GetComponent<Note>();
+        n.noteActive = true;
+        n.beforeHit = true;
+        n.noteSpeed = noteSpeed;
+        n.spawnY = noteSpawnPos1.localPosition.y;
+        n.despawnY = destroyPos.localPosition.y;
+        n.timeInstantiated = SongManager.GetAudioSourceTime();
+        n.noteActiveTime = noteActiveTime;
+        n.noteMoveTime = noteMoveTime;
+        n.noteIdentity = identity;
 
-                if (identity == 0) {
-                    n.assignedTime = (float)kickTimeStamp[k_spawnIndex];
-                    k_spawnIndex++;
-                } else {
-                    n.assignedTime = (float)snareTimeStamp[s_spawnIndex];
-                    s_spawnIndex++;
-                }
+        if (identity == 0) {
+            n.assignedTime = (float)kickTimeStamp[k_spawnIndex];
+            k_spawnIndex++;
+        } else {
+            n.assignedTime = (float)snareTimeStamp[s_spawnIndex];
+            s_spawnIndex++;
+        }
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array) {

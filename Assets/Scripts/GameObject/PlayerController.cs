@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         //temporary
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetKeyDown(KeyCode.Q)) {
             Kick();
         }
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.W)) {
             Snare();
         }
         
