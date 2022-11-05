@@ -32,7 +32,7 @@ public class Note : MonoBehaviour
             transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, spawnY, 0), new Vector3(transform.localPosition.x, despawnY, 0), t);
 
             if (t > noteMoveTime / noteActiveTime && beforeHit) {
-                noteManager.NoteHit(noteIdentity);
+                //noteManager.NoteHit(noteIdentity);
                 beforeHit = false;
             }
 

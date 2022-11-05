@@ -52,33 +52,40 @@ public class NoteManager : MonoBehaviour
             }
         }
     }
+    
 
     void CheckInput() {
+        if (Input.GetButtonDown("Snare")) {
+            s_inputIndex = BtnHit(1, snareTimeStamp, s_inputIndex);
+        }
+        if (Input.GetButtonDown("Kick")) {
+            k_inputIndex = BtnHit(0, kickTimeStamp, k_inputIndex);
+        }
+    }
+
+    int BtnHit(int identity, List<double> timeStampList, int inputIndex) {
         /*
         inputIndex는 항상 마지막 히트한 input의 인덱스 +1 를 가리킴
         만약 이번 timeStamp와 현재시간의 차이가 다음 timeStamp와 현재시간의 차이보다 크면 inputIndex를 증가시킴
         즉 격차가 최소가 되는 index를 찾음
         */
-        foreach(var input in snareInput) {
-            if (Input.GetKeyDown(input)) {
-                double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
-                float curTimeDif = Mathf.Abs((float)(snareTimeStamp[s_inputIndex] - audioTime));
-                float nextTimeDif = Mathf.Abs((float)(snareTimeStamp[s_inputIndex+1] - audioTime));
-                while(curTimeDif > nextTimeDif) {
-                    s_inputIndex += 1;
-                    curTimeDif = nextTimeDif;
-                    nextTimeDif = Mathf.Abs((float)(snareTimeStamp[s_inputIndex+1] - audioTime));
-                }
-                double timeStamp = snareTimeStamp[s_inputIndex];
-                if (Mathf.Abs((float)(audioTime - timeStamp)) < marginOfError) {
-                    print($"Hit on {s_inputIndex} note");
-                    s_inputIndex++;
-                } else {
-                    print($"Hit inaccurate on {s_inputIndex} note with {Mathf.Abs((float)(audioTime - timeStamp))} delay");
-                }
-                break;
-            }
+        double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
+        float curTimeDif = Mathf.Abs((float)(timeStampList[inputIndex] - audioTime));
+        float nextTimeDif = (inputIndex < timeStampList.Count)? Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime)) : -1;
+        while(curTimeDif > nextTimeDif && nextTimeDif >= 0) {
+            inputIndex += 1;
+            curTimeDif = nextTimeDif;
+            nextTimeDif = Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime));
         }
+        double timeStamp = timeStampList[inputIndex];
+        if (Mathf.Abs((float)(audioTime - timeStamp)) < marginOfError) {
+            print($"{identity}Hit index:{inputIndex} delay:{(float)(audioTime - timeStamp)}");
+            inputIndex++;
+            NoteHit(identity);
+        } else {
+            print($"{identity}Miss index:{inputIndex} delay:{(float)(audioTime - timeStamp)}");
+        }
+        return inputIndex;
     }
 
     private void SpawnNote(int identity) {

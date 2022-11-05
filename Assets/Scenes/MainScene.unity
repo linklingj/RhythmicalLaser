@@ -1722,8 +1722,8 @@ MonoBehaviour:
   audioSource: {fileID: 274571893}
   noteManager: {fileID: 1276406533}
   songDelayInSeconds: 0
-  marginOfError: 0.17
-  inputDelayInMilliseconds: 0
+  marginOfError: 0.09
+  inputDelayInMilliseconds: 200
 --- !u!1 &1126006115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,6 +2160,9 @@ MonoBehaviour:
   noteSpawnPos2: {fileID: 803455600}
   hitPos: {fileID: 1836625049}
   destroyPos: {fileID: 71612596}
+  kickInput: 7a000000
+  snareInput: 78000000
+  marginOfError: 0.24
   kickTimeStamp: []
   snareTimeStamp: []
 --- !u!1 &1309028866

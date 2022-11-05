@@ -19,7 +19,7 @@ public class SongManager : MonoBehaviour
     public int inputDelayInMilliseconds;
 
     public static MidiFile midiFile;
-    void Start() {
+    void Awake() {
         Instance = this;
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
             StartCoroutine(ReadFromWebsite());
