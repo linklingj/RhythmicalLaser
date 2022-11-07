@@ -24,6 +24,8 @@ public class Note : MonoBehaviour
     }
 
     void Update() {
+        if (!SongManager.Instance.musicPlaying)
+            return;
 
         if (noteActive) {
             timeSinceInstantiated = SongManager.GetAudioSourceTime() - timeInstantiated;

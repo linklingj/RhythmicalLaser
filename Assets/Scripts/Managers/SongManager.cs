@@ -14,9 +14,8 @@ public class SongManager : MonoBehaviour
     public AudioSource audioSource;
     public NoteManager noteManager;
     public float songDelayInSeconds;
-    public double marginOfError;
-
     public int inputDelayInMilliseconds;
+    public bool musicPlaying;
 
     public static MidiFile midiFile;
     void Awake() {
@@ -27,6 +26,10 @@ public class SongManager : MonoBehaviour
         else {
             ReadFromFile();
         }
+    }
+
+    private void Start() {
+        musicPlaying = false;
     }
 
     private IEnumerator ReadFromWebsite() {
@@ -63,6 +66,7 @@ public class SongManager : MonoBehaviour
     }
     public void StartSong() {
         musicPlayer.StartMusic();
+        musicPlaying = true;
     }
 
 }

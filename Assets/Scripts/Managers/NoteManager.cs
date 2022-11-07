@@ -16,7 +16,10 @@ public class NoteManager : MonoBehaviour
     [Header("Input")]
     public KeyCode[] kickInput;
     public KeyCode[] snareInput;
+    //판정 범위 시간
     public float marginOfError;
+    //보정값: 높을수록 노트의 판단에서 앞노트에 우선순위 둠
+    public float correctionVal;
     [Header("")]
     public List<double> kickTimeStamp = new List<double>();
     public List<double> snareTimeStamp = new List<double>();
@@ -72,7 +75,7 @@ public class NoteManager : MonoBehaviour
         double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
         float curTimeDif = Mathf.Abs((float)(timeStampList[inputIndex] - audioTime));
         float nextTimeDif = (inputIndex < timeStampList.Count)? Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime)) : -1;
-        while(curTimeDif > nextTimeDif && nextTimeDif >= 0) {
+        while(curTimeDif > nextTimeDif && nextTimeDif + correctionVal >= 0) {
             inputIndex += 1;
             curTimeDif = nextTimeDif;
             nextTimeDif = Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime));
