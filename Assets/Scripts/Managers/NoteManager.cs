@@ -9,6 +9,7 @@ public class NoteManager : MonoBehaviour
     public PlayerController playerController;
     [Header("Notes")]
     public int noteSpeed;
+    public float visualDelay;
     public Melanchall.DryWetMidi.MusicTheory.NoteName kickNoteRestriction;
     public Melanchall.DryWetMidi.MusicTheory.NoteName snareNoteRestriction;
     [Header("Transform")]
@@ -35,7 +36,6 @@ public class NoteManager : MonoBehaviour
         k_inputIndex = 0;
         s_inputIndex = 0;
         noteMoveTime = (noteSpawnPos1.localPosition.y - hitPos.localPosition.y) / noteSpeed;
-        noteActiveTime = (noteSpawnPos1.localPosition.y - destroyPos.localPosition.y) / noteSpeed;
     }
 
     void Update() {
@@ -107,9 +107,10 @@ public class NoteManager : MonoBehaviour
         n.noteSpeed = noteSpeed;
         n.spawnY = noteSpawnPos1.localPosition.y;
         n.despawnY = destroyPos.localPosition.y;
+        n.hitY = hitPos.localPosition.y;
         n.timeInstantiated = SongManager.GetAudioSourceTime();
-        n.noteActiveTime = noteActiveTime;
         n.noteMoveTime = noteMoveTime;
+        n.visualDelay = visualDelay;
         n.noteIdentity = identity;
 
         if (identity == 0) {
