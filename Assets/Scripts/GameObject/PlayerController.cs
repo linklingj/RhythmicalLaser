@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public Camera cam;
+    public CameraController cameraController;
     public GameObject laser;
     [Header("Movement")]
     public float turnSmoothTime;
@@ -35,6 +36,9 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W)) {
             Snare();
         }
+        if (Input.GetKeyDown(KeyCode.E)) {
+            cameraController.Shake(0);
+        }
         
     }
     void FixedUpdate() {
@@ -48,22 +52,25 @@ public class PlayerController : MonoBehaviour {
         rb.rotation = angle;
     }
     public void Kick() {
+        cameraController.Shake(1);
         //rb.velocity = -transform.right * shootForce;
         rb.AddForce(-transform.right * shootForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
     }
     public void Snare() {
+        cameraController.Shake(2);
         //rb.velocity = -transform.right * laserForce;
         rb.AddForce(-transform.right * laserForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
         //temporary script
         StartCoroutine("Laser");
     }
+
+    //Player Hit
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Enemy")) {
-            GameObject contactEnemy = col.transform.gameObject;
-            contactEnemy.GetComponent<Enemy>().Die();
-            GameManager.Instance.point += GameManager.Instance.enemyPoint;
+            //GameObject contactEnemy = col.transform.gameObject;
+            //contactEnemy.GetComponent<Enemy>().Die();
         }
     }
     IEnumerator Laser() {

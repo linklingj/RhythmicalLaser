@@ -10,6 +10,7 @@ public class Dia : Enemy
     void Start() {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         rb = GetComponent<Rigidbody2D>();
+        cameraController = FindObjectOfType<CameraController>();
         hp = 1;
     }
 

@@ -36,7 +36,6 @@ public class Note : MonoBehaviour
             if (t > 1 && beforeHit) {
                 //noteManager.NoteHit(noteIdentity);
                 beforeHit = false;
-                Debug.Log("hit");
             }
 
             if (transform.localPosition.y < despawnY) {

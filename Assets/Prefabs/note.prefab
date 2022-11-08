@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 3361648928933732183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -91,3 +91,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteManager: {fileID: 0}
   noteActive: 0
+  beforeHit: 0
+  noteSpeed: 0
+  noteMoveTime: 0
+  timeInstantiated: 0
+  assignedTime: 0
+  spawnY: 0
+  hitY: 0
+  despawnY: 0
+  visualDelay: 0
+  noteIdentity: 0

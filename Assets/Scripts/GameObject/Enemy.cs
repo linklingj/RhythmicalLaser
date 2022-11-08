@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public CameraController cameraController;
     public GameObject player;
     public Rigidbody2D rb;
     public int hp;
@@ -28,7 +29,13 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
+        //레이저 맞음
         if (col.CompareTag("Laser")) {
+            Die();
+        }
+        //플레이어 접촉
+        if (col.CompareTag("Player")) {
+            cameraController.Shake(0);
             Die();
         }
     }
