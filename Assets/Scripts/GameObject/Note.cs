@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Note : MonoBehaviour
@@ -16,11 +17,18 @@ public class Note : MonoBehaviour
     public float spawnY,hitY,despawnY;
     public float visualDelay;
     public int noteIdentity; //0 kick 1 snare
+    public int index;
 
+    UIController uIController;
+    Image img;
     double timeSinceInstantiated;
 
     void Start() {
         noteManager = FindObjectOfType<NoteManager>();
+        img = GetComponent<Image>();
+        uIController = FindObjectOfType<UIController>();
+
+        img.color = uIController.currentColor.UI1;
     }
 
     void Update() {
@@ -39,6 +47,16 @@ public class Note : MonoBehaviour
             }
 
             if (transform.localPosition.y < despawnY) {
+                bool hitCheck;
+                if (noteIdentity == 0)
+                    hitCheck = noteManager.k_hit[index];
+                else
+                    hitCheck = noteManager.s_hit[index];
+                if (!hitCheck) {
+                    //Debug.Log("nohit"+index.ToString() + noteIdentity.ToString());
+                    noteManager.NoHit();
+                    transform.Translate(Vector3.left*200);
+                }
                 ObjectPool.instance.noteQueue.Enqueue(gameObject);
                 gameObject.SetActive(false);
                 noteActive = false;

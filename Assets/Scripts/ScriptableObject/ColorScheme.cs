@@ -14,4 +14,8 @@ public class ColorScheme : ScriptableObject
     public Color32 laser2;
     public Color32 enemy1;
     public Color32 enemy2;
+    public Color32 BG;
+    public Color32 UI1;
+    public Color32 UI2;
+    public Color32 UI3;
 }

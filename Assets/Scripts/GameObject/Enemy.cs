@@ -5,8 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public CameraController cameraController;
+    public UIController uIController;
     public GameObject player;
     public Rigidbody2D rb;
+    public SpriteRenderer sr;
     public int hp;
     float turnSmoothVelocity;
 
@@ -31,6 +33,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col) {
         //레이저 맞음
         if (col.CompareTag("Laser")) {
+            GameManager.Instance.point += GameManager.Instance.enemyPoint;
             Die();
         }
         //플레이어 접촉

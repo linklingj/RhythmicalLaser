@@ -14,22 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1:
     serializedVersion: 2
-    rgba: 14771658
+    rgba: 4292961738
   player2:
     serializedVersion: 2
-    rgba: 14377855
+    rgba: 4292567935
   player3:
     serializedVersion: 2
-    rgba: 14384984
+    rgba: 4292575064
   laser1:
     serializedVersion: 2
-    rgba: 6676653
+    rgba: 4284731611
   laser2:
     serializedVersion: 2
-    rgba: 6541531
+    rgba: 4284150015
   enemy1:
     serializedVersion: 2
-    rgba: 6676653
+    rgba: 4284866733
   enemy2:
     serializedVersion: 2
-    rgba: 2462822
+    rgba: 4280652902
+  BG:
+    serializedVersion: 2
+    rgba: 4294967295
+  UI1:
+    serializedVersion: 2
+    rgba: 4292575064
+  UI2:
+    serializedVersion: 2
+    rgba: 4292575064
+  UI3:
+    serializedVersion: 2
+    rgba: 4292575064

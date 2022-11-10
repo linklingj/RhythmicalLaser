@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Blinding Lights
   artist: The Weeknd
   bpm: 171
-  audio: {fileID: 8300000, guid: b906581519409b34aba733c259beb925, type: 3}
-  midiFileLocation: BlindingLights.mid
+  audio: {fileID: 8300000, guid: 7e76e720efb7a9142b0347128162010c, type: 3}
+  midiFileLocation: Blinding_Lights.mid

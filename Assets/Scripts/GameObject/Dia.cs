@@ -10,7 +10,11 @@ public class Dia : Enemy
     void Start() {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         cameraController = FindObjectOfType<CameraController>();
+        uIController = FindObjectOfType<UIController>();
+
+        sr.color = uIController.currentColor.UI1;
         hp = 1;
     }
 
