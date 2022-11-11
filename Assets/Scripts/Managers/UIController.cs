@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] Slider progressBar;
     [SerializeField] TextMeshProUGUI points_t,combo_t,title_t,artist_t,difficulty_t;
+    [SerializeField] GameObject[] lifeObj;
     [SerializeField] Image leftBar,rightBar,progressBarImg;
     [SerializeField] SpriteRenderer bgR;
     [SerializeField] Image[] bgs;
