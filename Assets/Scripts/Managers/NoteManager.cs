@@ -7,6 +7,7 @@ public class NoteManager : MonoBehaviour
 {
     public MusicPlayer musicPlayer;
     public PlayerController playerController;
+    public CameraController cam;
     [Header("Notes")]
     public int noteSpeed;
     public float visualDelay;
@@ -150,6 +151,7 @@ public class NoteManager : MonoBehaviour
             playerController.Snare();
         }
         GameManager.Instance.combo += 1;
+        cam.CameraZoom();
     }
 
     public void NoHit() {
@@ -162,5 +164,6 @@ public class NoteManager : MonoBehaviour
 
     public void ComboBreak() {
         GameManager.Instance.combo = 0;
+        cam.ResetZoom();
     }
 }

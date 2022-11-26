@@ -16,19 +16,29 @@ public class CameraController : MonoBehaviour
         public AnimationCurve rotationCurve;
     }
     public List<shakeValue> shakeValues;
+    public AnimationCurve zoomCurve;
+    public float maxZoom, defaultZoom;
     float timer;
     float shakePower, shakeDuration, rotationPower;
     AnimationCurve currentCurveX,currentCurveY,currentRotCurve;
     int negativeMultiply = 1;
     bool shaking;
+    Camera cam;
+
+    private void Awake() {
+        GameManager.OnPlayerHit += PlayerHit;
+        cam = GetComponent<Camera>();
+    }
+
     void Start() {
         timer = 0;
         shaking = false;
     }
 
     void LateUpdate() {
-        if (screenShakeOn)
+        if (screenShakeOn) {
             CameraShake();
+        }
     }
     
     void CameraShake() {
@@ -49,6 +59,11 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation));
     }
 
+    void PlayerHit() {
+        Shake(0);
+        ResetZoom();
+    }
+
     public void Shake(int n) {
         negativeMultiply *= -1;
         if (n > shakeValues.Count)
@@ -65,5 +80,14 @@ public class CameraController : MonoBehaviour
         currentRotCurve = shakeValues[n].rotationCurve;
         timer = 0;
         shaking = true;
+    }
+
+    public void CameraZoom() {
+        float targetZoom = defaultZoom - zoomCurve.Evaluate(Mathf.Clamp01((float)GameManager.Instance.combo / 100)) * maxZoom;
+        LeanTween.value(gameObject, cam.orthographicSize, targetZoom, 0.2f).setOnUpdate((float val) => {cam.orthographicSize = val;}).setEase(LeanTweenType.easeOutElastic);
+    }
+
+    public void ResetZoom() {
+        LeanTween.value(gameObject, cam.orthographicSize, defaultZoom, 0.5f).setOnUpdate((float val) => {cam.orthographicSize = val;}).setEase(LeanTweenType.easeOutCirc);
     }
 }

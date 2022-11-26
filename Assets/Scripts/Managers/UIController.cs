@@ -9,17 +9,30 @@ public class UIController : MonoBehaviour
     [Header("Managers")]
     public MusicPlayer musicPlayer;
     public SongManager songManager;
+
     [Header("UI Elements")]
+    //top
     [SerializeField] Slider progressBar;
+    //left
     [SerializeField] TextMeshProUGUI points_t,combo_t,title_t,artist_t,difficulty_t;
-    [SerializeField] GameObject[] lifeObj;
-    [SerializeField] Image leftBar,rightBar,progressBarImg;
+    [SerializeField] GameObject heartParent;
+    [SerializeField] Image leftBar,rightBar,progressBarImg,progressBarBg;
     [SerializeField] SpriteRenderer bgR;
     [SerializeField] Image[] bgs;
+    [SerializeField] GameObject heartPrefab;
+
     [Header("Color Elements")]
     public List <ColorScheme> colorSchemes;
     public ColorScheme currentColor;
     [SerializeField] SpriteRenderer playerR, playerDirR, bounderyR, laserR;
+    
+    List<GameObject> hearts = new List<GameObject>();
+
+    private void Awake() {
+        GameManager.OnGameStateChange += OnGameStateChange;
+        GameManager.OnPlayerHit += PlayerHit;
+    }
+
     void Start() {
         title_t.text = musicPlayer.currentMusic.title;
         artist_t.text = musicPlayer.currentMusic.artist;
@@ -41,14 +54,47 @@ public class UIController : MonoBehaviour
         leftBar.color = currentColor.UI1;
 
         progressBarImg.color = currentColor.UI1;
+        progressBarBg.color = currentColor.BG;
 
         rightBar.color = currentColor.UI1;
     }
 
-    // Update is called once per frame
     void Update() {
         progressBar.value = songManager.audioSource.time / songManager.audioSource.clip.length;
         points_t.text = GameManager.Instance.point.ToString();
         combo_t.text = "x" + GameManager.Instance.combo.ToString();
     }
+
+    void OnGameStateChange(GameState state) {
+        if (state == GameState.Play) {
+            UpdateHearts();
+        }
+    }
+
+    void PlayerHit() {
+        UpdateHearts();
+    }
+
+    void UpdateHearts() {
+        int curHp = hearts.Count;
+        if (curHp == GameManager.Instance.hp)
+            return;
+        //하트 추가
+        if (curHp < GameManager.Instance.hp) {
+            for (int i = 0; i < GameManager.Instance.hp - curHp; i++) {
+                GameObject h = Instantiate(heartPrefab,Vector3.zero,Quaternion.identity);
+                h.GetComponent<Image>().color = currentColor.UI1;
+                h.transform.SetParent(heartParent.transform);
+                hearts.Add(h);
+            }
+        //하트 삭제
+        } else {
+            for (int i = 0; i < curHp - GameManager.Instance.hp; i++) {
+                GameObject h = hearts[hearts.Count-1];
+                hearts.Remove(h);
+                Destroy(h);
+            }
+        }
+    }
+
 }

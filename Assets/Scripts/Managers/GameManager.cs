@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 
 public enum GameState {
     Title,
-    Menu,
+    Settings,
+    Credit,
+    CharacterSelect,
+    MusicSelect,
     Play,
     Result
 }
@@ -17,16 +20,24 @@ public class GameManager : MonoBehaviour
     public GameState State;
     public int point;
     public int combo;
+    public int hp;
+    public int maxHP;
+
     [Header("Balance")]
     public int enemyPoint;
 
     private void Start() {
+        //to fix
         point = 0;
         combo = 0;
+        hp = maxHP;
+        UpdateGameState(GameState.Play);
     }
 
-
     public static event Action<GameState> OnGameStateChange;
+    public static event Action OnPlayerHit;
+    public static event Action OnGameOver;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -41,9 +52,18 @@ public class GameManager : MonoBehaviour
         switch(newState) {
             case GameState.Title:
                 break;
-            case GameState.Menu:
+            case GameState.Settings:
+                break;
+            case GameState.Credit:
+                break;
+            case GameState.CharacterSelect:
+                break;
+            case GameState.MusicSelect:
                 break;
             case GameState.Play:
+                point = 0;
+                combo = 0;
+                hp = maxHP;
                 break;
             case GameState.Result:
                 break;
@@ -51,5 +71,13 @@ public class GameManager : MonoBehaviour
                 break;
         }
         OnGameStateChange?.Invoke(newState);
+    }
+
+    public void playerHit() {
+        hp -= 1;
+        combo = 0;
+        OnPlayerHit?.Invoke();
+        if (hp <= 0)
+            OnGameOver?.Invoke();
     }
 }

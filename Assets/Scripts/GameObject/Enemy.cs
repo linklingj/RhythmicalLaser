@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public CameraController cameraController;
     public UIController uIController;
     public GameObject player;
     public Rigidbody2D rb;
@@ -12,9 +11,6 @@ public class Enemy : MonoBehaviour
     public int hp;
     float turnSmoothVelocity;
 
-    private void Start() {
-        
-    }
     public void Die() {
         Destroy(gameObject);
     }
@@ -38,7 +34,7 @@ public class Enemy : MonoBehaviour
         }
         //플레이어 접촉
         if (col.CompareTag("Player")) {
-            cameraController.Shake(0);
+            GameManager.Instance.playerHit();
             Die();
         }
     }
