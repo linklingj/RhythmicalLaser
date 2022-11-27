@@ -14,10 +14,14 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] ObjectInfo[] objectInfo = null;
     public static ObjectPool instance;
     public Queue<GameObject> noteQueue = new Queue<GameObject>();
+    public Queue<GameObject> diaQueue = new Queue<GameObject>();
+    public Queue<GameObject> effect1Queue = new Queue<GameObject>();
     
     private void Start() {
         instance = this;
         noteQueue = InsertQueue(objectInfo[0]);
+        diaQueue = InsertQueue(objectInfo[1]);
+        effect1Queue = InsertQueue(objectInfo[2]);
     }
     
     Queue<GameObject> InsertQueue(ObjectInfo p_objectInfo) {

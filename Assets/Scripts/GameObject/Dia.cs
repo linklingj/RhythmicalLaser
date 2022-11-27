@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class Dia : Enemy
 {
+    public int maxHP;
     public float moveSpeed;
     public float turnSmoothTime;
 
-    void Start() {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        uIController = FindObjectOfType<UIController>();
+    private void Start() {
+        
+    }
 
-        sr.color = uIController.currentColor.UI1;
-        hp = 1;
+    public override void Spawn() {
+        hp = maxHP;
+        base.Spawned();
+    }
+    
+    public override void Dequeue() {
+        ObjectPool.instance.diaQueue.Enqueue(gameObject);
     }
 
     void Update() {
         TurnToward(turnSmoothTime);
         MoveToward(moveSpeed);
     }
+
+    
+
+    
+    
 }
