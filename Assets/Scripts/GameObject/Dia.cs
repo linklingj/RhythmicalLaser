@@ -8,26 +8,21 @@ public class Dia : Enemy
     public float moveSpeed;
     public float turnSmoothTime;
 
-    private void Start() {
-        
-    }
 
     public override void Spawn() {
-        hp = maxHP;
-        base.Spawned();
+        data.maxHP = 1;
+        data.moveSpeed = 0.5f;
+        data.turnSmoothTime = 3;
+        hp = data.maxHP;
+    }
+
+    public override void Move(Rigidbody2D rb, Transform transform, Transform player) {
+        TurnToward(rb, transform, player);
+        MoveToward(transform);
     }
     
-    public override void Dequeue() {
+    public override void Enqueue(GameObject gameObject) {
         ObjectPool.instance.diaQueue.Enqueue(gameObject);
     }
-
-    void Update() {
-        TurnToward(turnSmoothTime);
-        MoveToward(moveSpeed);
-    }
-
-    
-
-    
     
 }

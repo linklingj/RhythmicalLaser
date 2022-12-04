@@ -26,26 +26,19 @@ public class GameManager : MonoBehaviour
     [Header("Balance")]
     public int enemyPoint;
 
-    private void Start() {
-        //to fix
-        point = 0;
-        combo = 0;
-        hp = maxHP;
-        UpdateGameState(GameState.Play);
-    }
-
     public static event Action<GameState> OnGameStateChange;
     public static event Action OnPlayerHit;
     public static event Action OnGameOver;
 
     private void Awake() {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this) {
+            Destroy(this.gameObject);
         } else {
-            Destroy(gameObject);
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
+
     
     public void UpdateGameState(GameState newState) {
         State = newState;
@@ -79,5 +72,39 @@ public class GameManager : MonoBehaviour
         OnPlayerHit?.Invoke();
         if (hp <= 0)
             OnGameOver?.Invoke();
+    }
+
+    public void Play(Music music) {
+        SceneManager.LoadScene("GamePlay");
+        point = 0;
+        combo = 0;
+        hp = maxHP;
+        UpdateGameState(GameState.Play);
+    }
+    public void ToTitle() {
+        SceneManager.LoadScene("Title");
+        UpdateGameState(GameState.Title);
+    }
+
+    public void ToMenu() {
+        Debug.Log("ToMenu");
+        SceneManager.LoadScene("Menu");
+        UpdateGameState(GameState.CharacterSelect);
+    }
+
+    public void ToSettings() {
+        SceneManager.LoadScene("Settings");
+        UpdateGameState(GameState.Settings);
+    }
+
+    public void ToCredit() {
+        SceneManager.LoadScene("Credit");
+        UpdateGameState(GameState.Credit);
+    }
+    public void Quit() {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+            Application.Quit();
     }
 }

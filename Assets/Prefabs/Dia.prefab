@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4872110311875470334}
   - component: {fileID: 4872110311875470321}
-  - component: {fileID: 4872110311875470320}
+  - component: {fileID: 1995795546122509877}
   - component: {fileID: 7831538208626803432}
   - component: {fileID: -4926665973872930740}
   m_Layer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4872110311875470320
+--- !u!114 &1995795546122509877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,19 +96,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4872110311875470323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e0f42df39b7ed4eacb77ddd251e8bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b8f010409201c4a94465a198321617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIController: {fileID: 0}
-  vfx: {fileID: 0}
+  myEnemy: {fileID: 0}
   player: {fileID: 0}
   rb: {fileID: 0}
   sr: {fileID: 0}
+  uIController: {fileID: 0}
+  vfx: {fileID: 0}
   active: 0
-  hp: 1
-  maxHP: 1
-  moveSpeed: 0.5
-  turnSmoothTime: 3
 --- !u!60 &7831538208626803432
 PolygonCollider2D:
   m_ObjectHideFlags: 0

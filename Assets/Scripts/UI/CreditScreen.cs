@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //크래딧 화면의 애니메이션과 버튼 처리를 담당한다
-public class CreditScreen : MenuElements
+public class CreditScreen : ScreenManager
 {
     [SerializeField] GameObject[] buttons;
     
     const string CJHLink = "https://github.com/linklingj";
 
     void Start() {
-        audioSource = GetComponent<AudioSource>();
         ShowButtons();
     }
-
+    
     void ShowButtons() {
         float delay = 0f;
         foreach (GameObject item in buttons) {
@@ -26,22 +25,7 @@ public class CreditScreen : MenuElements
         }
     }
     
-    public void Button(int n) {
-        /*
-        if (n == 0) {
-            //다울
-            Application.OpenURL(KDULink);
-        } if (n == 1) {
-            //건민
-            Application.OpenURL(KGMLink);
-        } else if (n == 2) {
-            //소영
-            Application.OpenURL(KSYLink);
-        } else if (n == 3) {
-            //재현
-            Application.OpenURL(CJHLink);
-        } else if (n == 4) {
-            GameManager.Instance.ToTitile();
-        }*/
+    public override void Button(int n) {
+        
     }
 }

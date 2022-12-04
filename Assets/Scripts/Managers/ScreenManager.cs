@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//메뉴에서 버튼을 선택하는 스크립트
-//모든 메뉴 메니저들이 상속한다
-//TitleScreen, CreditScreen 에서 상속한다
-public class MenuElements : MonoBehaviour
+public abstract class ScreenManager : MonoBehaviour
 {
     [SerializeField] bool keyDown;
     [SerializeField] int maxIndex;
     public int index;
     public AudioSource audioSource;
-    
+
+    private void Start() {
+        index = 0;
+    }
     void Update() {
         if (Input.GetAxis("Vertical") != 0) {
             if (!keyDown) {
@@ -34,5 +34,5 @@ public class MenuElements : MonoBehaviour
             keyDown = false;
         }
     }
-
+    public abstract void Button(int n);
 }

@@ -2,64 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public struct Data {
+    public int maxHP;
+    public float moveSpeed;
+    public float turnSmoothTime;
+}
+
+public abstract class Enemy
 {
-    public GameObject player;
-    public Rigidbody2D rb;
-    public SpriteRenderer sr;
-    public UIController uIController;
-    public VFXManager vfx;
-    public bool active;
+    public Data data;
     public int hp;
+    
     float turnSmoothVelocity;
 
-    private void Start() {
-        active = false;
-        
-    }
-
-    private void Update() {
-        if (hp <= 0) {
-            GameManager.Instance.point += GameManager.Instance.enemyPoint;
-            Die();
-        }
-    }
-
     public abstract void Spawn();
+    public abstract void Move(Rigidbody2D rb, Transform transform, Transform player);
 
-    public void Spawned() {
-        //sr.color = uIController.currentColor.UI1;
-        active = true;
-    }
 
-    public void TurnToward(float turnSmoothTime) {
+    public void TurnToward(Rigidbody2D rb, Transform transform, Transform player) {
         Vector2 lookDir = player.transform.position - transform.position;
         float targetAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * turnSmoothTime);
+        float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * data.turnSmoothTime);
 
         rb.rotation = angle;
     }
 
-    public void MoveToward(float speed) {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+    public void MoveToward(Transform transform) {
+        transform.Translate(Vector3.right * data.moveSpeed * Time.deltaTime);
     }
 
-    public void Die() {
-        vfx.EnemyDeath(transform.position);
-        Dequeue();
-    }
+    
+    public abstract void Enqueue(GameObject gameObject);
 
-    public abstract void Dequeue();
-
-    private void OnTriggerEnter2D(Collider2D col) {
-        //플레이어 접촉
-        if (col.CompareTag("Player")) {
-            GameManager.Instance.playerHit();
-            Die();
-        }
-        //레이저 맞음
-        if (col.CompareTag("Laser")) {
-            hp -= 1;
-        }
-    }
+    
 }

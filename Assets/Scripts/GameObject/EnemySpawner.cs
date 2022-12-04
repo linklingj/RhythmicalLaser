@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] GameObject player;
+    [SerializeField] UIController uIController;
+    [SerializeField] VFXManager vfx;
     [Header("Enemy Prefab")]
     public GameObject dia;
     [Header("EnemyParent")]
@@ -26,7 +29,11 @@ public class EnemySpawner : MonoBehaviour
         GameObject e = ObjectPool.instance.diaQueue.Dequeue();
         e.transform.position = pos * spawnCircleRad;
         e.SetActive(true);
-        e.GetComponent<Dia>().Spawn();
+        EnemyController ec = e.GetComponent<EnemyController>();
+        ec.player = player;
+        ec.uIController = uIController;
+        ec.vfx = vfx;
+        ec.Spawn();
     }
 
 }
