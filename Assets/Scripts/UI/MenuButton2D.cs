@@ -8,23 +8,25 @@ public class MenuButton2D : MonoBehaviour
     [SerializeField] ScreenManager2D screenManager;
     [SerializeField] Animator animator;
     //해당 버튼의 인덱스
-    [SerializeField] int thisIndex_r;
-    [SerializeField] int thisIndex_c;
+    public int thisIndex_r;
+    public int thisIndex_c;
     int currentIndex_r;
     int currentIndex_c;
 
     private void Update() {
         currentIndex_r = screenManager.index_r;
-        if (currentIndex_c == thisIndex_c && currentIndex_r == thisIndex_r) {
-            //animator.SetBool("selected", true);
+        currentIndex_c = screenManager.index_c;
+        if (currentIndex_r != thisIndex_r) return;
+        if (currentIndex_c == thisIndex_c) {
+            animator.SetBool("selected", true);
             if (Input.GetAxis("Submit") == 1) {
-                //animator.SetBool("pressed", true);
+                animator.SetBool("pressed", true);
                 screenManager.Button(thisIndex_r, thisIndex_c);
             } else if (animator.GetBool("pressed")) {
-                //animator.SetBool("pressed",false);
+                animator.SetBool("pressed",false);
             }
         } else {
-            //animator.SetBool("selected",false);
+            animator.SetBool("selected",false);
         }
     }
     
