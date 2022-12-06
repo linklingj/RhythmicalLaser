@@ -23,6 +23,6 @@ public class TitleScreen : ScreenManager
     IEnumerator Transition1() {
         transition.Play("transition1");
         yield return new WaitForSeconds(transitionTime);
-        GameManager.Instance.ToMenu();
+        GameManager.Instance.ToCharacterSelect();
     }
 }

@@ -4,35 +4,16 @@ using UnityEngine;
 
 public class MenuScreen : ScreenManager2D
 {
-    [SerializeField] Music[] musics;
     [SerializeField] CharacterCard[] characterCards;
-    int prevIndex_r, prevIndex_c;
-    /*
-    private void Update() {
-        //row 변화 있을 때
-        if (prevIndex_r != index_r) {
-            if (index_r == 0) {
-                HighlightCharacterRow();
-            } else if (index_r == 1) {
-                UnHighlightCharacterRow();
-            }
-            prevIndex_r = index_r;
-        //col 변화 있을 때
-        } else if (prevIndex_c != index_c) {
-            if (index_r == 0) {
-                if (index_c > prevIndex_c) {
-                    //오른쪽 카드
+    [SerializeField] Transform[] cardPositions;
+    public Animator transition;
+    public float transitionTime;
 
-                } else if (index_c < prevIndex_c) {
-                    //왼쪽 카드
+    public override void Initialize() {
+        CheckForChange(0);
+    }
 
-                }
-            }
-            prevIndex_c = index_c;
-        }
-    }*/
-
-    public override void CheckForChange() {
+    public override void CheckForChange(float dir) {
         for (int i = 0; i < characterCards.Length; i++) {
             int pos = i - index_c;
             if (pos == maxIndex_c[0]) {
@@ -40,14 +21,26 @@ public class MenuScreen : ScreenManager2D
             } else if (pos == -maxIndex_c[0]) {
                 pos = 1;
             }
-            characterCards[i].SetPos(pos);
+
+            int d = 0;
+            if (dir > 0.2f)
+                d = -1;
+            else if (dir < -0.2f)
+                d = 1;
+            else
+                d = 0;
+
+            int pos_before = Mathf.Clamp(pos - d, -2, 2);
+            int pos_after = Mathf.Clamp(pos, -2, 2);
+            //Debug.Log("card num: "+ i +"pos_after: "+ pos_after);
+            characterCards[i].SetPos(cardPositions[pos_before + 2].position, cardPositions[pos_after + 2].position);
         }
     }
 
 
     public override void Button(int r, int c) {
         if (r == 0) {
-            GameManager.Instance.Play(musics[c]);
+            StartCoroutine(Transition1());
         } else if (r == 1) {
             if  (c == 0) {
                 GameManager.Instance.ToTitle();
@@ -55,5 +48,11 @@ public class MenuScreen : ScreenManager2D
                 GameManager.Instance.ToSettings();
             }
         }
+    }
+
+    IEnumerator Transition1() {
+        transition.Play("transition1");
+        yield return new WaitForSeconds(transitionTime);
+        GameManager.Instance.ToMusicSelect();
     }
 }

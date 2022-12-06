@@ -13,11 +13,15 @@ public abstract class ScreenManager2D : MonoBehaviour
     public int save_index;
     public AudioSource audioSource;
 
+    bool changed;
+
     private void Start() {
         index_r = 0;
         index_c = 0;
+        Initialize();
     }
     void Update() {
+        changed = false;
         if (Input.GetAxis("Vertical") != 0) {
             if (!keyDown_r) {
                 if (Input.GetAxis("Vertical") < 0) {
@@ -39,6 +43,7 @@ public abstract class ScreenManager2D : MonoBehaviour
                 } else {
                     save_index = index_c;
                 }
+                changed = true;
             }
         } else {
             keyDown_r = false;
@@ -59,12 +64,15 @@ public abstract class ScreenManager2D : MonoBehaviour
                     }
                 }
                 keyDown_c = true;
+                changed = true;
             }
         } else {
             keyDown_c = false;
         }
-        CheckForChange();
+        if (changed && index_r == 0)
+            CheckForChange(Input.GetAxisRaw("Horizontal"));
     }
-    public abstract void CheckForChange();
+    public abstract void Initialize();
+    public abstract void CheckForChange(float horizontal);
     public abstract void Button(int r, int c);
 }

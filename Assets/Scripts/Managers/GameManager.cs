@@ -86,10 +86,14 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Title);
     }
 
-    public void ToMenu() {
-        Debug.Log("ToMenu");
-        SceneManager.LoadScene("Menu");
+    public void ToCharacterSelect() {
+        SceneManager.LoadScene("CharacterSelect");
         UpdateGameState(GameState.CharacterSelect);
+    }
+
+    public void ToMusicSelect() {
+        SceneManager.LoadScene("MusicSelect");
+        UpdateGameState(GameState.MusicSelect);
     }
 
     public void ToSettings() {

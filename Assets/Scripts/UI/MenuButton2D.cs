@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class MenuButton2D : MonoBehaviour
 {
-    [SerializeField] ScreenManager2D screenManager;
+    public ScreenManager2D screenManager;
     [SerializeField] Animator animator;
     //해당 버튼의 인덱스
     public int thisIndex_r;
     public int thisIndex_c;
     int currentIndex_r;
     int currentIndex_c;
+
 
     private void Update() {
         currentIndex_r = screenManager.index_r;
