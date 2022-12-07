@@ -6,11 +6,14 @@ public class MenuScreen : ScreenManager2D
 {
     [SerializeField] CharacterCard[] characterCards;
     [SerializeField] Transform[] cardPositions;
+    [SerializeField] CanvasGroup fade;
     public Animator transition;
     public float transitionTime;
 
     public override void Initialize() {
         CheckForChange(0);
+        fade.alpha = 1;
+        LeanTween.alphaCanvas(fade, 0, 0.5f);
     }
 
     public override void CheckForChange(float dir) {
