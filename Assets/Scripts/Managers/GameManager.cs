@@ -14,10 +14,19 @@ public enum GameState {
     Result
 }
 
+[System.Serializable]
+public class Character {
+    public string name;
+    public CharacterCard card;
+    public List<Music> musicList;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState State;
+    public List<Character> characters;
+    [Header("In Game")]
     public int point;
     public int combo;
     public int hp;
@@ -38,6 +47,14 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
+    private void Start() { 
+        //debug
+        if (SceneManager.GetActiveScene().name == "GamePlay") {
+            UpdateGameState(GameState.Play);
+        }
+    }
+
 
     
     public void UpdateGameState(GameState newState) {

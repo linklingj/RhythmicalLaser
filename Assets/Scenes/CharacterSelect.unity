@@ -197,10 +197,10 @@ RectTransform:
   - {fileID: 223347367}
   - {fileID: 735107077}
   - {fileID: 1560103241}
-  - {fileID: 1335004698}
-  - {fileID: 1506947030}
   - {fileID: 344673603}
   - {fileID: 2026932764}
+  - {fileID: 1506947030}
+  - {fileID: 1335004698}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -839,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3403102885603848894, guid: a17236182d5b7a44896e408b8bcc6060, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3403102885603848894, guid: a17236182d5b7a44896e408b8bcc6060, type: 3}
       propertyPath: m_AnchorMax.x
@@ -975,7 +975,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 122717171}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1245,6 +1245,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8934042144714560770, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
+      propertyPath: characters.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934042144714560770, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
+      propertyPath: characters.Array.data[0].card
+      value: 
+      objectReference: {fileID: 2043293424}
+    - target: {fileID: 8934042144714560770, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
+      propertyPath: characters.Array.data[0].name
+      value: "\uB958\uD558\uB791"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934042144714560770, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
+      propertyPath: characters.Array.data[1].card
+      value: 
+      objectReference: {fileID: 820246284}
     - target: {fileID: 8934042144714560771, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1446,7 +1462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4978782153582666185, guid: ec7ecef5a2a29e94eb43961b42acfbdb, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4978782153582666185, guid: ec7ecef5a2a29e94eb43961b42acfbdb, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1763,7 +1779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3403102885603848894, guid: a17236182d5b7a44896e408b8bcc6060, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3403102885603848894, guid: a17236182d5b7a44896e408b8bcc6060, type: 3}
       propertyPath: m_AnchorMax.x
