@@ -279,7 +279,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2924198584290221319, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: m_Name
-      value: YooChan
+      value: Olivia
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: genre
+      value: Classic
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: nameText1
@@ -290,12 +294,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2018547451}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: description
+      value: "\uD488\uACA9\uC788\uB294 \uC5EC\uC131"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: thisIndex_c
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: characterName
-      value: "\uCD5C\uC720\uCC2C"
+      value: Olivia
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: screenManager
@@ -1041,7 +1049,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2924198584290221319, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: m_Name
-      value: KimHaneul
+      value: Jimmy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: genre
+      value: POP
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: nameText1
@@ -1052,12 +1064,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1386792234}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: description
+      value: "\uD31D\uC1A1\uC5D0 \uD658\uC7A5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: thisIndex_c
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: characterName
-      value: "\uAE40\uD558\uB298:)"
+      value: Jimmy
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: screenManager
@@ -1547,7 +1563,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2924198584290221319, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: m_Name
-      value: ChoiJaehyun
+      value: Taro
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: genre
+      value: J-POP
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: nameText1
@@ -1558,12 +1578,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 214750190}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: description
+      value: "\uB9AC\uB4EC\uAC8C\uC784\uC744 \uC88B\uC544\uD574\uC694"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: thisIndex_c
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: characterName
-      value: "\uCD5C\uC7AC\uD604~!"
+      value: Taro
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: screenManager
@@ -1882,6 +1906,10 @@ PrefabInstance:
       propertyPath: nameText2
       value: 
       objectReference: {fileID: 404562328}
+    - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: description
+      value: "\uCF00\uC774\uD31D \uB355\uD6C4"
+      objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: characterName
       value: "\uB958\uD558\uB791"

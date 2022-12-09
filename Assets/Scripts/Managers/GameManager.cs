@@ -14,18 +14,12 @@ public enum GameState {
     Result
 }
 
-[System.Serializable]
-public class Character {
-    public string name;
-    public CharacterCard card;
-    public List<Music> musicList;
-}
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState State;
-    public List<Character> characters;
     [Header("In Game")]
     public int point;
     public int combo;
@@ -34,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Balance")]
     public int enemyPoint;
+    [Header("UI")]
+    public int selectedCharacter = 0;
 
     public static event Action<GameState> OnGameStateChange;
     public static event Action OnPlayerHit;
@@ -108,7 +104,8 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.CharacterSelect);
     }
 
-    public void ToMusicSelect() {
+    public void ToMusicSelect(int characterIndex) {
+        selectedCharacter = characterIndex;
         SceneManager.LoadScene("MusicSelect");
         UpdateGameState(GameState.MusicSelect);
     }
