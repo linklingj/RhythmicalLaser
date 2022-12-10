@@ -18,6 +18,12 @@ public class MusicCard : MenuButton2D {
         nameText1.text = music.title;
         nameText2.text = music.title;
         artistText.text = music.artist;
+        levelText.text = music.difficultyLvl.ToString();
+    }
+
+    public void SetColor(string dif, Color32 color) {
+        levelImg.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dif;
+        levelImg.GetComponent<Image>().color = color;
     }
 
 

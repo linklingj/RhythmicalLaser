@@ -1638,6 +1638,15 @@ MonoBehaviour:
   fade: {fileID: 666268737}
   transition: {fileID: 1777152346}
   transitionTime: 1.3
+  difficultyColors:
+  - serializedVersion: 2
+    rgba: 4280467512
+  - serializedVersion: 2
+    rgba: 4283672293
+  - serializedVersion: 2
+    rgba: 4283914222
+  - serializedVersion: 2
+    rgba: 4292889484
 --- !u!1001 &1494663678
 PrefabInstance:
   m_ObjectHideFlags: 0

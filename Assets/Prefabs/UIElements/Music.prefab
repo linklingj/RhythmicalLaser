@@ -1473,7 +1473,7 @@ MonoBehaviour:
   nameText1: {fileID: 1969769320279385565}
   nameText2: {fileID: 1969769319526950780}
   artistText: {fileID: 1969769319561058261}
-  levelText: {fileID: 1969769321052489964}
+  levelText: {fileID: 1969769320150135142}
   maxScoreText: {fileID: 1969769320164832680}
   maxComboText: {fileID: 1969769320353601882}
   levelImg: {fileID: 1969769319530690679}

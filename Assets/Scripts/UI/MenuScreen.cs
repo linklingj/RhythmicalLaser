@@ -13,7 +13,7 @@ public class MenuScreen : ScreenManager2D
     public override void Initialize() {
         CheckForChange(0);
         fade.alpha = 1;
-        LeanTween.alphaCanvas(fade, 0, 0.5f);
+        LeanTween.alphaCanvas(fade, 0, 1f).setDelay(0.3f);
     }
 
     public override void CheckForChange(float dir) {

@@ -16,13 +16,40 @@ public class MusicSelectScreen : ScreenManager2D
     [SerializeField] CanvasGroup fade;
     public Animator transition;
     public float transitionTime;
+    [SerializeField] Color32[] difficultyColors;
 
     public override void Initialize() {
         characterNum = GameManager.Instance.selectedCharacter;
         for (int i = 0; i < characters.Count; i++) {
             if (i == characterNum) {
-                foreach(MusicCard card in characters[i].musicCards)
+                foreach(MusicCard card in characters[i].musicCards) {
                     card.gameObject.SetActive(true);
+                    string dif;
+                    Color32 color;
+                    switch(card.music.difficulty) {
+                        case Difficulty.Normal:
+                            dif = "Normal";
+                            color = difficultyColors[0];
+                            break;
+                        case Difficulty.Hard:
+                            dif = "Hard";
+                            color = difficultyColors[1];
+                            break;
+                        case Difficulty.Expert:
+                            dif = "Expert";
+                            color = difficultyColors[2];
+                            break;
+                        case Difficulty.Master:
+                            dif = "Master";
+                            color = difficultyColors[3];
+                            break;
+                        default:
+                            dif = "Normal";
+                            color = difficultyColors[0];
+                            break;
+                    }
+                    card.SetColor(dif, color);
+                }
             } else {
                 foreach(MusicCard card in characters[i].musicCards)
                     card.gameObject.SetActive(false);
@@ -30,7 +57,7 @@ public class MusicSelectScreen : ScreenManager2D
         }
         CheckForChange(0);
         fade.alpha = 1;
-        LeanTween.alphaCanvas(fade, 0, 0.5f);
+        LeanTween.alphaCanvas(fade, 0, 1f).setDelay(0.3f);
     }
 
     public override void CheckForChange(float dir) {

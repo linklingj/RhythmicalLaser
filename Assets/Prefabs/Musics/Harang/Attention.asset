@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Attention
   artist: NewJeans
-  bpm: 0
+  bpm: 120
+  difficulty: 2
+  difficultyLvl: 8
   audio: {fileID: 0}
   midiFileLocation: 
