@@ -11,6 +11,7 @@ public abstract class ScreenManager2D : MonoBehaviour
     public int index_r;
     public int index_c;
     public int save_index;
+    public bool readyToStart;
     public AudioSource audioSource;
 
     bool changed;
@@ -21,6 +22,16 @@ public abstract class ScreenManager2D : MonoBehaviour
         Initialize();
     }
     void Update() {
+        if (readyToStart) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                StartGame();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                Cancel();
+            }
+            return;
+        }
+
         changed = false;
         if (Input.GetAxis("Vertical") != 0) {
             if (!keyDown_r) {
@@ -75,4 +86,6 @@ public abstract class ScreenManager2D : MonoBehaviour
     public abstract void Initialize();
     public abstract void CheckForChange(float horizontal);
     public abstract void Button(int r, int c);
+    public abstract void StartGame();
+    public abstract void Cancel();
 }

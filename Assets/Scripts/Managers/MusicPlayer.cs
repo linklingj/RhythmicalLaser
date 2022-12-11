@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour {
-    public List<Music> musicList;
     public Music currentMusic;
     AudioSource audioSource;
 
     private void Start() {
         audioSource = GetComponent<AudioSource>();
+        currentMusic = GameManager.Instance.selectedMusic;
     }
 
     public void StartMusic() {

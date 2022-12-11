@@ -35,7 +35,7 @@ MonoBehaviour:
     rgba: 4294967295
   BG:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4278190080
   UI1:
     serializedVersion: 2
     rgba: 4294967295

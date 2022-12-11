@@ -221,6 +221,7 @@ MonoBehaviour:
   artist_t: {fileID: 1922995450}
   difficulty_t: {fileID: 1312897718}
   heartParent: {fileID: 490333134}
+  fade: {fileID: 1635551041}
   leftBar: {fileID: 239002509}
   rightBar: {fileID: 1836625050}
   progressBarImg: {fileID: 667301872}
@@ -232,15 +233,11 @@ MonoBehaviour:
   - {fileID: 831519444}
   - {fileID: 656812486}
   heartPrefab: {fileID: 7865433448622342306, guid: 09adc3e8b1fa1d14c9f7c72ac30ae0dd, type: 3}
-  colorSchemes:
-  - {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
-  - {fileID: 11400000, guid: 343abd8a8e11b3b45b2a851394caaade, type: 2}
-  - {fileID: 11400000, guid: 4e3b7dd908b249646be398ce9759c6ed, type: 2}
-  currentColor: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
   playerR: {fileID: 1367372047}
   playerDirR: {fileID: 1126006117}
   bounderyR: {fileID: 1796196335}
   laserR: {fileID: 996783541}
+  currentColor: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
 --- !u!1 &239002507
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,9 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6595b75b0842e448f525135964b2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicList:
-  - {fileID: 11400000, guid: 04737ce3231ed9b46acb3c7444d8d15e, type: 2}
-  - {fileID: 11400000, guid: a5ef3390bec99ea46a1c13948f1065a7, type: 2}
   currentMusic: {fileID: 11400000, guid: a5ef3390bec99ea46a1c13948f1065a7, type: 2}
 --- !u!82 &274571893
 AudioSource:
@@ -2034,6 +2028,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1734805218}
+  - {fileID: 1635551042}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4252,6 +4247,95 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1635551041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635551042}
+  - component: {fileID: 1635551045}
+  - component: {fileID: 1635551044}
+  - component: {fileID: 1635551043}
+  m_Layer: 5
+  m_Name: fade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1635551042
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635551041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384725323}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1635551043
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635551041}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1635551044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635551041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1635551045
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635551041}
+  m_CullTransparentMesh: 1
 --- !u!1 &1673412880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5335,6 +5419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8934042144714560770, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
+      propertyPath: selectedMusic
+      value: 
+      objectReference: {fileID: 11400000, guid: a5ef3390bec99ea46a1c13948f1065a7, type: 2}
     - target: {fileID: 8934042144714560771, guid: 11d2a41b862c7c8488080b6ea8ccb9fc, type: 3}
       propertyPath: m_RootOrder
       value: 0

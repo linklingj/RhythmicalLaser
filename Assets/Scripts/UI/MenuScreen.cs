@@ -11,9 +11,10 @@ public class MenuScreen : ScreenManager2D
     public float transitionTime;
 
     public override void Initialize() {
+        readyToStart = false;
         CheckForChange(0);
         fade.alpha = 1;
-        LeanTween.alphaCanvas(fade, 0, 1f).setDelay(0.3f);
+        LeanTween.alphaCanvas(fade, 0, 0.5f).setDelay(0.3f);
     }
 
     public override void CheckForChange(float dir) {
@@ -58,4 +59,13 @@ public class MenuScreen : ScreenManager2D
         yield return new WaitForSeconds(transitionTime);
         GameManager.Instance.ToMusicSelect(index_c);
     }
+
+    public override void StartGame() {
+        Debug.Log("Error");
+    }
+
+    public override void Cancel() {
+        Debug.Log("Error");
+    }
+
 }

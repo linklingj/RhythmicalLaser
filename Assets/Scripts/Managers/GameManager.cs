@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int enemyPoint;
     [Header("UI")]
     public int selectedCharacter = 0;
+    public Music selectedMusic;
 
     public static event Action<GameState> OnGameStateChange;
     public static event Action OnPlayerHit;
@@ -87,10 +88,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void Play(Music music) {
-        SceneManager.LoadScene("GamePlay");
+        selectedMusic = music;
         point = 0;
         combo = 0;
         hp = maxHP;
+        SceneManager.LoadScene("GamePlay");
         UpdateGameState(GameState.Play);
     }
     public void ToTitle() {

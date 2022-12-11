@@ -20,4 +20,5 @@ public class Music : ScriptableObject
     public int difficultyLvl;
     public AudioClip audio;
     public string midiFileLocation;
+    public ColorScheme colorScheme;
 }

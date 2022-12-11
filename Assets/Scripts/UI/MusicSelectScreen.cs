@@ -14,11 +14,13 @@ public class MusicSelectScreen : ScreenManager2D
     public List<Character> characters;
     [SerializeField] Transform[] cardPositions;
     [SerializeField] CanvasGroup fade;
+    [SerializeField] GameObject colorBg;
     public Animator transition;
     public float transitionTime;
     [SerializeField] Color32[] difficultyColors;
 
     public override void Initialize() {
+        readyToStart = false;
         characterNum = GameManager.Instance.selectedCharacter;
         for (int i = 0; i < characters.Count; i++) {
             if (i == characterNum) {
@@ -57,7 +59,7 @@ public class MusicSelectScreen : ScreenManager2D
         }
         CheckForChange(0);
         fade.alpha = 1;
-        LeanTween.alphaCanvas(fade, 0, 1f).setDelay(0.3f);
+        LeanTween.alphaCanvas(fade, 0, 0.5f).setDelay(0.3f);
     }
 
     public override void CheckForChange(float dir) {
@@ -85,8 +87,11 @@ public class MusicSelectScreen : ScreenManager2D
 
 
     public override void Button(int r, int c) {
+        if (readyToStart)
+            return;
         if (r == 0) {
-            StartCoroutine(Transition1());
+            readyToStart = true;
+            transition.Play("showStartBtn");
         } else if (r == 1) {
             if  (c == 0) {
                 GameManager.Instance.ToCharacterSelect();
@@ -96,9 +101,18 @@ public class MusicSelectScreen : ScreenManager2D
         }
     }
 
-    IEnumerator Transition1() {
-        transition.Play("transition1");
-        yield return new WaitForSeconds(transitionTime);
+    public override void StartGame() {
+        StartCoroutine(Transition2());
+        LeanTween.color(colorBg.GetComponent<RectTransform>(), characters[characterNum].musicCards[index_c].music.colorScheme.BG, transitionTime);
+    }
+    public override void Cancel() {
+        readyToStart = false;
+        transition.Play("hideStartBtn");
+    }
+
+    IEnumerator Transition2() {
+        transition.Play("pressStartBtn");
+        yield return new WaitForSeconds(transitionTime+0.1f);
         GameManager.Instance.Play(characters[characterNum].musicCards[index_c].music);
     }
 }

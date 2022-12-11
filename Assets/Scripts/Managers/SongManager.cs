@@ -18,8 +18,10 @@ public class SongManager : MonoBehaviour
     public bool musicPlaying;
 
     public static MidiFile midiFile;
+    string midiFileLocation;
     void Awake() {
         Instance = this;
+        midiFileLocation = GameManager.Instance.selectedMusic.midiFileLocation;
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
             StartCoroutine(ReadFromWebsite());
         }
@@ -33,7 +35,7 @@ public class SongManager : MonoBehaviour
     }
 
     private IEnumerator ReadFromWebsite() {
-        using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + '/' + musicPlayer.currentMusic.midiFileLocation)) {
+        using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + '/' + midiFileLocation)) {
             yield return www.SendWebRequest();
             if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
                 Debug.Log(www.error);
@@ -48,7 +50,7 @@ public class SongManager : MonoBehaviour
     }
 
     private void ReadFromFile() {
-        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + musicPlayer.currentMusic.midiFileLocation);
+        midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + midiFileLocation);
         GetDataFromMidi();
     }
 

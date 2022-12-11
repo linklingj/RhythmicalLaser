@@ -19,3 +19,4 @@ MonoBehaviour:
   difficultyLvl: 5
   audio: {fileID: 8300000, guid: 7e76e720efb7a9142b0347128162010c, type: 3}
   midiFileLocation: Blinding_Lights.mid
+  colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}

@@ -15,16 +15,13 @@ public class UIController : MonoBehaviour
     [SerializeField] Slider progressBar;
     //left
     [SerializeField] TextMeshProUGUI points_t,combo_t,title_t,artist_t,difficulty_t;
-    [SerializeField] GameObject heartParent;
+    [SerializeField] GameObject heartParent, fade;
     [SerializeField] Image leftBar,rightBar,progressBarImg,progressBarBg;
     [SerializeField] SpriteRenderer bgR;
     [SerializeField] Image[] bgs;
     [SerializeField] GameObject heartPrefab;
-
-    [Header("Color Elements")]
-    public List <ColorScheme> colorSchemes;
-    public ColorScheme currentColor;
     [SerializeField] SpriteRenderer playerR, playerDirR, bounderyR, laserR;
+     public ColorScheme currentColor;
     
     List<GameObject> hearts = new List<GameObject>();
 
@@ -34,6 +31,8 @@ public class UIController : MonoBehaviour
     }
 
     void Start() {
+        currentColor = GameManager.Instance.selectedMusic.colorScheme;
+
         title_t.text = musicPlayer.currentMusic.title;
         artist_t.text = musicPlayer.currentMusic.artist;
 
@@ -57,6 +56,10 @@ public class UIController : MonoBehaviour
         progressBarBg.color = currentColor.BG;
 
         rightBar.color = currentColor.UI1;
+
+        fade.GetComponent<Image>().color = currentColor.BG;
+        fade.GetComponent<CanvasGroup>().alpha = 1;
+        LeanTween.alphaCanvas(fade.GetComponent<CanvasGroup>(),0,0.5f).setDelay(0.5f);
     }
 
     void Update() {
