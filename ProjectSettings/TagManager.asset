@@ -41,11 +41,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 1991595453
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BG
-    uniqueID: 1991595453
+  - name: boundary
+    uniqueID: 1890681305
     locked: 0
   - name: Objects
     uniqueID: 3645570653

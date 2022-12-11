@@ -41,9 +41,9 @@ public class UIController : MonoBehaviour
             item.color = currentColor.BG;
 
         playerR.color = currentColor.player1;
-        playerDirR.color = currentColor.player1;
+        playerDirR.color = currentColor.player2;
         bounderyR.color = currentColor.player3;
-        laserR.color = currentColor.player2;
+        laserR.color = currentColor.laser1;
 
         points_t.color = currentColor.UI1;
         combo_t.color = currentColor.UI1;
