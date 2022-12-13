@@ -1278,6 +1278,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 2924198586158750747, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 63262bbad5de8f34fadcdeddaaa767cf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
 --- !u!114 &1386792234 stripped

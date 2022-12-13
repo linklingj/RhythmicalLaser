@@ -1666,6 +1666,17 @@ PrefabInstance:
       value: Sugar Song and Bitter Step
       objectReference: {fileID: 0}
     - target: {fileID: 5089606660174164441, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 11400000, guid: bb96fe00086cabe42be0468e8d63f17b, type: 2}
+    - target: {fileID: 5089606660174164441, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
+      propertyPath: description
+      value: "\uC77C\uBCF8\uC758 \uB85D\uBC34\uB4DC UNISON SQUARE GARDEN\uC758 10\uBC88\uC9F8
+        \uC2F1\uAE00\uC774\uC790 \uD574\uB2F9 \uC74C\uBC18\uC5D0 \uC218\uB85D\uB41C
+        \uB3D9\uBA85\uC758 \uD45C\uC81C\uACE1. \uC560\uB2C8\uBA54\uC774\uC158 \uD608\uACC4\uC804\uC120\uC758
+        \uC5D4\uB529\uACE1\uC73C\uB85C \uC0AC\uC6A9\uB418\uC5C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089606660174164441, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
       propertyPath: screenManager
       value: 
       objectReference: {fileID: 1447223183}

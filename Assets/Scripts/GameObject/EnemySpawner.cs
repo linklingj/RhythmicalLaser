@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject parentObj;
     public float spawnCircleRad;
     void Start() {
-        StartCoroutine("Test");
+        //StartCoroutine("Test");
     }
     
     IEnumerator Test() {
