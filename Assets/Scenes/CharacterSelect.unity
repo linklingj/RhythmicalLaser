@@ -1568,7 +1568,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2924198584290221319, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: m_Name
-      value: Taro
+      value: Hime
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: genre
@@ -1592,7 +1592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: characterName
-      value: Taro
+      value: Hime
       objectReference: {fileID: 0}
     - target: {fileID: 2924198584290221339, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
       propertyPath: screenManager
@@ -1690,6 +1690,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 2924198586158750747, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d3737fa3627ed734c85fa0b5bf6e8ab6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ccb6eca49379a4f9e1065cfe7dfaca, type: 3}
 --- !u!1 &1968178834
