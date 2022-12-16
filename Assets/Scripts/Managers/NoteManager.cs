@@ -63,9 +63,11 @@ public class NoteManager : MonoBehaviour
 
     void CheckInput() {
         if (Input.GetButtonDown("Kick")) {
+            if (k_inputIndex >= k_hit.Count) return;
             k_inputIndex = BtnHit(0, kickTimeStamp, k_inputIndex, k_hit);
         }
         if (Input.GetButtonDown("Snare")) {
+            if (s_inputIndex >= s_hit.Count) return;
             s_inputIndex = BtnHit(1, snareTimeStamp, s_inputIndex, s_hit);
         }
     }
@@ -78,7 +80,7 @@ public class NoteManager : MonoBehaviour
         */
         double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
         float curTimeDif = Mathf.Abs((float)(timeStampList[inputIndex] - audioTime));
-        float nextTimeDif = (inputIndex < timeStampList.Count)? Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime)) : -1;
+        float nextTimeDif = (inputIndex+1 < timeStampList.Count)? Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime)) : -1;
         while(curTimeDif > nextTimeDif && nextTimeDif + correctionVal >= 0) {
             inputIndex += 1;
             curTimeDif = nextTimeDif;

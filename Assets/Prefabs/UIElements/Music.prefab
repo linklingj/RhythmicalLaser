@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music
+  m_text: Tiltle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
   m_sharedMaterial: {fileID: 3948480552114182732, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 12
   m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Artist
+  m_text: artist
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
   m_sharedMaterial: {fileID: 3948480552114182732, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 25
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1969769320164832686

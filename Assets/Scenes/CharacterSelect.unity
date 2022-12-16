@@ -1350,7 +1350,7 @@ MonoBehaviour:
   - {fileID: 354746493}
   fade: {fileID: 1335004699}
   transition: {fileID: 95361830}
-  transitionTime: 1.3
+  transitionTime: 1.1
 --- !u!4 &1447223182
 Transform:
   m_ObjectHideFlags: 0

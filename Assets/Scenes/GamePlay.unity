@@ -212,8 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda687d5d6d3653458bbbeed762abf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicPlayer: {fileID: 274571892}
-  songManager: {fileID: 1084892697}
   progressBar: {fileID: 2023404923}
   points_t: {fileID: 987905663}
   combo_t: {fileID: 1231942794}
@@ -3093,7 +3091,7 @@ MonoBehaviour:
   audioSource: {fileID: 274571893}
   noteManager: {fileID: 1276406533}
   songDelayInSeconds: 0
-  inputDelayInMilliseconds: 200
+  inputDelayInMilliseconds: 100
   musicPlaying: 0
 --- !u!1 &1126006115
 GameObject:
@@ -3541,7 +3539,7 @@ MonoBehaviour:
   destroyPos: {fileID: 71612596}
   kickInput: 7a000000
   snareInput: 78000000
-  marginOfError: 0.19
+  marginOfError: 0.09
   correctionVal: 0.42
   kickTimeStamp: []
   snareTimeStamp: []

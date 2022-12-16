@@ -64,6 +64,7 @@ public class SongManager : MonoBehaviour
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
     public static double GetAudioSourceTime() {
+        if (Instance.audioSource == null) return 0;
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
     public void StartSong() {

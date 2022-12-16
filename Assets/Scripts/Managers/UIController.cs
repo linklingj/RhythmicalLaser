@@ -6,9 +6,6 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    [Header("Managers")]
-    public MusicPlayer musicPlayer;
-    public SongManager songManager;
 
     [Header("UI Elements")]
     //top
@@ -31,10 +28,13 @@ public class UIController : MonoBehaviour
     }
 
     void Start() {
-        currentColor = GameManager.Instance.selectedMusic.colorScheme;
+        Music music = GameManager.Instance.selectedMusic;
 
-        title_t.text = musicPlayer.currentMusic.title;
-        artist_t.text = musicPlayer.currentMusic.artist;
+        currentColor = music.colorScheme;
+
+        title_t.text = music.title;
+        artist_t.text = music.artist;
+        difficulty_t.text = music.difficulty.ToString();
 
         bgR.color = currentColor.BG;
         foreach (Image item in bgs)
@@ -63,13 +63,14 @@ public class UIController : MonoBehaviour
     }
 
     void Update() {
-        progressBar.value = songManager.audioSource.time / songManager.audioSource.clip.length;
+        if (SongManager.Instance.audioSource.isPlaying) progressBar.value = SongManager.Instance.audioSource.time / SongManager.Instance.audioSource.clip.length;
         points_t.text = GameManager.Instance.point.ToString();
         combo_t.text = "x" + GameManager.Instance.combo.ToString();
     }
 
     void OnGameStateChange(GameState state) {
         if (state == GameState.Play) {
+            Debug.Log("Play");
             UpdateHearts();
         }
     }

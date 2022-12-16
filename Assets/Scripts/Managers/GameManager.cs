@@ -41,21 +41,22 @@ public class GameManager : MonoBehaviour
         } else {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
 
     private void Start() { 
         //debug
         if (SceneManager.GetActiveScene().name == "GamePlay") {
-            UpdateGameState(GameState.Play);
+            State = GameState.Play;
+            UpdateGameState();
         }
     }
 
 
     
-    public void UpdateGameState(GameState newState) {
-        State = newState;
-        switch(newState) {
+    public void UpdateGameState() {
+        switch(State) {
             case GameState.Title:
                 break;
             case GameState.Settings:
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-        OnGameStateChange?.Invoke(newState);
+        OnGameStateChange?.Invoke(State);
     }
 
     public void playerHit() {
@@ -87,38 +88,42 @@ public class GameManager : MonoBehaviour
             OnGameOver?.Invoke();
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        UpdateGameState();
+    }
+
     public void Play(Music music) {
         selectedMusic = music;
         point = 0;
         combo = 0;
         hp = maxHP;
         SceneManager.LoadScene("GamePlay");
-        UpdateGameState(GameState.Play);
+        State = GameState.Play;
     }
     public void ToTitle() {
         SceneManager.LoadScene("Title");
-        UpdateGameState(GameState.Title);
+        State = GameState.Title;
     }
 
     public void ToCharacterSelect() {
         SceneManager.LoadScene("CharacterSelect");
-        UpdateGameState(GameState.CharacterSelect);
+        State = GameState.CharacterSelect;
     }
 
     public void ToMusicSelect(int characterIndex) {
         selectedCharacter = characterIndex;
         SceneManager.LoadScene("MusicSelect");
-        UpdateGameState(GameState.MusicSelect);
+        State = GameState.MusicSelect;
     }
 
     public void ToSettings() {
         SceneManager.LoadScene("Settings");
-        UpdateGameState(GameState.Settings);
+        State = GameState.Settings;
     }
 
     public void ToCredit() {
         SceneManager.LoadScene("Credit");
-        UpdateGameState(GameState.Credit);
+        State = GameState.Credit;
     }
     public void Quit() {
         #if UNITY_EDITOR
