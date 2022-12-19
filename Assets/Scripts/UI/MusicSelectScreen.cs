@@ -24,6 +24,7 @@ public class MusicSelectScreen : ScreenManager2D
         characterNum = GameManager.Instance.selectedCharacter;
         for (int i = 0; i < characters.Count; i++) {
             if (i == characterNum) {
+                int k = 0;
                 foreach(MusicCard card in characters[i].musicCards) {
                     card.gameObject.SetActive(true);
                     string dif;
@@ -51,6 +52,8 @@ public class MusicSelectScreen : ScreenManager2D
                             break;
                     }
                     card.SetColor(dif, color);
+                    card.SetText(DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].highScore.ToString(), DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].maxCombo.ToString());
+                    k++;
                 }
             } else {
                 foreach(MusicCard card in characters[i].musicCards)

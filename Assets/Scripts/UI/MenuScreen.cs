@@ -36,8 +36,15 @@ public class MenuScreen : ScreenManager2D
 
             int pos_before = Mathf.Clamp(pos - d, -2, 2);
             int pos_after = Mathf.Clamp(pos, -2, 2);
-            //Debug.Log("card num: "+ i +"pos_after: "+ pos_after);
             characterCards[i].SetPos(cardPositions[pos_before + 2].position, cardPositions[pos_after + 2].position);
+
+            Save_CharacterData data = DataManager.Instance.playerData.characterDatas[i];
+            int clearCnt = 0;
+            foreach(Save_MusicData musicData in data.musicDatas) {
+                if (musicData.clear)
+                    clearCnt++;
+            }
+            characterCards[i].SetText(data.lvl.ToString(), clearCnt.ToString(), data.musicDatas.Length.ToString());
         }
     }
 

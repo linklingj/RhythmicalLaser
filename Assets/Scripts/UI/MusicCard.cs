@@ -26,10 +26,16 @@ public class MusicCard : MenuButton2D {
         levelImg.GetComponent<Image>().color = color;
     }
 
+    public void SetText(string highScore, string maxCombo) {
+        maxScoreText.text = highScore;
+        maxComboText.text = maxCombo;
+    }
 
     //pos1에서 pos2로 이동
     public void SetPos(Vector2 pos1, Vector2 pos2) {
         transform.position = pos1;
         LeanTween.move(gameObject, pos2, 0.3f).setEase(LeanTweenType.easeOutQuad);
     }
+
+
 }

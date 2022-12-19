@@ -576,7 +576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e0e3506001787418eb759b6d769a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
+  playerData:
+    name: 
+    lvl: 0
+    characterDatas: []
 --- !u!4 &1324716333
 Transform:
   m_ObjectHideFlags: 0
