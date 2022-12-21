@@ -21,7 +21,7 @@ public class MenuButton : MonoBehaviour
                 animator.SetBool("pressed", true);
                 screenManager.Button(thisIndex);
             } else if (animator.GetBool("pressed")) {
-                animator.SetBool("pressed",false);
+                //animator.SetBool("pressed",false);
             }
         } else {
             animator.SetBool("selected",false);

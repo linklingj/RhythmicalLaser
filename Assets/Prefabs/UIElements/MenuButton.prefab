@@ -70,15 +70,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: <BTN_NAME>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 59d48febe659bfb41a481d70f00ec9dc, type: 2}
-  m_sharedMaterial: {fileID: 5213389682450742342, guid: 59d48febe659bfb41a481d70f00ec9dc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
+  m_sharedMaterial: {fileID: 3948480552114182732, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2373253267
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 2366104123
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
