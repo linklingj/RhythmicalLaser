@@ -11,7 +11,8 @@ public enum GameState {
     CharacterSelect,
     MusicSelect,
     Play,
-    Result
+    Fail,
+    Clear
 }
 
 
@@ -72,8 +73,9 @@ public class GameManager : MonoBehaviour
                 combo = 0;
                 hp = maxHP;
                 break;
-            case GameState.Result:
+            case GameState.Fail:
                 break;
+                
             default:
                 break;
         }

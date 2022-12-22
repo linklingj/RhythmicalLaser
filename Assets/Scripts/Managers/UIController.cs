@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
     [SerializeField] Image[] bgs;
     [SerializeField] GameObject heartPrefab;
     [SerializeField] SpriteRenderer playerR, playerDirR, bounderyR, laserR;
-     public ColorScheme currentColor;
+    public ColorScheme currentColor;
     
     List<GameObject> hearts = new List<GameObject>();
 
@@ -70,7 +70,6 @@ public class UIController : MonoBehaviour
 
     void OnGameStateChange(GameState state) {
         if (state == GameState.Play) {
-            Debug.Log("Play");
             UpdateHearts();
         }
     }
