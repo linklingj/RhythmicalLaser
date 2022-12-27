@@ -16,7 +16,9 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         active = false;
+        GameManager.OnGameStateChange += HandleOnGameStateChange;
     }
+
 
     void Update() {
         if (!active) return;
@@ -37,6 +39,7 @@ public class EnemyController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
+        if (!active) return;
         //플레이어 접촉
         if (col.CompareTag("Player")) {
             GameManager.Instance.playerHit();
@@ -53,5 +56,11 @@ public class EnemyController : MonoBehaviour
         vfx.EnemyDeath(transform.position);
         myEnemy.Enqueue(gameObject);
         active = false;
+    }
+    
+    private void HandleOnGameStateChange(GameState state) {
+        if (state == GameState.Finish) {
+            active = false;
+        }
     }
 }

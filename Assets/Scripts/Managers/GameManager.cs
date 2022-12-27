@@ -11,6 +11,7 @@ public enum GameState {
     CharacterSelect,
     MusicSelect,
     Play,
+    Finish,
     Fail,
     Clear
 }
@@ -73,9 +74,12 @@ public class GameManager : MonoBehaviour
                 combo = 0;
                 hp = maxHP;
                 break;
+            case GameState.Finish:
+                break;
             case GameState.Fail:
                 break;
-                
+            case GameState.Clear:
+                break;
             default:
                 break;
         }
@@ -83,11 +87,15 @@ public class GameManager : MonoBehaviour
     }
 
     public void playerHit() {
+        if (State != GameState.Play) return;
         hp -= 1;
         combo = 0;
         OnPlayerHit?.Invoke();
-        if (hp <= 0)
+        if (hp <= 0) {
             OnGameOver?.Invoke();
+            State = GameState.Finish;
+            UpdateGameState();
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
@@ -116,6 +124,11 @@ public class GameManager : MonoBehaviour
         selectedCharacter = characterIndex;
         SceneManager.LoadScene("MusicSelect");
         State = GameState.MusicSelect;
+    }
+    
+    public void ToFail() {
+        SceneManager.LoadScene("Fail");
+        State = GameState.Fail;
     }
 
     public void ToSettings() {

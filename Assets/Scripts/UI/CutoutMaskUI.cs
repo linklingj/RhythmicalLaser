@@ -13,4 +13,6 @@ public class CutoutMaskUI : Image {
             return material;
         }
     }
+    
+    
 }

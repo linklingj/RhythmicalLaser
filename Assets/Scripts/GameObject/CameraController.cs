@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CameraController : MonoBehaviour
 {
@@ -89,5 +91,9 @@ public class CameraController : MonoBehaviour
 
     public void ResetZoom() {
         LeanTween.value(gameObject, cam.orthographicSize, defaultZoom, 0.5f).setOnUpdate((float val) => {cam.orthographicSize = val;}).setEase(LeanTweenType.easeOutCirc);
+    }
+
+    private void OnDestroy() {
+        GameManager.OnPlayerHit -= PlayerHit;
     }
 }

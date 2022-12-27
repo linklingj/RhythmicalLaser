@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //메뉴의 버튼에 붙는 스크립트
@@ -12,16 +14,20 @@ public class MenuButton : MonoBehaviour
     //해당 버튼의 인덱스
     [SerializeField] int thisIndex;
     int currentIndex;
+    private bool pressed;
+
+    private void Start() {
+        pressed = false;
+    }
 
     private void Update() {
         currentIndex = screenManager.index;
         if (currentIndex == thisIndex) {
             animator.SetBool("selected", true);
-            if (Input.GetAxis("Submit") == 1) {
+            if (Input.GetAxis("Submit") == 1 && !pressed) {
                 animator.SetBool("pressed", true);
                 screenManager.Button(thisIndex);
-            } else if (animator.GetBool("pressed")) {
-                //animator.SetBool("pressed",false);
+                pressed = true;
             }
         } else {
             animator.SetBool("selected",false);

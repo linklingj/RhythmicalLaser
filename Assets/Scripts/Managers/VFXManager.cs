@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class VFXManager : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class VFXManager : MonoBehaviour
     [SerializeField] UIController ui;
     [SerializeField] Camera playerCam;
     [SerializeField] Transform player;
-    [SerializeField] GameObject playerDeath, mask;
+    [SerializeField] GameObject playerDeath, mask, cover;
 
     private void Awake() {
         GameManager.OnGameOver += PlayerDeath;
@@ -21,9 +23,16 @@ public class VFXManager : MonoBehaviour
         mask.transform.position = screenPos;
         mask.GetComponent<RectTransform>().localScale = new Vector3(500, 500, 1);
         playerDeath.SetActive(true);
-        LeanTween.scale(mask, new Vector3(1,1,1), 1f).setEase(LeanTweenType.easeOutExpo);
-        LeanTween.alpha(mask.GetComponent<RectTransform>(), 0.5f, 1f);
+        LeanTween.scale(mask, new Vector3(1, 1, 1), 1f).setEase(LeanTweenType.easeOutExpo).setOnComplete(DeathAnimFin);
     }
+
+    private void DeathAnimFin() {
+        cover.transform.position = mask.transform.position;
+        cover.SetActive(true);
+        GameManager.Instance.ToFail();
+    }
+
+    
     public void EnemyDeath (Vector3 pos) {
         StartCoroutine(Effect1(pos + new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0), new Vector3(1.6f,1.6f,1)));
         StartCoroutine(Effect1(pos + new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.3f,0.3f),0), new Vector3(1.2f,1.2f,1)));
@@ -42,4 +51,7 @@ public class VFXManager : MonoBehaviour
         ObjectPool.instance.effect1Queue.Enqueue(e);
     }
 
+    private void OnDestroy() {
+        GameManager.OnGameOver -= PlayerDeath;
+    }
 }

@@ -32,7 +32,7 @@ public class Note : MonoBehaviour
     }
 
     void Update() {
-        if (!SongManager.Instance.musicPlaying)
+        if (!SongManager.Instance.musicPlaying || GameManager.Instance.State != GameState.Play)
             return;
 
         if (noteActive) {

@@ -17,10 +17,11 @@ public class EnemySpawner : MonoBehaviour
     }
     
     IEnumerator Test() {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < 250; i++) {
             SpawnDia(Random.Range(0,360));
             yield return new WaitForSeconds(0.6f);
+            if (GameManager.Instance.State == GameState.Finish) break;
         }
     }
 

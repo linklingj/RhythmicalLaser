@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,13 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject heartPrefab;
     [SerializeField] SpriteRenderer playerR, playerDirR, bounderyR, laserR;
     public ColorScheme currentColor;
-    
-    List<GameObject> hearts = new List<GameObject>();
+
+    private List<GameObject> hearts;
 
     private void Awake() {
         GameManager.OnGameStateChange += OnGameStateChange;
         GameManager.OnPlayerHit += PlayerHit;
+        hearts = new List<GameObject>();
     }
 
     void Start() {
@@ -82,6 +84,8 @@ public class UIController : MonoBehaviour
         int curHp = hearts.Count;
         if (curHp == GameManager.Instance.hp)
             return;
+        if (GameManager.Instance.State == GameState.Finish)
+            return;
         //하트 추가
         if (curHp < GameManager.Instance.hp) {
             for (int i = 0; i < GameManager.Instance.hp - curHp; i++) {
@@ -93,11 +97,17 @@ public class UIController : MonoBehaviour
         //하트 삭제
         } else {
             for (int i = 0; i < curHp - GameManager.Instance.hp; i++) {
-                GameObject h = hearts[hearts.Count-1];
-                hearts.Remove(h);
-                Destroy(h);
+                if (hearts.Count >= 1) {
+                    GameObject h = hearts[hearts.Count-1];
+                    hearts.Remove(h);
+                    Destroy(h);
+                }
             }
         }
     }
 
+    private void OnDestroy() {
+        GameManager.OnGameStateChange -= OnGameStateChange;
+        GameManager.OnPlayerHit -= PlayerHit;
+    }
 }
