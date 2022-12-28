@@ -21,3 +21,4 @@ MonoBehaviour:
   volume: 0.5
   midiFileLocation: Attention.mid
   colorScheme: {fileID: 11400000, guid: d8aafe907635f3a4d8d68170b5395068, type: 2}
+  index: 1

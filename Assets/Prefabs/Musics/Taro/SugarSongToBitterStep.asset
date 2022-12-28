@@ -21,3 +21,4 @@ MonoBehaviour:
   volume: 0.8
   midiFileLocation: sugar_song_to_bitter_step.mid
   colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
+  index: 1

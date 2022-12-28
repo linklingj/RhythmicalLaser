@@ -89,20 +89,20 @@ public class DataManager : MonoBehaviour
 
         Save_MusicData[] himeMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Sugar Song To Bitter Step", false, 0, 0),
-            new Save_MusicData(1, "ZenZenZenSe", false, 0, 0),
-            new Save_MusicData(1, "Into The Night", false, 0, 0)
+            new Save_MusicData(2, "ZenZenZenSe", false, 0, 0),
+            new Save_MusicData(3, "Into The Night", false, 0, 0)
         };
 
         Save_MusicData[] jimmyMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Blinding Lights", false, 0, 0),
-            new Save_MusicData(1, "We Will Rock You", false, 0, 0),
-            new Save_MusicData(1, "Back in Black", false, 0, 0)
+            new Save_MusicData(2, "We Will Rock You", false, 0, 0),
+            new Save_MusicData(3, "Back in Black", false, 0, 0)
         };
 
         Save_MusicData[] ismayaMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Green Greens", false, 0, 0),
-            new Save_MusicData(1, "Last Surprise", false, 0, 0),
-            new Save_MusicData(1, "Splattack", false, 0, 0)
+            new Save_MusicData(2, "Last Surprise", false, 0, 0),
+            new Save_MusicData(3, "Splattack", false, 0, 0)
         };
 
         defaultData.characterDatas = new Save_CharacterData[] {

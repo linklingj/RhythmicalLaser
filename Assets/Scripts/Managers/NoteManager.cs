@@ -166,6 +166,7 @@ public class NoteManager : MonoBehaviour
 
     public void ComboBreak() {
         GameManager.Instance.combo = 0;
+        GameManager.Instance.fullCombo = false;
         cam.ResetZoom();
     }
 }

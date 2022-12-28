@@ -21,3 +21,4 @@ MonoBehaviour:
   volume: 0.5
   midiFileLocation: Blinding_Lights.mid
   colorScheme: {fileID: 11400000, guid: fa32227b24c6e8045852140ceec8ef9b, type: 2}
+  index: 1

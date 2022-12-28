@@ -78,6 +78,11 @@ public class SongManager : MonoBehaviour
     public void StartSong() {
         MusicPlayer.Instance.StartMusic(GameManager.Instance.selectedMusic);
         musicPlaying = true;
+        StartCoroutine(nameof(WaitForSongFinish));
     }
 
+    IEnumerator WaitForSongFinish() {
+        yield return new WaitUntil(() => Instance.audioSource.isPlaying == false);
+        GameManager.Instance.MusicFinished();
+    }
 }

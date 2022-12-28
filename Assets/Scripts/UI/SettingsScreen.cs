@@ -14,10 +14,12 @@ public class SettingsScreen : ScreenManager
         } if (n == 1) {
             //visual delay
         } if (n == 2) {
-            //volume
+            //note speed
         } if (n == 3) {
-            //Reset
+            //volume
         }if (n == 4) {
+            //reset
+        }if (n == 5) {
             StartCoroutine(nameof(Transition3));
         }
     }

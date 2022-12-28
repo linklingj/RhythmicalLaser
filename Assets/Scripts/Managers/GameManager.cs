@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public int combo;
     public int hp;
     public int maxHP;
+    public bool fullCombo;
+    public bool noHit;
 
     [Header("Balance")]
     public int enemyPoint;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnGameStateChange;
     public static event Action OnPlayerHit;
     public static event Action OnGameOver;
+    public static event Action OnClear;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -73,6 +76,8 @@ public class GameManager : MonoBehaviour
                 point = 0;
                 combo = 0;
                 hp = maxHP;
+                fullCombo = true;
+                noHit = true;
                 break;
             case GameState.Finish:
                 break;
@@ -90,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (State != GameState.Play) return;
         hp -= 1;
         combo = 0;
+        noHit = false;
         OnPlayerHit?.Invoke();
         if (hp <= 0) {
             OnGameOver?.Invoke();
@@ -97,6 +103,12 @@ public class GameManager : MonoBehaviour
             UpdateGameState();
             MusicPlayer.Instance.GameOver();
         }
+    }
+    
+    public void MusicFinished() {
+        OnClear?.Invoke();
+        State = GameState.Finish;
+        UpdateGameState();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
@@ -130,6 +142,11 @@ public class GameManager : MonoBehaviour
     public void ToFail() {
         SceneManager.LoadScene("Fail");
         State = GameState.Fail;
+    }
+    
+    public void ToClear() {
+        SceneManager.LoadScene("Clear");
+        State = GameState.Clear;
     }
 
     public void ToSettings() {

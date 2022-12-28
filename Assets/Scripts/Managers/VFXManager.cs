@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class VFXManager : MonoBehaviour
 {
@@ -16,8 +17,17 @@ public class VFXManager : MonoBehaviour
     public float deathTransitionTime;
     [SerializeField] GameObject playerDeath, mask, cover;
 
+    public float clearTransitionTime;
+    [SerializeField] GameObject clearEffect;
+    [SerializeField] TextMeshProUGUI[] clearTexts;
+    [SerializeField] Image[] boxTypeA, boxTypeB;
+
+    public float transitionTime;
+    [SerializeField] private Animator transition;
+
     private void Awake() {
         GameManager.OnGameOver += PlayerDeath;
+        GameManager.OnClear += MusicClear;
     }
 
     private void PlayerDeath () {
@@ -31,11 +41,50 @@ public class VFXManager : MonoBehaviour
             cover.SetActive(true);
         });
     }
-
+    
     private void DeathAnimFin() {
         GameManager.Instance.ToFail();
     }
 
+    private void MusicClear() {
+        Color yellowColor = new Color(250/255f,230/255f,30/255f);
+        Color redColor = new Color(231/255f,0,87/255f);
+        if (GameManager.Instance.fullCombo && GameManager.Instance.noHit) {
+            ClearAnimation("PERFECT PLAY", yellowColor, redColor);
+        }
+        else if (GameManager.Instance.fullCombo) {
+            ClearAnimation("FULL COMBO",redColor,redColor);
+        }
+        else if (GameManager.Instance.noHit) {
+            ClearAnimation("NO HIT",yellowColor,yellowColor);
+        }
+        else {
+            Transition1();
+        }
+    }
+
+    void ClearAnimation(string text, Color color1, Color color2) {
+        clearEffect.SetActive(true);
+        clearEffect.GetComponent<Animator>().Play("transition5");
+        clearTexts[0].color = new Color(color1.r * 0.8f, color1.g * 0.8f, color1.b * 0.8f);
+        clearTexts[1].color = color1;
+        foreach (var t in clearTexts) {
+            t.text = text;
+        }
+        foreach (var box in boxTypeA) {
+            box.color = color1;
+        }
+        foreach (var box in boxTypeB) {
+            box.color = color2;
+        }
+        Invoke(nameof(Transition1), clearTransitionTime);
+    }
+
+    
+    void Transition1() {
+        transition.Play("transition1");
+        GameManager.Instance.Invoke("ToClear",transitionTime);
+    }
     
     public void EnemyDeath (Vector3 pos) {
         StartCoroutine(Effect1(pos + new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0), new Vector3(1.6f,1.6f,1)));
@@ -57,5 +106,6 @@ public class VFXManager : MonoBehaviour
 
     private void OnDestroy() {
         GameManager.OnGameOver -= PlayerDeath;
+        GameManager.OnClear -= MusicClear;
     }
 }

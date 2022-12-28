@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Test
   artist: Jay
-  bpm: 120
+  bpm: 102
   difficulty: 0
-  difficultyLvl: 0
-  audio: {fileID: 8300000, guid: 758465e3f6ea25748a5889d50249c81c, type: 3}
+  difficultyLvl: 1
+  audio: {fileID: 8300000, guid: 0edfdbf4cd618c84db7fb7604a534c56, type: 3}
   volume: 0.5
   midiFileLocation: test2.mid
-  colorScheme: {fileID: 0}
+  colorScheme: {fileID: 11400000, guid: 4e3b7dd908b249646be398ce9759c6ed, type: 2}
+  index: 1

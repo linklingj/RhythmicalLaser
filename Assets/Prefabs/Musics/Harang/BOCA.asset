@@ -18,5 +18,7 @@ MonoBehaviour:
   difficulty: 0
   difficultyLvl: 0
   audio: {fileID: 0}
+  volume: 0
   midiFileLocation: 
   colorScheme: {fileID: 0}
+  index: 2

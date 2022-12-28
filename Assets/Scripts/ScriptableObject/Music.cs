@@ -22,4 +22,5 @@ public class Music : ScriptableObject
     public float volume;
     public string midiFileLocation;
     public ColorScheme colorScheme;
+    public int index;
 }
