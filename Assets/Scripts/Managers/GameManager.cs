@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
             OnGameOver?.Invoke();
             State = GameState.Finish;
             UpdateGameState();
+            MusicPlayer.Instance.GameOver();
         }
     }
 

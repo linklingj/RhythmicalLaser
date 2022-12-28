@@ -19,6 +19,7 @@ public class Music : ScriptableObject
     public Difficulty difficulty;
     public int difficultyLvl;
     public AudioClip audio;
+    public float volume;
     public string midiFileLocation;
     public ColorScheme colorScheme;
 }

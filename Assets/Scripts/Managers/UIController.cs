@@ -67,7 +67,7 @@ public class UIController : MonoBehaviour
     void Update() {
         if (SongManager.Instance.audioSource.isPlaying) progressBar.value = SongManager.Instance.audioSource.time / SongManager.Instance.audioSource.clip.length;
         points_t.text = GameManager.Instance.point.ToString();
-        combo_t.text = "x" + GameManager.Instance.combo.ToString();
+        combo_t.text = "x" + GameManager.Instance.combo;
     }
 
     void OnGameStateChange(GameState state) {

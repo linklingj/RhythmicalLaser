@@ -12,6 +12,8 @@ public class VFXManager : MonoBehaviour
     [SerializeField] UIController ui;
     [SerializeField] Camera playerCam;
     [SerializeField] Transform player;
+    
+    public float deathTransitionTime;
     [SerializeField] GameObject playerDeath, mask, cover;
 
     private void Awake() {
@@ -19,16 +21,18 @@ public class VFXManager : MonoBehaviour
     }
 
     private void PlayerDeath () {
+        Invoke( nameof(DeathAnimFin), deathTransitionTime);
         Vector3 screenPos = playerCam.WorldToScreenPoint(player.position);
         mask.transform.position = screenPos;
         mask.GetComponent<RectTransform>().localScale = new Vector3(500, 500, 1);
         playerDeath.SetActive(true);
-        LeanTween.scale(mask, new Vector3(1, 1, 1), 1f).setEase(LeanTweenType.easeOutExpo).setOnComplete(DeathAnimFin);
+        LeanTween.scale(mask, new Vector3(1, 1, 1), 1f).setEase(LeanTweenType.easeOutExpo).setOnComplete(() => {
+            cover.transform.position = mask.transform.position;
+            cover.SetActive(true);
+        });
     }
 
     private void DeathAnimFin() {
-        cover.transform.position = mask.transform.position;
-        cover.SetActive(true);
         GameManager.Instance.ToFail();
     }
 

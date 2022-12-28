@@ -602,6 +602,7 @@ MonoBehaviour:
   ui: {fileID: 142708706}
   playerCam: {fileID: 384607497}
   player: {fileID: 1367372048}
+  deathTransitionTime: 1.5
   playerDeath: {fileID: 665883244}
   mask: {fileID: 1015234132}
   cover: {fileID: 1202374529}
@@ -3299,7 +3300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be28c81292890e1489a8a05d80d7e9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicPlayer: {fileID: 274571892}
   audioSource: {fileID: 274571893}
   noteManager: {fileID: 1276406533}
   songDelayInSeconds: 0

@@ -14,14 +14,15 @@ public class FailScreen : ScreenManager
     [SerializeField] CanvasGroup[] deathLettersCanvasGroup;
 
     void Start() {
-        LeanTween.alphaCanvas(fade, 0, 0.5f);
+        fade.alpha = 1;
+        LeanTween.alphaCanvas(fade, 0, 1f);
         Lettering();
     }
     
     void Lettering() {
         for (int i = 0; i < deathLetters.Length; i++) {
             LeanTween.alphaCanvas(deathLettersCanvasGroup[i], 1, 0.3f).setDelay(i*0.1f);
-            LeanTween.moveY(deathLetters[i], 190, 0.5f).setDelay(i*0.1f);
+            LeanTween.moveY(deathLetters[i], 190, 0.5f).setDelay(i*0.1f).setEase(LeanTweenType.easeOutBounce);
         }
     }
 

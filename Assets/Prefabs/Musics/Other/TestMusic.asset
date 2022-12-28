@@ -15,5 +15,9 @@ MonoBehaviour:
   title: Test
   artist: Jay
   bpm: 120
+  difficulty: 0
+  difficultyLvl: 0
   audio: {fileID: 8300000, guid: 758465e3f6ea25748a5889d50249c81c, type: 3}
+  volume: 0.5
   midiFileLocation: test2.mid
+  colorScheme: {fileID: 0}

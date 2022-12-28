@@ -10,7 +10,6 @@ using System;
 public class SongManager : MonoBehaviour
 {
     public static SongManager Instance;
-    public MusicPlayer musicPlayer;
     public AudioSource audioSource;
     public NoteManager noteManager;
     public float songDelayInSeconds;
@@ -20,7 +19,14 @@ public class SongManager : MonoBehaviour
     public static MidiFile midiFile;
     string midiFileLocation;
     void Awake() {
-        Instance = this;
+        
+        if (Instance != null && Instance != this) {
+            Destroy(this.gameObject);
+        } else {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        
         midiFileLocation = GameManager.Instance.selectedMusic.midiFileLocation;
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
             StartCoroutine(ReadFromWebsite());
@@ -28,6 +34,8 @@ public class SongManager : MonoBehaviour
         else {
             ReadFromFile();
         }
+
+        audioSource = MusicPlayer.Instance.GetComponent<AudioSource>();
     }
 
     private void Start() {
@@ -64,11 +72,11 @@ public class SongManager : MonoBehaviour
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
     public static double GetAudioSourceTime() {
-        if (Instance.audioSource == null) return 0;
+        //if (Instance.audioSource == null) return 0;
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
     public void StartSong() {
-        musicPlayer.StartMusic();
+        MusicPlayer.Instance.StartMusic(GameManager.Instance.selectedMusic);
         musicPlaying = true;
     }
 
