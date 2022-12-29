@@ -17,8 +17,8 @@ public class ResultScreen : ScreenManager
         Save_MusicData newData = DataManager.Instance.playerData.characterDatas[GameManager.Instance.selectedCharacter].musicDatas[GameManager.Instance.selectedMusic.index - 1];
         newData.clear = true;
         newData.highScore = Math.Max(newData.highScore, GameManager.Instance.point);
-        newData.maxCombo = Math.Max(newData.maxCombo, GameManager.Instance.combo);
-        DataManager.Instance.SaveData();
+        newData.maxCombo = Math.Max(newData.maxCombo, GameManager.Instance.maxCombo);
+        DataManager.Instance.UpdateMusicData(GameManager.Instance.selectedCharacter,newData.musicNum, newData);
     }
 
 

@@ -32,9 +32,25 @@ public struct Save_CharacterData {
 }
 
 [System.Serializable]
+public class Save_Settings {
+    public int inputDelay;
+    public float visualDelay;
+    public int noteSpeed;
+    public float volume;
+
+    public Save_Settings(int inputDelay, float visualDelay, int noteSpeed, float volume) {
+        this.inputDelay = inputDelay;
+        this.visualDelay = visualDelay;
+        this.noteSpeed = noteSpeed;
+        this.volume = volume;
+    }
+}
+
+[System.Serializable]
 public class PlayerData {
     public string name;
     public int lvl;
+    public Save_Settings playerSettings;
     public Save_CharacterData[] characterDatas;
 }
 
@@ -43,6 +59,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
     public PlayerData playerData = new PlayerData();
     string path, fileName;
+    Save_Settings defaultSettings = new Save_Settings(200,19,220,0.5f);
 
     private void Awake() {
         if (Instance == null) {
@@ -64,6 +81,16 @@ public class DataManager : MonoBehaviour
         }
         Debug.Log(path);
     }
+    
+    public void UpdateMusicData(int characterNum, int musicNum, Save_MusicData musicData) {
+        playerData.characterDatas[characterNum].musicDatas[musicNum-1] = musicData;
+        SaveData();
+    }
+    
+    public void UpdateSettingsData(Save_Settings settingsData) {
+        playerData.playerSettings = settingsData;
+        SaveData();
+    }
 
     public void SaveData() {
         string data = JsonUtility.ToJson(playerData);
@@ -80,6 +107,8 @@ public class DataManager : MonoBehaviour
 
         defaultData.name = "DefaultPlayer";
         defaultData.lvl = 1;
+
+        defaultData.playerSettings = defaultSettings;
 
         Save_MusicData[] harangMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Attention", false, 0, 0),
@@ -114,6 +143,11 @@ public class DataManager : MonoBehaviour
 
         playerData = defaultData;
 
+        SaveData();
+    }
+    
+    public void ResetSettings() {
+        playerData.playerSettings = defaultSettings;
         SaveData();
     }
 

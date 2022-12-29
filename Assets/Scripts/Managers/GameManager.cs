@@ -16,7 +16,13 @@ public enum GameState {
     Clear
 }
 
-
+//GameManager의 역할
+//1. 게임의 state를 관리한다.
+//2. 게임의 중요 데이터를 관리한다.
+//3. event를 호출하는 inspector를 제공한다. (관찰자 패턴)
+//3-1. state변환에 따른 event 호출
+//3-2. 플레이어 상태 변화에 따른 event 호출
+//4. scene을 전환한다.
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     [Header("In Game")]
     public int point;
     public int combo;
+    public int maxCombo;
     public int hp;
     public int maxHP;
     public bool fullCombo;
@@ -37,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnGameStateChange;
     public static event Action OnPlayerHit;
+    public static event Action OnNoteMiss;
+    public static event Action OnNoteHit; 
     public static event Action OnGameOver;
     public static event Action OnClear;
 
@@ -57,8 +66,6 @@ public class GameManager : MonoBehaviour
             UpdateGameState();
         }
     }
-
-
     
     public void UpdateGameState() {
         switch(State) {
@@ -75,6 +82,7 @@ public class GameManager : MonoBehaviour
             case GameState.Play:
                 point = 0;
                 combo = 0;
+                maxCombo = 0;
                 hp = maxHP;
                 fullCombo = true;
                 noHit = true;
@@ -91,6 +99,7 @@ public class GameManager : MonoBehaviour
         OnGameStateChange?.Invoke(State);
     }
 
+    //inspector역할
     public void playerHit() {
         if (State != GameState.Play) return;
         hp -= 1;
@@ -104,6 +113,18 @@ public class GameManager : MonoBehaviour
             MusicPlayer.Instance.GameOver();
         }
     }
+
+    public void NoteMiss() {
+        fullCombo = false;
+        combo = 0;
+        OnNoteMiss?.Invoke();
+    }
+    
+    public void NoteHit() {
+        combo += 1;
+        if (combo > maxCombo) maxCombo = combo;
+        OnNoteHit?.Invoke();
+    }
     
     public void MusicFinished() {
         OnClear?.Invoke();
@@ -111,10 +132,11 @@ public class GameManager : MonoBehaviour
         UpdateGameState();
     }
 
+    //scene전환
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         UpdateGameState();
     }
-
+    
     public void Play(Music music) {
         selectedMusic = music;
         point = 0;

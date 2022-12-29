@@ -26,9 +26,12 @@ public class CameraController : MonoBehaviour
     int negativeMultiply = 1;
     bool shaking;
     Camera cam;
+    
 
     private void Awake() {
         GameManager.OnPlayerHit += PlayerHit;
+        GameManager.OnNoteMiss += ResetZoom;
+        GameManager.OnNoteHit += CameraZoom;
         cam = GetComponent<Camera>();
     }
 
@@ -95,5 +98,7 @@ public class CameraController : MonoBehaviour
 
     private void OnDestroy() {
         GameManager.OnPlayerHit -= PlayerHit;
+        GameManager.OnNoteMiss -= ResetZoom;
+        GameManager.OnNoteHit -= CameraZoom;
     }
 }

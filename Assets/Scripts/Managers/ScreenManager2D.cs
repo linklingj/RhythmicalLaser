@@ -54,6 +54,9 @@ public abstract class ScreenManager2D : MonoBehaviour
                 } else {
                     save_index = index_c;
                 }
+                if (index_c > maxIndex_c[index_r]) {
+                    index_c = maxIndex_c[index_r];
+                }
                 changed = true;
             }
         } else {
@@ -80,7 +83,7 @@ public abstract class ScreenManager2D : MonoBehaviour
         } else {
             keyDown_c = false;
         }
-        if (changed && index_r == 0)
+        if (changed)
             CheckForChange(Input.GetAxisRaw("Horizontal"));
     }
     public abstract void Initialize();

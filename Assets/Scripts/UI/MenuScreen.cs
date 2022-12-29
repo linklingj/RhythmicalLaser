@@ -18,6 +18,7 @@ public class MenuScreen : ScreenManager2D
     }
 
     public override void CheckForChange(float dir) {
+        if (index_r != 0) return;
         for (int i = 0; i < characterCards.Length; i++) {
             int pos = i - index_c;
             if (pos == maxIndex_c[0]) {

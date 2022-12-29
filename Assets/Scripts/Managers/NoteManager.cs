@@ -7,7 +7,6 @@ public class NoteManager : MonoBehaviour
 {
     public MusicPlayer musicPlayer;
     public PlayerController playerController;
-    public CameraController cam;
     [Header("Notes")]
     public int noteSpeed;
     public float visualDelay;
@@ -34,6 +33,12 @@ public class NoteManager : MonoBehaviour
     int k_inputIndex, s_inputIndex;
 
     void Start() {
+        if (FindObjectOfType<DataManager>() != null) {
+            Save_Settings settings = DataManager.Instance.playerData.playerSettings;
+            noteSpeed = settings.noteSpeed;
+            visualDelay = settings.visualDelay;
+            SongManager.Instance.inputDelayInMilliseconds = settings.inputDelay;
+        }
         currentBPM = musicPlayer.currentMusic.bpm;
         k_spawnIndex = 0;
         s_spawnIndex = 0;
@@ -84,7 +89,10 @@ public class NoteManager : MonoBehaviour
         while(curTimeDif > nextTimeDif && nextTimeDif + correctionVal >= 0) {
             inputIndex += 1;
             curTimeDif = nextTimeDif;
-            nextTimeDif = Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime));
+            if (inputIndex + 1 >= timeStampList.Count) 
+                nextTimeDif = int.MaxValue;
+            else 
+                nextTimeDif = Mathf.Abs((float)(timeStampList[inputIndex+1] - audioTime));
         }
         double timeStamp = timeStampList[inputIndex];
         if (Mathf.Abs((float)(audioTime - timeStamp)) < marginOfError) {
@@ -152,8 +160,7 @@ public class NoteManager : MonoBehaviour
         } else if (identity == 1) {
             playerController.Snare();
         }
-        GameManager.Instance.combo += 1;
-        cam.CameraZoom();
+        GameManager.Instance.NoteHit();
     }
 
     public void NoHit() {
@@ -165,8 +172,6 @@ public class NoteManager : MonoBehaviour
     }
 
     public void ComboBreak() {
-        GameManager.Instance.combo = 0;
-        GameManager.Instance.fullCombo = false;
-        cam.ResetZoom();
+        GameManager.Instance.NoteMiss();
     }
 }

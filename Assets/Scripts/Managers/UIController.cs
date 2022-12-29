@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
     private void Awake() {
         GameManager.OnGameStateChange += OnGameStateChange;
         GameManager.OnPlayerHit += PlayerHit;
+        GameManager.OnNoteMiss += NoteMiss;
         hearts = new List<GameObject>();
     }
 
@@ -48,7 +49,7 @@ public class UIController : MonoBehaviour
         laserR.color = currentColor.laser1;
 
         points_t.color = currentColor.UI1;
-        combo_t.color = currentColor.UI1;
+        combo_t.color = currentColor.UI2;
         title_t.color = currentColor.UI1;
         artist_t.color = currentColor.UI1;
         difficulty_t.color = currentColor.UI1;
@@ -105,9 +106,14 @@ public class UIController : MonoBehaviour
             }
         }
     }
+    
+    private void NoteMiss() {
+        combo_t.color = currentColor.UI1;
+    }
 
     private void OnDestroy() {
         GameManager.OnGameStateChange -= OnGameStateChange;
         GameManager.OnPlayerHit -= PlayerHit;
+        GameManager.OnNoteMiss -= NoteMiss;
     }
 }

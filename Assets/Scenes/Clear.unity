@@ -1114,7 +1114,7 @@ MonoBehaviour:
   maxIndex: 1
   index: 0
   audioSource: {fileID: 0}
-  transition: {fileID: 0}
+  transition: {fileID: 1936236657}
   transitionTime: 0
 --- !u!4 &1249068066
 Transform:
@@ -1149,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 4826198005415394554, guid: 9bdffa563576e6c4d98ef19fc31b7ee0, type: 3}
       propertyPath: screenManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1249068065}
     - target: {fileID: 4826198005415394558, guid: 9bdffa563576e6c4d98ef19fc31b7ee0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1755,7 +1755,7 @@ PrefabInstance:
     - target: {fileID: 4826198005415394554, guid: 9bdffa563576e6c4d98ef19fc31b7ee0, type: 3}
       propertyPath: screenManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1249068065}
     - target: {fileID: 4826198005415394558, guid: 9bdffa563576e6c4d98ef19fc31b7ee0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1991,6 +1991,11 @@ PrefabInstance:
 --- !u!224 &1936236656 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4344360229120179933, guid: 16760dcb873a46f49956523fd8d629d7, type: 3}
+  m_PrefabInstance: {fileID: 1936236655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1936236657 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6952124970807291132, guid: 16760dcb873a46f49956523fd8d629d7, type: 3}
   m_PrefabInstance: {fileID: 1936236655}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1938620513

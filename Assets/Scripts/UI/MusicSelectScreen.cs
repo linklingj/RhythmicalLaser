@@ -66,6 +66,7 @@ public class MusicSelectScreen : ScreenManager2D
     }
 
     public override void CheckForChange(float dir) {
+        if (index_r != 0) return;
         for (int i = 0; i < characters[characterNum].musicCards.Count; i++) {
             int pos = i - index_c;
             if (pos == maxIndex_c[0]) {
