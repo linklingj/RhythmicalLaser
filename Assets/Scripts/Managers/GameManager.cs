@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     public int point;
     public int combo;
     public int maxCombo;
+    public int totalHitNote;
+    public int totalNoteCount;
+    public float rhythmPoint;
     public int hp;
     public int maxHP;
     public bool fullCombo;
@@ -83,6 +86,8 @@ public class GameManager : MonoBehaviour
                 point = 0;
                 combo = 0;
                 maxCombo = 0;
+                totalHitNote = 0;
+                rhythmPoint = 0;
                 hp = maxHP;
                 fullCombo = true;
                 noHit = true;
@@ -122,6 +127,8 @@ public class GameManager : MonoBehaviour
     
     public void NoteHit() {
         combo += 1;
+        totalHitNote += 1;
+        rhythmPoint = totalHitNote * 100f / totalNoteCount;
         if (combo > maxCombo) maxCombo = combo;
         OnNoteHit?.Invoke();
     }

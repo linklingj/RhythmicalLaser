@@ -68,6 +68,7 @@ public class SongManager : MonoBehaviour
         notes.CopyTo(array,0);
 
         noteManager.SetTimeStamps(array);
+        GameManager.Instance.totalNoteCount = array.Length;
 
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
