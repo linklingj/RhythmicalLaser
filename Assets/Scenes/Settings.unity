@@ -2355,7 +2355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyDown_r: 0
   keyDown_c: 0
-  maxIndex_r: 6
+  maxIndex_r: 5
   maxIndex_c: 030000000300000003000000030000000000000000000000
   index_r: 0
   index_c: 0

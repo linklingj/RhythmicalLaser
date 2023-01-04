@@ -59,7 +59,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
     public PlayerData playerData = new PlayerData();
     string path, fileName;
-    Save_Settings defaultSettings = new Save_Settings(200,19,220,0.5f);
+    Save_Settings defaultSettings = new Save_Settings(200,25,220,0.5f);
 
     private void Awake() {
         if (Instance == null) {

@@ -24,14 +24,14 @@ public class EnemyController : MonoBehaviour
         if (!active) return;
         myEnemy.Move(rb, this.transform, player.transform);
         if (myEnemy.hp <= 0) {
-            GameManager.Instance.point += GameManager.Instance.enemyPoint;
+            GameManager.Instance.point += myEnemy.data.deathPoint;
             Die();
         }
     }
 
-    public void Spawn() {
+    public void Spawn(Enemy enemy) {
         //임시
-        myEnemy = new Dia();
+        myEnemy = enemy;
         sr.color = uIController.currentColor.UI1;
         gameObject.SetActive(true);
         active = true;

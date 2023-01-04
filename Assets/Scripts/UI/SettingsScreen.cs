@@ -49,6 +49,7 @@ public class SettingsScreen : ScreenManager2D
         }if (r == 4) {
             //reset
             DataManager.Instance.ResetSettings();
+            StartCoroutine(nameof(Transition3));
         }if (r == 5) {
             //back
             DataManager.Instance.UpdateSettingsData(currentSettings);

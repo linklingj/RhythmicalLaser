@@ -15,13 +15,15 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool instance;
     public Queue<GameObject> noteQueue = new Queue<GameObject>();
     public Queue<GameObject> diaQueue = new Queue<GameObject>();
+    public Queue<GameObject> diaDxQueue = new Queue<GameObject>();
     public Queue<GameObject> effect1Queue = new Queue<GameObject>();
     
     private void Start() {
         instance = this;
         noteQueue = InsertQueue(objectInfo[0]);
         diaQueue = InsertQueue(objectInfo[1]);
-        effect1Queue = InsertQueue(objectInfo[2]);
+        diaDxQueue = InsertQueue(objectInfo[2]);
+        effect1Queue = InsertQueue(objectInfo[3]);
     }
     
     Queue<GameObject> InsertQueue(ObjectInfo p_objectInfo) {

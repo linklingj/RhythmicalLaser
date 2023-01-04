@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dia : Enemy
+public class DiaDx : Enemy
 {
     public int maxHP;
     public float moveSpeed;
@@ -10,10 +10,10 @@ public class Dia : Enemy
 
 
     public override void Spawn() {
-        data.maxHP = 1;
-        data.moveSpeed = 0.5f;
-        data.deathPoint = 10;
-        data.turnSmoothTime = 3;
+        data.maxHP = 2;
+        data.moveSpeed = 0.2f;
+        data.deathPoint = 20;
+        data.turnSmoothTime = 5;
         hp = data.maxHP;
     }
 
@@ -23,7 +23,7 @@ public class Dia : Enemy
     }
     
     public override void Enqueue(GameObject gameObject) {
-        ObjectPool.instance.diaQueue.Enqueue(gameObject);
+        ObjectPool.instance.diaDxQueue.Enqueue(gameObject);
     }
-    
+
 }

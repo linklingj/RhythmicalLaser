@@ -5,6 +5,7 @@ using UnityEngine;
 public struct Data {
     public int maxHP;
     public float moveSpeed;
+    public int deathPoint;
     public float turnSmoothTime;
 }
 

@@ -4568,7 +4568,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicPlayer: {fileID: 274571892}
   playerController: {fileID: 1367372046}
-  cam: {fileID: 384607499}
   noteSpeed: 220
   visualDelay: 19
   kickNoteRestriction: 0
@@ -5198,6 +5197,9 @@ MonoBehaviour:
     objParent: {fileID: 1816130114}
   - prefab: {fileID: 4872110311875470323, guid: 5756d025953ece8419d5236c3688b144, type: 3}
     count: 30
+    objParent: {fileID: 330539602}
+  - prefab: {fileID: 4872110311875470323, guid: 7db3960bd21acb64dac5e016b2c425d0, type: 3}
+    count: 10
     objParent: {fileID: 330539602}
   - prefab: {fileID: 8349078090372170953, guid: e26d846cf43675f43b69d3d2886a2230, type: 3}
     count: 30

@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour
     public bool fullCombo;
     public bool noHit;
 
-    [Header("Balance")]
-    public int enemyPoint;
     [Header("UI")]
     public int selectedCharacter = 0;
     public Music selectedMusic;
