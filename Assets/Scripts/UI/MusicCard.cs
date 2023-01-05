@@ -11,7 +11,7 @@ public class MusicCard : MenuButton2D {
     //상대값, 0: 중앙, 1: 오른쪽, -1: 왼쪽
     public int posSave;
 
-    [SerializeField] TextMeshProUGUI nameText1, nameText2, artistText, levelText, maxScoreText, maxComboText;
+    [SerializeField] TextMeshProUGUI nameText1, nameText2, artistText, levelText, maxScoreText, maxComboText, maxRPText, rankText;
     [SerializeField] GameObject levelImg;
 
     private void Start() {
@@ -26,9 +26,11 @@ public class MusicCard : MenuButton2D {
         levelImg.GetComponent<Image>().color = color;
     }
 
-    public void SetText(string highScore, string maxCombo) {
+    public void SetText(string highScore, string maxCombo, string maxRP, string rank) {
         maxScoreText.text = highScore;
         maxComboText.text = maxCombo;
+        maxRPText.text = maxRP;
+        rankText.text = rank;
     }
 
     //pos1에서 pos2로 이동

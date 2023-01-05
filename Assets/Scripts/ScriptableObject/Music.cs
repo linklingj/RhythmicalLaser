@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//123 Normal, 456 Hard, 789 Expert, 10+ Expert
 public enum Difficulty {
     Normal,
     Hard,

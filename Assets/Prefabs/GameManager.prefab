@@ -47,6 +47,28 @@ MonoBehaviour:
   State: 0
   point: 0
   combo: 0
+  maxCombo: 0
+  totalHitNote: 0
+  totalNoteCount: 0
+  rhythmPoint: 0
   hp: 0
   maxHP: 3
-  enemyPoint: 10
+  fullCombo: 0
+  noHit: 0
+  rank: 0
+  spCut:
+    cut0: 0.4
+    cut1: 0.6
+    cut2: 0.78
+    cut3: 0.9
+    cut4: 0.95
+    cut5: 0.99
+  rpCut:
+    cut0: 0.25
+    cut1: 0.4
+    cut2: 0.6
+    cut3: 0.8
+    cut4: 0.9
+    cut5: 0.95
+  selectedCharacter: 0
+  selectedMusic: {fileID: 0}

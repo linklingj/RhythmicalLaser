@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: 0%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
   m_sharedMaterial: {fileID: 3948480552114182732, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
@@ -295,8 +295,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 57.000015}
-  m_SizeDelta: {x: 250.3527, y: 250.3527}
+  m_AnchoredPosition: {x: -0.000026703, y: 70}
+  m_SizeDelta: {x: 214.6744, y: 214.6744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34843875
 MonoBehaviour:
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5fb3fa33ba70da543a87716849d3b2cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ec0e00ddb6e2c543923f3c2c2cb4dbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2406,8 +2406,15 @@ MonoBehaviour:
   pointText: {fileID: 2127109763}
   rpText: {fileID: 21592567}
   comboText: {fileID: 1933496536}
-  hightScore1: {fileID: 1758656031}
+  rankText: {fileID: 1324933158}
+  highScore1: {fileID: 1758656031}
   highScore2: {fileID: 1731435801}
+  medal: {fileID: 34843873}
+  medalSprites:
+  - {fileID: 21300000, guid: 4ec0e00ddb6e2c543923f3c2c2cb4dbd, type: 3}
+  - {fileID: 21300000, guid: 6e3600e42cdccda4484e4b8cadc13d77, type: 3}
+  - {fileID: 21300000, guid: bb50cc7d617969441ae40b7a5ad79f7d, type: 3}
+  - {fileID: 21300000, guid: db06a50f55794e744a65b1e2226d3e75, type: 3}
 --- !u!4 &1249068066
 Transform:
   m_ObjectHideFlags: 0
@@ -2662,8 +2669,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 82
-  m_fontSizeBase: 82
+  m_fontSize: 102
+  m_fontSizeBase: 102
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3160,7 +3167,7 @@ GameObject:
   - component: {fileID: 1731435799}
   - component: {fileID: 1731435798}
   m_Layer: 5
-  m_Name: highscore1
+  m_Name: highscore2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4044,7 +4051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 300
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
   m_sharedMaterial: {fileID: 3948480552114182732, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
@@ -4574,7 +4581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}
   m_sharedMaterial: {fileID: 3948480552114182732, guid: 88763f47b48cfc647bd949ed86b33f58, type: 2}

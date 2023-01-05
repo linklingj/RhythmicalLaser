@@ -29,30 +29,30 @@ public class MusicSelectScreen : ScreenManager2D
                     card.gameObject.SetActive(true);
                     string dif;
                     Color32 color;
+                    dif = card.music.difficulty.ToString();
                     switch(card.music.difficulty) {
                         case Difficulty.Normal:
-                            dif = "Normal";
                             color = difficultyColors[0];
                             break;
                         case Difficulty.Hard:
-                            dif = "Hard";
                             color = difficultyColors[1];
                             break;
                         case Difficulty.Expert:
-                            dif = "Expert";
                             color = difficultyColors[2];
                             break;
                         case Difficulty.Master:
-                            dif = "Master";
                             color = difficultyColors[3];
                             break;
                         default:
-                            dif = "Normal";
                             color = difficultyColors[0];
                             break;
                     }
                     card.SetColor(dif, color);
-                    card.SetText(DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].highScore.ToString(), DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].maxCombo.ToString());
+                    string t1 = DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].highScore.ToString();
+                    string t2 = DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].maxCombo.ToString();
+                    string t3 = (Mathf.RoundToInt(DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].maxRP*100)/100).ToString();
+                    string t4 = GameManager.Instance.GetRankFromNum(DataManager.Instance.playerData.characterDatas[characterNum].musicDatas[k].maxGrade);
+                    card.SetText(t1, t2, t3, t4);
                     k++;
                 }
             } else {

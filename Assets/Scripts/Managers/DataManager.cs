@@ -10,12 +10,16 @@ public struct Save_MusicData {
     public bool clear;
     public int highScore;
     public int maxCombo;
-    public Save_MusicData(int musicNum, string name, bool clear, int highScore, int maxCombo) {
+    public float maxRP;
+    public int maxGrade; //unranked -1, c 0, c+ 1, b 2, b+ 3, a 4, a+ 5, s 6, s+ 7, ss 8, ss+ 9, sss 10
+    public Save_MusicData(int musicNum, string name, bool clear, int highScore, int maxCombo, float maxRP, int maxGrade) {
         this.musicNum = musicNum;
         this.name = name;
         this.clear = clear;
         this.highScore = highScore;
         this.maxCombo = maxCombo;
+        this.maxRP = maxRP;
+        this.maxGrade = maxGrade;
     }
 }
 
@@ -111,27 +115,27 @@ public class DataManager : MonoBehaviour
         defaultData.playerSettings = defaultSettings;
 
         Save_MusicData[] harangMusics = new Save_MusicData[] {
-            new Save_MusicData(1, "Attention", false, 0, 0),
-            new Save_MusicData(2, "BOCA", false, 0, 0),
-            new Save_MusicData(3, "LOONATIC", false, 0, 0)
+            new Save_MusicData(1, "Attention", false, 0, 0, 0, -1),
+            new Save_MusicData(2, "BOCA", false, 0, 0, 0, -1),
+            new Save_MusicData(3, "LOONATIC", false, 0, 0, 0, -1),
         };
 
         Save_MusicData[] himeMusics = new Save_MusicData[] {
-            new Save_MusicData(1, "Sugar Song To Bitter Step", false, 0, 0),
-            new Save_MusicData(2, "ZenZenZenSe", false, 0, 0),
-            new Save_MusicData(3, "Into The Night", false, 0, 0)
+            new Save_MusicData(1, "Sugar Song To Bitter Step", false, 0, 0, 0, -1),
+            new Save_MusicData(2, "ZenZenZenSe", false, 0, 0, 0, -1),
+            new Save_MusicData(3, "Into The Night", false, 0, 0, 0, -1),
         };
 
         Save_MusicData[] jimmyMusics = new Save_MusicData[] {
-            new Save_MusicData(1, "Blinding Lights", false, 0, 0),
-            new Save_MusicData(2, "We Will Rock You", false, 0, 0),
-            new Save_MusicData(3, "Back in Black", false, 0, 0)
+            new Save_MusicData(1, "Blinding Lights", false, 0, 0, 0, -1),
+            new Save_MusicData(2, "We Will Rock You", false, 0, 0, 0, -1),
+            new Save_MusicData(3, "Back in Black", false, 0, 0, 0, -1),
         };
 
         Save_MusicData[] ismayaMusics = new Save_MusicData[] {
-            new Save_MusicData(1, "Green Greens", false, 0, 0),
-            new Save_MusicData(2, "Last Surprise", false, 0, 0),
-            new Save_MusicData(3, "Splattack", false, 0, 0)
+            new Save_MusicData(1, "Green Greens", false, 0, 0, 0, -1),
+            new Save_MusicData(2, "Last Surprise", false, 0, 0, 0, -1),
+            new Save_MusicData(3, "Splattack", false, 0, 0, 0, -1),
         };
 
         defaultData.characterDatas = new Save_CharacterData[] {

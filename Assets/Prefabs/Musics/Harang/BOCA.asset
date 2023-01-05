@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082fead10fc99914aa549c33bda71f7c, type: 3}
   m_Name: BOCA
   m_EditorClassIdentifier: 
-  title: 
-  artist: 
-  bpm: 0
-  difficulty: 0
-  difficultyLvl: 0
-  audio: {fileID: 0}
-  volume: 0
-  midiFileLocation: 
-  colorScheme: {fileID: 0}
+  title: BOCA
+  artist: Dreamcatcher
+  bpm: 100
+  difficulty: 1
+  difficultyLvl: 5
+  audio: {fileID: 8300000, guid: 39f4951438cd6974ab9d744f9160682c, type: 3}
+  volume: 0.5
+  midiFileLocation: BOCA.mid
+  colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
   index: 2
