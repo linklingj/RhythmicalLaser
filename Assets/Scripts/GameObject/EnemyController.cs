@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         if (!active) return;
         myEnemy.Move(rb, this.transform, player.transform);
         if (myEnemy.hp <= 0) {
-            GameManager.Instance.point += myEnemy.data.deathPoint;
+            GameManager.Instance.point += myEnemy.enemyData.deathPoint;
             Die();
         }
     }

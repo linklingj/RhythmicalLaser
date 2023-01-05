@@ -52,7 +52,7 @@ public class ResultScreen : ScreenManager
         }
         
         //rank medal 7~8
-        rankText.text = GameManager.Instance.GetRankFromNum(-10);
+        rankText.text = GameManager.Instance.GetRankFromNum(-11);
         LeanTween.alphaCanvas(alphaElements[4], 1, 0.5f).setDelay(7f);
         int medalIndex = 0;
         switch (GameManager.Instance.rank / 2) {

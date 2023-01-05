@@ -22,6 +22,7 @@ public class Music : ScriptableObject
     public AudioClip audio;
     public float volume;
     public string midiFileLocation;
+    public string epFileLocation;
     public ColorScheme colorScheme;
     public int index;
 }

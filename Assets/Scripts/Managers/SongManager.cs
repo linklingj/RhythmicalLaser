@@ -12,12 +12,14 @@ public class SongManager : MonoBehaviour
     public static SongManager Instance;
     public AudioSource audioSource;
     public NoteManager noteManager;
+    public EnemySpawner enemySpawner;
     public float songDelayInSeconds;
     public int inputDelayInMilliseconds;
     public bool musicPlaying;
 
     public static MidiFile midiFile;
-    string midiFileLocation;
+    public static MidiFile epFile;
+    string midiFileLocation, epFileLocation;
     void Awake() {
         
         if (Instance != null && Instance != this) {
@@ -26,8 +28,10 @@ public class SongManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        audioSource = MusicPlayer.Instance.GetComponent<AudioSource>();
         
         midiFileLocation = GameManager.Instance.selectedMusic.midiFileLocation;
+        epFileLocation = GameManager.Instance.selectedMusic.epFileLocation;
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
             StartCoroutine(ReadFromWebsite());
         }
@@ -35,7 +39,6 @@ public class SongManager : MonoBehaviour
             ReadFromFile();
         }
 
-        audioSource = MusicPlayer.Instance.GetComponent<AudioSource>();
     }
 
     private void Start() {
@@ -60,6 +63,8 @@ public class SongManager : MonoBehaviour
     private void ReadFromFile() {
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + midiFileLocation);
         GetDataFromMidi();
+        epFile = MidiFile.Read(Application.streamingAssetsPath + "/EP/" + epFileLocation);
+        GetEPDataFromMidi();
     }
 
     public void GetDataFromMidi() {
@@ -68,12 +73,18 @@ public class SongManager : MonoBehaviour
         notes.CopyTo(array,0);
 
         noteManager.SetTimeStamps(array);
-        GameManager.Instance.totalNoteCount = array.Length;
 
+        GameManager.Instance.totalEnemyCount = array.Length;
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
+    public void GetEPDataFromMidi() {
+        var notes = epFile.GetNotes();
+        var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
+        notes.CopyTo(array, 0);
+
+        enemySpawner.SetEPTimeStamps(array);
+    }
     public static double GetAudioSourceTime() {
-        //if (Instance.audioSource == null) return 0;
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
     public void StartSong() {

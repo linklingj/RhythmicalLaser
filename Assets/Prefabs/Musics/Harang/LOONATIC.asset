@@ -20,5 +20,6 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: d95777411a0624d4583fc9740ff74645, type: 3}
   volume: 0.5
   midiFileLocation: LOONATIC.mid
+  epFileLocation: Loonatic_ep.mid
   colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
   index: 3

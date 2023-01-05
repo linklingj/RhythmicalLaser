@@ -10,11 +10,8 @@ public class DiaDx : Enemy
 
 
     public override void Spawn() {
-        data.maxHP = 2;
-        data.moveSpeed = 0.2f;
-        data.deathPoint = 20;
-        data.turnSmoothTime = 5;
-        hp = data.maxHP;
+        enemyData = GameManager.Instance.enemyData[1];
+        hp = enemyData.maxHP;
     }
 
     public override void Move(Rigidbody2D rb, Transform transform, Transform player) {

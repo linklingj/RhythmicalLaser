@@ -17,8 +17,9 @@ MonoBehaviour:
   bpm: 102
   difficulty: 0
   difficultyLvl: 1
-  audio: {fileID: 8300000, guid: 0edfdbf4cd618c84db7fb7604a534c56, type: 3}
+  audio: {fileID: 8300000, guid: dfa57ab96bbfae444a79df9afee34e53, type: 3}
   volume: 0.5
-  midiFileLocation: test2.mid
+  midiFileLocation: testMusic.mid
+  epFileLocation: test_ep.mid
   colorScheme: {fileID: 11400000, guid: 4e3b7dd908b249646be398ce9759c6ed, type: 2}
   index: 1

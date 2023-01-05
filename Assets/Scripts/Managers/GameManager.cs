@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public enum GameState {
     Title,
@@ -14,11 +15,6 @@ public enum GameState {
     Finish,
     Fail,
     Clear
-}
-[Serializable]
-public class GradeCut {
-    [Range(0,1)]
-    public float cut0, cut1, cut2, cut3, cut4, cut5;
 }
 
 //GameManager의 역할
@@ -35,20 +31,31 @@ public class GameManager : MonoBehaviour
     public GameState State;
     [Header("In Game")]
     public int point;
+    
     public int combo;
     public int maxCombo;
-    public int totalHitNote;
-    public int totalNoteCount;
+    public int totalPerfectNote;
+    public int totalGoodNote;
+    public int comboPoint;
+    
     public float rhythmPoint;
+    
     public int hp;
     public int maxHP;
+    
     public bool fullCombo;
     public bool noHit;
+    
     public int rank;
+    
+    [Header("Music Info")]
+    public int totalNoteCount;
+    public int totalEnemyCount;
 
     [Header("Balancing")] 
-    public GradeCut spCut;
-    public GradeCut rpCut;
+    public EnemyData[] enemyData;
+    [Range(0,1)]
+    public float cutC, cutCp, cutB, cutBp, cutA, cutAp, cutS, cutSS, cutSSS;
 
     [Header("UI")]
     public int selectedCharacter = 0;
@@ -95,7 +102,9 @@ public class GameManager : MonoBehaviour
                 point = 0;
                 combo = 0;
                 maxCombo = 0;
-                totalHitNote = 0;
+                comboPoint = 0;  
+                totalPerfectNote = 0;
+                totalGoodNote = 0;
                 rhythmPoint = 0;
                 rank = -1;
                 hp = maxHP;
@@ -118,7 +127,6 @@ public class GameManager : MonoBehaviour
     public void playerHit() {
         if (State != GameState.Play) return;
         hp -= 1;
-        combo = 0;
         noHit = false;
         OnPlayerHit?.Invoke();
         if (hp <= 0) {
@@ -131,23 +139,29 @@ public class GameManager : MonoBehaviour
 
     public void NoteMiss() {
         fullCombo = false;
+        comboPoint += SumToN(combo-1);
+        //
+        Debug.Log(comboPoint);
         combo = 0;
         OnNoteMiss?.Invoke();
     }
     
     public void NoteHit() {
         combo += 1;
-        totalHitNote += 1;
-        rhythmPoint = totalHitNote * 100f / totalNoteCount;
+        totalPerfectNote += 1;
         if (combo > maxCombo) maxCombo = combo;
         OnNoteHit?.Invoke();
     }
     
     public void MusicFinished() {
+        comboPoint += SumToN(combo-1);
+        rhythmPoint = CaculateRhythmPoint();
+        rank = CaculateRank();
+        //--
+        Debug.Log(rhythmPoint);
         OnClear?.Invoke();
         State = GameState.Finish;
         UpdateGameState();
-        rank = CaculateRank();
     }
 
     //scene전환
@@ -206,17 +220,38 @@ public class GameManager : MonoBehaviour
     }
     
     //함수
-    public int CaculateRank() {
-        //임시
-        return 7;
+    
+    //cytus2의 점수 체계를 따른다
+    //https://namu.wiki/w/Cytus%20II#s-2.3
+    public float CaculateRhythmPoint() {
+        float p1 = (totalPerfectNote * 1.0f + totalGoodNote * 0.7f) / totalNoteCount;
+        float p2 = (float)comboPoint/SumToN(totalNoteCount-1);
+        Debug.Log(p1);
+        Debug.Log(p2);
+        return p1 * 0.9f + p2 * 0.1f;
     }
-    //unranked -1, c 0, c+ 1, b 2, b+ 3, a 4, a+ 5, s 6, s+ 7, ss 8, ss+ 9, sss 10
+    int SumToN(int n) {
+        return n * (n + 1) / 2;
+    }
+    public int CaculateRank() {
+        if (rhythmPoint < cutC) return -1;
+        if (rhythmPoint < cutCp) return 0;
+        if (rhythmPoint < cutB) return 1;
+        if (rhythmPoint < cutBp) return 2;
+        if (rhythmPoint < cutA) return 3;
+        if (rhythmPoint < cutAp) return 4;
+        if (rhythmPoint < cutS) return 5;
+        if (rhythmPoint < cutSS) return 6;
+        if (rhythmPoint < cutSSS) return 7;
+        return 8;
+    }
+    //unranked -10, F -1, C 0, C+ 1, B 2, B+ 3, A 4, A+ 5, S 6, SS 7, SSS 8
     public string GetRankFromNum(int rankNum) {
-        if (rankNum < -1)
+        if (rankNum < -10)
             rankNum = rank;
         switch (rankNum) {
             case -1:
-                return "Unranked";
+                return "F";
             case 0:
                 return "C";
             case 1:
@@ -232,12 +267,8 @@ public class GameManager : MonoBehaviour
             case 6:
                 return "S";
             case 7:
-                return "S+";
-            case 8:
                 return "SS";
-            case 9:
-                return "SS+";
-            case 10:
+            case 8:
                 return "SSS";
             default:
                 return "Unranked";

@@ -48,27 +48,34 @@ MonoBehaviour:
   point: 0
   combo: 0
   maxCombo: 0
-  totalHitNote: 0
-  totalNoteCount: 0
+  totalPerfectNote: 0
+  totalGoodNote: 0
+  comboPoint: 0
   rhythmPoint: 0
   hp: 0
   maxHP: 3
   fullCombo: 0
   noHit: 0
   rank: 0
-  spCut:
-    cut0: 0.4
-    cut1: 0.6
-    cut2: 0.78
-    cut3: 0.9
-    cut4: 0.95
-    cut5: 0.99
-  rpCut:
-    cut0: 0.25
-    cut1: 0.4
-    cut2: 0.6
-    cut3: 0.8
-    cut4: 0.9
-    cut5: 0.95
+  totalNoteCount: 0
+  totalEnemyCount: 0
+  enemyData:
+  - maxHP: 1
+    moveSpeed: 0.5
+    deathPoint: 10
+    turnSmoothTime: 3
+  - maxHP: 2
+    moveSpeed: 0.2
+    deathPoint: 20
+    turnSmoothTime: 5
+  cutC: 0.5
+  cutCp: 0.6
+  cutB: 0.7
+  cutBp: 0.75
+  cutA: 0.8
+  cutAp: 0.85
+  cutS: 0.9
+  cutSS: 0.95
+  cutSSS: 1
   selectedCharacter: 0
   selectedMusic: {fileID: 0}
