@@ -140,8 +140,6 @@ public class GameManager : MonoBehaviour
     public void NoteMiss() {
         fullCombo = false;
         comboPoint += SumToN(combo-1);
-        //
-        Debug.Log(comboPoint);
         combo = 0;
         OnNoteMiss?.Invoke();
     }
@@ -157,8 +155,6 @@ public class GameManager : MonoBehaviour
         comboPoint += SumToN(combo-1);
         rhythmPoint = CaculateRhythmPoint();
         rank = CaculateRank();
-        //--
-        Debug.Log(rhythmPoint);
         OnClear?.Invoke();
         State = GameState.Finish;
         UpdateGameState();

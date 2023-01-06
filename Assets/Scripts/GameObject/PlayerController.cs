@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour {
     public int maxHP;
 
     Rigidbody2D rb;
+    Animator anim;
     Vector2 mousePos;
+    Vector2 lookDir;
     float turnSmoothVelocity;
     bool freezeDir;
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
     void Start() {
         rb.drag = drag;
@@ -46,7 +49,7 @@ public class PlayerController : MonoBehaviour {
             LookMouse();
     }
     void LookMouse() {
-        Vector2 lookDir = mousePos - rb.position;
+        lookDir = mousePos - rb.position;
         float targetAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * turnSmoothTime);
         rb.rotation = angle;
@@ -54,13 +57,14 @@ public class PlayerController : MonoBehaviour {
     public void Kick() {
         cameraController.Shake(1);
         //rb.velocity = -transform.right * shootForce;
-        rb.AddForce(-transform.right * shootForce, ForceMode2D.Impulse);
+        rb.AddForce(-lookDir.normalized * shootForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
+        anim.Play("Dash");
     }
     public void Snare() {
         cameraController.Shake(2);
         //rb.velocity = -transform.right * laserForce;
-        rb.AddForce(-transform.right * laserForce, ForceMode2D.Impulse);
+        rb.AddForce(-lookDir.normalized * laserForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
         //temporary script
         StartCoroutine("Laser");
