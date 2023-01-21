@@ -65,9 +65,9 @@ MonoBehaviour:
     deathPoint: 10
     turnSmoothTime: 3
   - maxHP: 2
-    moveSpeed: 0.2
+    moveSpeed: 0.3
     deathPoint: 20
-    turnSmoothTime: 5
+    turnSmoothTime: 7
   cutC: 0.5
   cutCp: 0.6
   cutB: 0.7

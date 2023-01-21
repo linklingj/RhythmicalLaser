@@ -66,7 +66,6 @@ public class CameraController : MonoBehaviour
 
     void PlayerHit() {
         Shake(0);
-        ResetZoom();
     }
 
     public void Shake(int n) {

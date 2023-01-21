@@ -142,6 +142,8 @@ public class GameManager : MonoBehaviour
         comboPoint += SumToN(combo-1);
         combo = 0;
         OnNoteMiss?.Invoke();
+
+        Debug.Log(comboPoint);
     }
     
     public void NoteHit() {
@@ -224,6 +226,7 @@ public class GameManager : MonoBehaviour
         float p2 = (float)comboPoint/SumToN(totalNoteCount-1);
         Debug.Log(p1);
         Debug.Log(p2);
+        Debug.Log(p1 * 0.9f + p2 * 0.1f);
         return p1 * 0.9f + p2 * 0.1f;
     }
     int SumToN(int n) {

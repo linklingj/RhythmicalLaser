@@ -861,6 +861,7 @@ GameObject:
   - component: {fileID: 384607497}
   - component: {fileID: 384607496}
   - component: {fileID: 384607499}
+  - component: {fileID: 384607500}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -2182,6 +2183,39 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxZoom: 2.3
   defaultZoom: 6
+--- !u!114 &384607500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384607495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &384725319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,7 +2561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &544013498
 Transform:
   m_ObjectHideFlags: 0
@@ -4896,10 +4930,10 @@ MonoBehaviour:
   cam: {fileID: 384607497}
   cameraController: {fileID: 384607499}
   laser: {fileID: 996783538}
-  turnSmoothTime: 6.18
+  turnSmoothTime: 4
   drag: 4
   maxVel: 10
-  shootForce: 6.5
+  shootForce: 5.5
   laserForce: 3.5
   maxHP: 3
 --- !u!212 &1367372047
@@ -5331,7 +5365,7 @@ MonoBehaviour:
     count: 10
     objParent: {fileID: 330539602}
   - prefab: {fileID: 8349078090372170953, guid: e26d846cf43675f43b69d3d2886a2230, type: 3}
-    count: 30
+    count: 50
     objParent: {fileID: 1461498060}
 --- !u!4 &1436444715
 Transform:
@@ -5733,7 +5767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1671638709
 Transform:
   m_ObjectHideFlags: 0
@@ -6212,7 +6246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1783450971
 Transform:
   m_ObjectHideFlags: 0
@@ -7114,7 +7148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2017307028
 Transform:
   m_ObjectHideFlags: 0
