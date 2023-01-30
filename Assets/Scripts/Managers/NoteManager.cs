@@ -2,6 +2,7 @@ using Melanchall.DryWetMidi.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class NoteManager : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class NoteManager : MonoBehaviour
     public float visualDelay;
     public Melanchall.DryWetMidi.MusicTheory.NoteName kickNoteRestriction;
     public Melanchall.DryWetMidi.MusicTheory.NoteName snareNoteRestriction;
+
     [Header("Transform")]
-    public Transform noteSpawnPos1, noteSpawnPos2, hitPos, destroyPos;
+    public Transform noteSpawnPos1, noteSpawnPos2, hitPos, destroyPos1, destroyPos2;
     [Header("Input")]
     public KeyCode[] kickInput;
     public KeyCode[] snareInput;
@@ -44,7 +46,7 @@ public class NoteManager : MonoBehaviour
         s_spawnIndex = 0;
         k_inputIndex = 0;
         s_inputIndex = 0;
-        noteMoveTime = (noteSpawnPos1.localPosition.y - hitPos.localPosition.y) / noteSpeed;
+        noteMoveTime = (noteSpawnPos2.localPosition.x - hitPos.localPosition.x) / noteSpeed;
     }
 
     void Update() {
@@ -121,19 +123,21 @@ public class NoteManager : MonoBehaviour
         n.noteActive = true;
         n.beforeHit = true;
         n.noteSpeed = noteSpeed;
-        n.spawnY = noteSpawnPos1.localPosition.y;
-        n.despawnY = destroyPos.localPosition.y;
-        n.hitY = hitPos.localPosition.y;
+        n.hitX = hitPos.localPosition.x;
         n.timeInstantiated = SongManager.GetAudioSourceTime();
         n.noteMoveTime = noteMoveTime;
         n.visualDelay = visualDelay;
         n.noteIdentity = identity;
 
         if (identity == 0) {
+            n.spawnX = noteSpawnPos1.localPosition.x;
+            n.despawnX = destroyPos1.localPosition.x;
             n.assignedTime = (float)kickTimeStamp[k_spawnIndex];
             n.index = k_spawnIndex;
             k_spawnIndex++;
         } else {
+            n.spawnX = noteSpawnPos2.localPosition.x;
+            n.despawnX = destroyPos2.localPosition.x;
             n.assignedTime = (float)snareTimeStamp[s_spawnIndex];
             n.index = s_spawnIndex;
             s_spawnIndex++;
