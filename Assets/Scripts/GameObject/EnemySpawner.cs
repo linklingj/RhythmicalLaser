@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void Update() {
+        return;
         if (spawnIndex < spawnPattern.Count) {
             if (spawnPattern[spawnIndex].time < SongManager.GetAudioSourceTime()) {
                 int spawnPoint = spawnPattern[spawnIndex].spawnPoint * 30;

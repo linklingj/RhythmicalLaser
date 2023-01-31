@@ -28,8 +28,8 @@ public class Note : MonoBehaviour
         noteManager = FindObjectOfType<NoteManager>();
         img = GetComponent<Image>();
         uIController = FindObjectOfType<UIController>();
-
-        img.color = uIController.currentColor.UI1;
+        
+        img.color = uIController.currentColor.UI2;
     }
 
     void Update() {
@@ -42,28 +42,31 @@ public class Note : MonoBehaviour
 
             transform.localPosition = new Vector2( spawnX + (hitX - spawnX)*t + (visualDelay * noteSpeed * 0.01f)*(noteIdentity*2-1), transform.localPosition.y);
 
-            if (t > 1 && beforeHit) {
-                beforeHit = false;
-                img.enabled = false;
-            }
-
-            if (transform.localPosition.x > despawnX & noteIdentity == 0 || transform.localPosition.x < despawnX & noteIdentity == 1) {
-                bool hitCheck;
-                if (noteIdentity == 0)
-                    hitCheck = noteManager.k_hit[index];
-                else
-                    hitCheck = noteManager.s_hit[index];
-                if (!hitCheck) {
-                    //Debug.Log("nohit"+index.ToString() + noteIdentity.ToString());
-                    noteManager.NoHit();
-                    //transform.Translate(Vector3.left*200);
+            if (beforeHit) {
+                if (transform.localPosition.x > hitX && noteIdentity == 0 || transform.localPosition.x < hitX && noteIdentity == 1) {
+                    beforeHit = false;
+                    img.enabled = false;
                 }
-                ObjectPool.instance.noteQueue.Enqueue(gameObject);
-                img.enabled = true;
-                gameObject.SetActive(false);
-                noteActive = false;
+            }
+            else {
+                if (transform.localPosition.x > despawnX && noteIdentity == 0 || transform.localPosition.x < despawnX && noteIdentity == 1) {
+                    bool hitCheck;
+                    if (noteIdentity == 0)
+                        hitCheck = noteManager.k_hit[index];
+                    else
+                        hitCheck = noteManager.s_hit[index];
+                    if (!hitCheck) {
+                        //Debug.Log("nohit"+index.ToString() + noteIdentity.ToString());
+                        noteManager.NoHit();
+                        //transform.Translate(Vector3.left*200);
+                    }
+                    ObjectPool.instance.noteQueue.Enqueue(gameObject);
+                    img.enabled = true;
+                    gameObject.SetActive(false);
+                    noteActive = false;
+                }
             }
         }
-
     }
+    
 }

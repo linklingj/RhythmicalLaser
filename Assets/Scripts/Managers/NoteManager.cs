@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class NoteManager : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class NoteManager : MonoBehaviour
         if (k_spawnIndex < kickTimeStamp.Count) {
             if (SongManager.GetAudioSourceTime() >= kickTimeStamp[k_spawnIndex] - noteMoveTime) {
                 SpawnNote(0);
+                SpawnBar(0);
             }
         }
         if (s_spawnIndex < snareTimeStamp.Count) {
@@ -118,6 +120,7 @@ public class NoteManager : MonoBehaviour
             t_note.transform.position = noteSpawnPos2.position;
 
         t_note.SetActive(true);
+        t_note.transform.rotation = Quaternion.Euler(0,0,45);
 
         Note n = t_note.GetComponent<Note>();
         n.noteActive = true;
@@ -141,6 +144,32 @@ public class NoteManager : MonoBehaviour
             n.assignedTime = (float)snareTimeStamp[s_spawnIndex];
             n.index = s_spawnIndex;
             s_spawnIndex++;
+        }
+    }
+    
+    private void SpawnBar(int identity) {
+
+        GameObject t_bar = ObjectPool.instance.barQueue.Dequeue();
+        if (identity == 0)
+            t_bar.transform.position = noteSpawnPos1.position;
+        else
+            t_bar.transform.position = noteSpawnPos2.position;
+
+        t_bar.SetActive(true);
+
+        Bar n = t_bar.GetComponent<Bar>();
+        n.barActive = true;
+        n.noteSpeed = noteSpeed;
+        n.hitX = hitPos.localPosition.x;
+        n.timeInstantiated = SongManager.GetAudioSourceTime();
+        n.noteMoveTime = noteMoveTime;
+        n.visualDelay = visualDelay;
+        n.barIdentity = identity;
+
+        if (identity == 0) {
+            n.spawnX = noteSpawnPos1.localPosition.x;
+        } else {
+            n.spawnX = noteSpawnPos2.localPosition.x;
         }
     }
 

@@ -33,5 +33,4 @@ public class MenuButton : MonoBehaviour
             animator.SetBool("selected",false);
         }
     }
-    
 }
