@@ -73,6 +73,10 @@ public class SongManager : MonoBehaviour
         notes.CopyTo(array,0);
 
         noteManager.SetTimeStamps(array);
+        
+        //noteManager.timePerBar = (float)midiFile.GetTempoMap().GetTimeSpan(midiFile.GetTrackChunks()[0].GetNotes().GetTimeSpan()).TotalSeconds / (float)midiFile.GetTrackChunks()[0].GetNotes().GetTimeSpan().GetBars();
+        var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(array[0].Time, midiFile.GetTempoMap());
+        noteManager.barSpawnTime = (double)metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f;
 
         GameManager.Instance.totalEnemyCount = array.Length;
         Invoke(nameof(StartSong), songDelayInSeconds);
@@ -84,6 +88,7 @@ public class SongManager : MonoBehaviour
 
         enemySpawner.SetEPTimeStamps(array);
     }
+
     public static double GetAudioSourceTime() {
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }

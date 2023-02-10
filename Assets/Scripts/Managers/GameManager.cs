@@ -142,8 +142,6 @@ public class GameManager : MonoBehaviour
         comboPoint += SumToN(combo-1);
         combo = 0;
         OnNoteMiss?.Invoke();
-
-        Debug.Log(comboPoint);
     }
     
     public void NoteHit() {

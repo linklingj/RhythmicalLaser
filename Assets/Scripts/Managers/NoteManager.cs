@@ -14,6 +14,7 @@ public class NoteManager : MonoBehaviour
     public float visualDelay;
     public Melanchall.DryWetMidi.MusicTheory.NoteName kickNoteRestriction;
     public Melanchall.DryWetMidi.MusicTheory.NoteName snareNoteRestriction;
+    public double timePerBar, barSpawnTime = 9999;
 
     [Header("Transform")]
     public Transform noteSpawnPos1, noteSpawnPos2, hitPos, destroyPos1, destroyPos2;
@@ -30,7 +31,6 @@ public class NoteManager : MonoBehaviour
     public List <bool> k_hit = new List<bool>();
     public List <bool> s_hit = new List<bool>();
     
-    int currentBPM;
     float noteActiveTime,noteMoveTime;
     int k_spawnIndex, s_spawnIndex;
     int k_inputIndex, s_inputIndex;
@@ -42,12 +42,12 @@ public class NoteManager : MonoBehaviour
             visualDelay = settings.visualDelay;
             SongManager.Instance.inputDelayInMilliseconds = settings.inputDelay;
         }
-        currentBPM = musicPlayer.currentMusic.bpm;
         k_spawnIndex = 0;
         s_spawnIndex = 0;
         k_inputIndex = 0;
         s_inputIndex = 0;
         noteMoveTime = (noteSpawnPos2.localPosition.x - hitPos.localPosition.x) / noteSpeed;
+        timePerBar = ((double)GameManager.Instance.selectedMusic.bpm / 4) / 60;
     }
 
     void Update() {
@@ -56,16 +56,20 @@ public class NoteManager : MonoBehaviour
     }
 
     void CheckNote() {
+        double audioTime = SongManager.GetAudioSourceTime();
         if (k_spawnIndex < kickTimeStamp.Count) {
-            if (SongManager.GetAudioSourceTime() >= kickTimeStamp[k_spawnIndex] - noteMoveTime) {
+            if (audioTime >= kickTimeStamp[k_spawnIndex] - noteMoveTime) {
                 SpawnNote(0);
-                SpawnBar(0);
             }
         }
         if (s_spawnIndex < snareTimeStamp.Count) {
-            if (SongManager.GetAudioSourceTime() >= snareTimeStamp[s_spawnIndex] - noteMoveTime) {
+            if (audioTime >= snareTimeStamp[s_spawnIndex] - noteMoveTime) {
                 SpawnNote(1);
             }
+        }
+        if (audioTime >= barSpawnTime - noteMoveTime) {
+            barSpawnTime += timePerBar;
+            SpawnBar(0);
         }
     }
     
@@ -186,6 +190,7 @@ public class NoteManager : MonoBehaviour
             }
         }
     }
+
 
     public void NoteHit(int identity) {
         if (identity == 0) {

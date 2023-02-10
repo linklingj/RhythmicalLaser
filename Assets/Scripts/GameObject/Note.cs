@@ -32,6 +32,7 @@ public class Note : MonoBehaviour
         img.color = uIController.currentColor.UI2;
     }
 
+    
     void Update() {
         if (!SongManager.Instance.musicPlaying || GameManager.Instance.State != GameState.Play)
             return;

@@ -4994,6 +4994,8 @@ MonoBehaviour:
   visualDelay: 19
   kickNoteRestriction: 0
   snareNoteRestriction: 4
+  timePerBar: 0
+  barSpawnTime: 9999
   noteSpawnPos1: {fileID: 709816961}
   noteSpawnPos2: {fileID: 780667734}
   hitPos: {fileID: 921693443}
