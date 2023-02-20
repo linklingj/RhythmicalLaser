@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8922051048958023266}
   - component: {fileID: 325502802050384870}
   - component: {fileID: 7925547855678386740}
+  - component: {fileID: 4828472110935534560}
   m_Layer: 5
   m_Name: note
   m_TagString: Note
@@ -102,3 +103,14 @@ MonoBehaviour:
   visualDelay: 0
   noteIdentity: 0
   index: 0
+--- !u!210 &4828472110935534560
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3361648928933732183}
+  m_Enabled: 1
+  m_SortingLayerID: -1092163199
+  m_SortingLayer: 4
+  m_SortingOrder: 1

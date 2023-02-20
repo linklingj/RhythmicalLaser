@@ -1,0 +1,40 @@
+﻿
+Scriptable Object Color Rule
+
+Player1: player main color
+Player2: player direction
+Player3: boundary color
+Laser1: main laser
+Laser2:
+Enemy1: enemy
+Enemy2:
+BG:bg
+UI1: texts, progress bar, right bar
+UI2: combo text
+UI3: bar
+
+
+Note Rule
+
+kick note: C5
+snare note: E5
+
+
+Enemy Rule
+
+--Enemy Type--
+Dia : octave0
+DiaDx : octave1
+--Direction--
+C: 0
+C#: 30
+D: 60
+D#: 90
+E: 120
+F: 150
+F#: 180
+G: 210
+G#: 240
+A: 270
+A#: 300
+B: 330

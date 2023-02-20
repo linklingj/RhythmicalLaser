@@ -34,6 +34,7 @@ public class NoteManager : MonoBehaviour
     float noteActiveTime,noteMoveTime;
     int k_spawnIndex, s_spawnIndex;
     int k_inputIndex, s_inputIndex;
+    int barIndex;
 
     void Start() {
         if (FindObjectOfType<DataManager>() != null) {
@@ -46,8 +47,9 @@ public class NoteManager : MonoBehaviour
         s_spawnIndex = 0;
         k_inputIndex = 0;
         s_inputIndex = 0;
+        barIndex = 0;
         noteMoveTime = (noteSpawnPos2.localPosition.x - hitPos.localPosition.x) / noteSpeed;
-        timePerBar = ((double)GameManager.Instance.selectedMusic.bpm / 4) / 60;
+        timePerBar = 1 / ((double)GameManager.Instance.selectedMusic.bpm / 60);
     }
 
     void Update() {
@@ -69,7 +71,9 @@ public class NoteManager : MonoBehaviour
         }
         if (audioTime >= barSpawnTime - noteMoveTime) {
             barSpawnTime += timePerBar;
-            SpawnBar(0);
+            SpawnBar(0, barIndex % 4 == 0);
+            SpawnBar(1, barIndex % 4 == 0);
+            barIndex++;
         }
     }
     
@@ -151,7 +155,7 @@ public class NoteManager : MonoBehaviour
         }
     }
     
-    private void SpawnBar(int identity) {
+    private void SpawnBar(int identity, bool mainBar) {
 
         GameObject t_bar = ObjectPool.instance.barQueue.Dequeue();
         if (identity == 0)
@@ -169,12 +173,15 @@ public class NoteManager : MonoBehaviour
         n.noteMoveTime = noteMoveTime;
         n.visualDelay = visualDelay;
         n.barIdentity = identity;
+        n.mainBar = mainBar;
 
         if (identity == 0) {
             n.spawnX = noteSpawnPos1.localPosition.x;
         } else {
             n.spawnX = noteSpawnPos2.localPosition.x;
         }
+        
+        n.Spawned();
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array) {

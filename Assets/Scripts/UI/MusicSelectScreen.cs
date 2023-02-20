@@ -94,8 +94,8 @@ public class MusicSelectScreen : ScreenManager2D
         if (readyToStart)
             return;
         if (r == 0) {
-            readyToStart = true;
             transition.Play("showStartBtn");
+            StartCoroutine(Wait());
         } else if (r == 1) {
             if  (c == 0) {
                 GameManager.Instance.ToCharacterSelect();
@@ -104,6 +104,12 @@ public class MusicSelectScreen : ScreenManager2D
             }
         }
     }
+
+    IEnumerator Wait() {
+        yield return new WaitForEndOfFrame();
+        readyToStart = true;
+    }
+
 
     public override void StartGame() {
         StartCoroutine(Transition2());

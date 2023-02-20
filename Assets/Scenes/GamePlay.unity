@@ -510,7 +510,7 @@ MonoBehaviour:
   - {fileID: 1423173035}
   - {fileID: 590485168}
   - {fileID: 831519444}
-  - {fileID: 656812486}
+  - {fileID: 97827156}
   heartPrefab: {fileID: 7865433448622342306, guid: 09adc3e8b1fa1d14c9f7c72ac30ae0dd, type: 3}
   playerR: {fileID: 1367372047}
   playerDirR: {fileID: 1126006117}
@@ -957,7 +957,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 7.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2234,8 +2234,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxZoom: 3.8
-  defaultZoom: 7
+  maxZoom: 2.2
+  defaultZoom: 7.5
 --- !u!114 &384607500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2705,7 +2705,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481873962}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2968,9 +2968,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 150
+  m_MinHeight: 100
   m_PreferredWidth: -1
-  m_PreferredHeight: 150
+  m_PreferredHeight: 100
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 3
@@ -5616,7 +5616,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481873962}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5685,8 +5685,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 921693443}
-  - {fileID: 509464117}
   - {fileID: 1448633185}
+  - {fileID: 509464117}
   - {fileID: 709816961}
   - {fileID: 780667734}
   - {fileID: 395777815}
