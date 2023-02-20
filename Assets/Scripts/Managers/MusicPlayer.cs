@@ -5,6 +5,7 @@ using UnityEngine;
 public class MusicPlayer : MonoBehaviour {
     public static MusicPlayer Instance;
     public Music currentMusic;
+    public AudioClip bgm;
     AudioSource audioSource;
     
     private void Awake() {
@@ -14,11 +15,13 @@ public class MusicPlayer : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
             audioSource = GetComponent<AudioSource>();
+            PlayBgm();
         }
     }
-
-
+    
     public void StartMusic(Music music) {
+        audioSource.Stop();
+        audioSource.loop = false;
         audioSource.clip = music.audio;
         audioSource.volume = music.volume;
         currentMusic = music;
@@ -37,7 +40,8 @@ public class MusicPlayer : MonoBehaviour {
         });
     }
 
-    public void StartClip(AudioClip clip) {
-        
+    public void PlayBgm() {
+        audioSource.loop = true;
+        audioSource.PlayOneShot(bgm);
     }
 }

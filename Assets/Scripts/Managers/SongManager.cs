@@ -78,7 +78,7 @@ public class SongManager : MonoBehaviour
         var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(array[0].Time, midiFile.GetTempoMap());
         noteManager.barSpawnTime = (double)metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f;
 
-        GameManager.Instance.totalEnemyCount = array.Length;
+        GameManager.Instance.totalNoteCount = array.Length;
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
     public void GetEPDataFromMidi() {
@@ -87,6 +87,7 @@ public class SongManager : MonoBehaviour
         notes.CopyTo(array, 0);
 
         enemySpawner.SetEPTimeStamps(array);
+        GameManager.Instance.totalEnemyCount = array.Length;
     }
 
     public static double GetAudioSourceTime() {

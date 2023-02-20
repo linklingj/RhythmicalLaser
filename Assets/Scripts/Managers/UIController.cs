@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
         leftBar.color = currentColor.UI1;
 
         progressBarImg.color = currentColor.UI1;
-        progressBarBg.color = currentColor.BG;
+        progressBarBg.color = currentColor.UI3;
 
         rightBar.color = currentColor.UI1;
 

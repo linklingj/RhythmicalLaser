@@ -11,7 +11,7 @@ Enemy2:
 BG:bg
 UI1: texts, progress bar, right bar
 UI2: combo text
-UI3: bar
+UI3: bar, progress bar BG
 
 
 Note Rule
@@ -38,3 +38,12 @@ G#: 240
 A: 270
 A#: 300
 B: 330
+
+
+SFX Manager
+
+--ui sfx--
+0: select
+1: swipe
+2: cancel
+3: game start

@@ -107,7 +107,9 @@ public class ResultScreen : ScreenManager
             StartCoroutine(Transition4());
         } if (n == 1) {
             GameManager.Instance.ToMusicSelect(GameManager.Instance.selectedCharacter);
+            MusicPlayer.Instance.PlayBgm();
         }
+        SFXPlayer.Instance.UISOund(0);
     }
     
     IEnumerator Transition4() {

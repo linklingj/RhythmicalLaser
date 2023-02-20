@@ -87,6 +87,7 @@ public class MusicSelectScreen : ScreenManager2D
             int pos_after = Mathf.Clamp(pos, -2, 2);
             characters[characterNum].musicCards[i].SetPos(cardPositions[pos_before + 2].position, cardPositions[pos_after + 2].position);
         }
+        SFXPlayer.Instance.UISOund(1);
     }
 
 
@@ -103,6 +104,7 @@ public class MusicSelectScreen : ScreenManager2D
                 GameManager.Instance.ToSettings();
             }
         }
+        SFXPlayer.Instance.UISOund(0);
     }
 
     IEnumerator Wait() {

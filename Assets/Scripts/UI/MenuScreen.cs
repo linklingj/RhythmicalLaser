@@ -47,6 +47,7 @@ public class MenuScreen : ScreenManager2D
             }
             characterCards[i].SetText(data.lvl.ToString(), clearCnt.ToString(), data.musicDatas.Length.ToString());
         }
+        SFXPlayer.Instance.UISOund(1);
     }
 
 
@@ -60,6 +61,7 @@ public class MenuScreen : ScreenManager2D
                 GameManager.Instance.ToSettings();
             }
         }
+        SFXPlayer.Instance.UISOund(0);
     }
 
     IEnumerator Transition1() {

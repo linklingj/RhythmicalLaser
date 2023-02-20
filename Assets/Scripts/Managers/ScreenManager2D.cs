@@ -25,9 +25,11 @@ public abstract class ScreenManager2D : MonoBehaviour
         if (readyToStart) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 StartGame();
+                SFXPlayer.Instance.UISOund(3);
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 Cancel();
+                SFXPlayer.Instance.UISOund(2);
             }
             return;
         }

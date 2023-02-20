@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
         totalPerfectNote += 1;
         if (combo > maxCombo) maxCombo = combo;
         OnNoteHit?.Invoke();
+        CaculateRhythmPoint();
     }
     
     public void MusicFinished() {
@@ -195,6 +196,7 @@ public class GameManager : MonoBehaviour
     }
     
     public void ToClear() {
+        SFXPlayer.Instance.PlayClip(SFXPlayer.Instance.clearSound);
         SceneManager.LoadScene("Clear");
         State = GameState.Clear;
     }

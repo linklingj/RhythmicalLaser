@@ -35,9 +35,11 @@ public class PlayerController : MonoBehaviour {
         //temporary
         if (Input.GetKeyDown(KeyCode.Q)) {
             Kick();
+            SFXPlayer.Instance.HitSound(0);
         }
         if (Input.GetKeyDown(KeyCode.W)) {
             Snare();
+            SFXPlayer.Instance.HitSound(1);
         }
         if (Input.GetKeyDown(KeyCode.E)) {
             cameraController.Shake(0);
@@ -70,13 +72,7 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine("Laser");
     }
 
-    //Player Hit
-    private void OnTriggerEnter2D(Collider2D col) {
-        if (col.CompareTag("Enemy")) {
-            //GameObject contactEnemy = col.transform.gameObject;
-            //contactEnemy.GetComponent<Enemy>().Die();
-        }
-    }
+    
     IEnumerator Laser() {
         freezeDir = true;
         laser.SetActive(true);

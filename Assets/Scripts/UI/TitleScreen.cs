@@ -18,10 +18,12 @@ public class TitleScreen : ScreenManager
         } else if (n == 3) {
             GameManager.Instance.Quit();
         }
+        SFXPlayer.Instance.UISOund(0);
     }
     
     IEnumerator Transition1() {
         transition.Play("transition3");
+        SFXPlayer.Instance.UISOund(4);
         yield return new WaitForSeconds(transitionTime);
         GameManager.Instance.ToCharacterSelect();
     }
