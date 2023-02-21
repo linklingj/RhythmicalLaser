@@ -35,16 +35,10 @@ public class PlayerController : MonoBehaviour {
         //temporary
         if (Input.GetKeyDown(KeyCode.Q)) {
             Kick();
-            SFXPlayer.Instance.HitSound(0);
         }
         if (Input.GetKeyDown(KeyCode.W)) {
             Snare();
-            SFXPlayer.Instance.HitSound(1);
         }
-        if (Input.GetKeyDown(KeyCode.E)) {
-            cameraController.Shake(0);
-        }
-        
     }
     void FixedUpdate() {
         if (!freezeDir)

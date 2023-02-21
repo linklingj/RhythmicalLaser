@@ -224,9 +224,6 @@ public class GameManager : MonoBehaviour
     public float CaculateRhythmPoint() {
         float p1 = (totalPerfectNote * 1.0f + totalGoodNote * 0.7f) / totalNoteCount;
         float p2 = (float)comboPoint/SumToN(totalNoteCount-1);
-        Debug.Log(p1);
-        Debug.Log(p2);
-        Debug.Log(p1 * 0.9f + p2 * 0.1f);
         return p1 * 0.9f + p2 * 0.1f;
     }
     int SumToN(int n) {

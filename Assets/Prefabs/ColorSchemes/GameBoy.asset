@@ -45,3 +45,9 @@ MonoBehaviour:
   UI3:
     serializedVersion: 2
     rgba: 4281545523
+  noteL:
+    serializedVersion: 2
+    rgba: 4292672255
+  noteR:
+    serializedVersion: 2
+    rgba: 4292672255

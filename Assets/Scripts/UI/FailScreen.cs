@@ -31,6 +31,7 @@ public class FailScreen : ScreenManager
             StartCoroutine(Transition4());
         } if (n == 1) {
             GameManager.Instance.ToMusicSelect(GameManager.Instance.selectedCharacter);
+            MusicPlayer.Instance.PlayBgm();
         }
     }
     

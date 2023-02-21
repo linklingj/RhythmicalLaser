@@ -91,9 +91,13 @@ public class VFXManager : MonoBehaviour
         // StartCoroutine(Effect1(pos + new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.3f,0.3f),0), new Vector3(1.2f,1.2f,1)));
         // StartCoroutine(Effect1(pos + new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.4f,0.4f),0), new Vector3(1f,1f,1)));
         if (maxHP > 1)
-            StartCoroutine(Blast2(pos));
-        else
             StartCoroutine(Blast3(pos));
+        else
+            StartCoroutine(Blast2(pos));
+    }
+
+    public void EnemyHit(Vector3 pos) {
+        StartCoroutine(Blast1(pos));
     }
 
     IEnumerator Effect1(Vector3 pos, Vector3 size) {
@@ -119,23 +123,23 @@ public class VFXManager : MonoBehaviour
     }
     
     IEnumerator Blast2 (Vector2 pos) {
-        GameObject e = ObjectPool.instance.blast1Queue.Dequeue();
+        GameObject e = ObjectPool.instance.blast2Queue.Dequeue();
         e.transform.position = pos;
         e.SetActive(true);
         e.GetComponent<Animator>().Play("blast_2");
-        yield return new WaitForSeconds(effectFrames[1] / 60);
+        yield return new WaitForSeconds(effectFrames[2] / 60);
         e.SetActive(false);
-        ObjectPool.instance.blast1Queue.Enqueue(e);
+        ObjectPool.instance.blast2Queue.Enqueue(e);
     }
     
     IEnumerator Blast3 (Vector2 pos) {
-        GameObject e = ObjectPool.instance.blast1Queue.Dequeue();
+        GameObject e = ObjectPool.instance.blast3Queue.Dequeue();
         e.transform.position = pos;
         e.SetActive(true);
         e.GetComponent<Animator>().Play("blast_3");
-        yield return new WaitForSeconds(effectFrames[1] / 60);
+        yield return new WaitForSeconds(effectFrames[3] / 60);
         e.SetActive(false);
-        ObjectPool.instance.blast1Queue.Enqueue(e);
+        ObjectPool.instance.blast3Queue.Enqueue(e);
     }
 
     private void OnDestroy() {

@@ -29,7 +29,7 @@ public class Note : MonoBehaviour
         img = GetComponent<Image>();
         uIController = FindObjectOfType<UIController>();
         
-        img.color = uIController.currentColor.UI2;
+        img.color = uIController.currentColor.noteL;
     }
 
     
@@ -69,5 +69,6 @@ public class Note : MonoBehaviour
             }
         }
     }
+
     
 }

@@ -41,7 +41,7 @@ public class ResultScreen : ScreenManager
         //rhythm point 3 ~ 6.3
         LeanTween.alphaCanvas(alphaElements[2], 1, 0.3f).setDelay(3f);
         LeanTween.value(0, GameManager.Instance.rhythmPoint, 1f).setDelay(3.3f).setEase(LeanTweenType.easeOutQuart).setOnUpdate((float val) => {
-            rpText.text = (Mathf.Round(val*10)/10).ToString()+ "%";
+            rpText.text = (Mathf.Round(val*1000)/10).ToString()+ "%";
         });
         LeanTween.value(0, GameManager.Instance.maxCombo, 1f).setDelay(5f).setEase(LeanTweenType.easeOutQuart).setOnUpdate((float val) => {
             comboText.text = Mathf.Round(val).ToString();
@@ -72,7 +72,7 @@ public class ResultScreen : ScreenManager
         medal.GetComponent<Image>().sprite = medalSprites[medalIndex];
         medal.GetComponent<RectTransform>().localScale = new Vector3(0.01f, 0.01f, 1f);
         LeanTween.rotate(medal, new Vector3(0, 360 * 4, 0), 1f).setDelay(7f).setEase(LeanTweenType.easeOutCubic);
-        LeanTween.size(medal.GetComponent<RectTransform>(), new Vector2(1,1), 1f).setDelay(7f).setEase(LeanTweenType.easeOutBack);
+        LeanTween.scale(medal.GetComponent<RectTransform>(), new Vector2(1, 1), 1f).setDelay(7f).setEase(LeanTweenType.easeOutBack);
 
     }
 

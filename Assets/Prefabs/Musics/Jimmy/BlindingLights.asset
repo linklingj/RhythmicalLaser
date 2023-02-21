@@ -15,11 +15,11 @@ MonoBehaviour:
   title: Blinding Lights
   artist: The Weeknd
   bpm: 171
-  difficulty: 1
-  difficultyLvl: 5
+  difficulty: 2
+  difficultyLvl: 9
   audio: {fileID: 8300000, guid: 7e76e720efb7a9142b0347128162010c, type: 3}
   volume: 0.5
   midiFileLocation: Blinding_Lights.mid
-  epFileLocation: BlindingLights_ep.mid
+  epFileLocation: blinding_lights_ep.mid
   colorScheme: {fileID: 11400000, guid: fa32227b24c6e8045852140ceec8ef9b, type: 2}
   index: 1

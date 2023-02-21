@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
     public void Spawn(Enemy enemy) {
         //임시
         myEnemy = enemy;
-        sr.color = uIController.currentColor.UI1;
+        sr.color = uIController.currentColor.enemy1;
         gameObject.SetActive(true);
         active = true;
         myEnemy.Spawn();
@@ -48,6 +48,10 @@ public class EnemyController : MonoBehaviour
         //레이저 맞음
         if (col.CompareTag("Laser")) {
             myEnemy.hp -= 1;
+            if (myEnemy.hp > 0) {
+                var collisionPoint = col.ClosestPoint(transform.position);
+                vfx.EnemyHit(collisionPoint);
+            }
         }
     }
 

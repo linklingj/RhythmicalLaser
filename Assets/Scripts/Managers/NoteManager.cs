@@ -202,10 +202,13 @@ public class NoteManager : MonoBehaviour
     public void NoteHit(int identity) {
         if (identity == 0) {
             playerController.Kick();
+            SFXPlayer.Instance.HitSound(0);
         } else if (identity == 1) {
             playerController.Snare();
+            SFXPlayer.Instance.HitSound(1);
         }
         GameManager.Instance.NoteHit();
+        SFXPlayer.Instance.HitSound(2);
     }
 
     public void NoHit() {

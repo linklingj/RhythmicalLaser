@@ -12,6 +12,8 @@ BG:bg
 UI1: texts, progress bar, right bar
 UI2: combo text
 UI3: bar, progress bar BG
+noteL: left note
+noteR: right note
 
 
 Note Rule
@@ -56,3 +58,11 @@ VFX Manager
 1: blast1
 2: blast2
 3: blast3
+
+
+Difficulty
+
+1~3 Normal
+4~6 Hard
+7~9 Expert
+10~15 Master

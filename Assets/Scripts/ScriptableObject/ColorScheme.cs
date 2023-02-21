@@ -18,4 +18,6 @@ public class ColorScheme : ScriptableObject
     public Color32 UI1;
     public Color32 UI2;
     public Color32 UI3;
+    public Color32 noteL;
+    public Color32 noteR;
 }

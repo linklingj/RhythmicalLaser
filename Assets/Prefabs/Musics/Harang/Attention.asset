@@ -15,8 +15,8 @@ MonoBehaviour:
   title: Attention
   artist: NewJeans
   bpm: 105
-  difficulty: 2
-  difficultyLvl: 8
+  difficulty: 1
+  difficultyLvl: 6
   audio: {fileID: 8300000, guid: 1d84ba7c578311c4cbb272fdc0fae7aa, type: 3}
   volume: 0.5
   midiFileLocation: Attention.mid

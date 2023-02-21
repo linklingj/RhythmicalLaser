@@ -61,7 +61,7 @@ public class UIController : MonoBehaviour
 
         rightBar.color = currentColor.UI1;
         
-        blastMat.SetColor("Color", currentColor.enemy2);
+        blastMat.SetColor("_Color", currentColor.enemy2);
 
 
         fade.GetComponent<Image>().color = currentColor.BG;

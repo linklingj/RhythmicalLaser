@@ -8,6 +8,7 @@ public class hitSound {
     public string name;
     public AudioClip kick;
     public AudioClip snare;
+    public AudioClip fail;
 }
 
 public class SFXPlayer : MonoBehaviour {
@@ -39,10 +40,13 @@ public class SFXPlayer : MonoBehaviour {
     
     
     public void HitSound(int n) {
+        /*
         if (n == 0)
             audioSource.PlayOneShot(hitSounds[sfxSet].kick);
-        else 
+        else if (n == 1)
             audioSource.PlayOneShot(hitSounds[sfxSet].snare);
+        else
+            audioSource.PlayOneShot(hitSounds[sfxSet].fail);*/
     }
 
     public void UISOund(int n) {
