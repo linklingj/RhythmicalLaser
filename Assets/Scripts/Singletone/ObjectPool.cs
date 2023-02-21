@@ -18,6 +18,9 @@ public class ObjectPool : MonoBehaviour
     public Queue<GameObject> diaDxQueue = new Queue<GameObject>();
     public Queue<GameObject> effect1Queue = new Queue<GameObject>();
     public Queue<GameObject> barQueue = new Queue<GameObject>();
+    public Queue<GameObject> blast1Queue = new Queue<GameObject>();
+    public Queue<GameObject> blast2Queue = new Queue<GameObject>();
+    public Queue<GameObject> blast3Queue = new Queue<GameObject>();
     
     private void Start() {
         instance = this;
@@ -26,6 +29,9 @@ public class ObjectPool : MonoBehaviour
         diaDxQueue = InsertQueue(objectInfo[2]);
         effect1Queue = InsertQueue(objectInfo[3]);
         barQueue = InsertQueue(objectInfo[4]);
+        blast1Queue = InsertQueue(objectInfo[5]);
+        blast2Queue = InsertQueue(objectInfo[6]);
+        blast3Queue = InsertQueue(objectInfo[7]);
     }
     
     Queue<GameObject> InsertQueue(ObjectInfo p_objectInfo) {

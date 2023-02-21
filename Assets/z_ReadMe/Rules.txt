@@ -7,7 +7,7 @@ Player3: boundary color
 Laser1: main laser
 Laser2:
 Enemy1: enemy
-Enemy2:
+Enemy2: enemy hit/death effect
 BG:bg
 UI1: texts, progress bar, right bar
 UI2: combo text
@@ -47,3 +47,12 @@ SFX Manager
 1: swipe
 2: cancel
 3: game start
+
+
+VFX Manager
+
+--vfx list--
+0: effect1
+1: blast1
+2: blast2
+3: blast3

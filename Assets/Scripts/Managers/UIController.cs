@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour
     [SerializeField] Image[] bgs;
     [SerializeField] GameObject heartPrefab;
     [SerializeField] SpriteRenderer playerR, playerDirR, bounderyR, laserR;
+    [SerializeField] Material blastMat;
     public ColorScheme currentColor;
 
     private List<GameObject> hearts;
@@ -59,6 +60,9 @@ public class UIController : MonoBehaviour
         progressBarBg.color = currentColor.UI3;
 
         rightBar.color = currentColor.UI1;
+        
+        blastMat.SetColor("Color", currentColor.enemy2);
+
 
         fade.GetComponent<Image>().color = currentColor.BG;
         fade.GetComponent<CanvasGroup>().alpha = 1;

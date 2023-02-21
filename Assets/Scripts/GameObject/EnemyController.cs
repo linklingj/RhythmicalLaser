@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour
 
     public void Die() {
         gameObject.SetActive(false);
-        vfx.EnemyDeath(transform.position);
+        vfx.EnemyDeath(transform.position, myEnemy.enemyData.maxHP);
         myEnemy.Enqueue(gameObject);
         active = false;
     }
