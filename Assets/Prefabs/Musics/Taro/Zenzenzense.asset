@@ -16,9 +16,10 @@ MonoBehaviour:
   artist: RADWIMPS
   bpm: 190
   difficulty: 2
-  difficultyLvl: 9
-  audio: {fileID: 0}
+  difficultyLvl: 8
+  audio: {fileID: 8300000, guid: ac6840243cdf97a419e477efb644dc6a, type: 3}
   volume: 0.5
-  midiFileLocation: 
+  midiFileLocation: zenzenzense.mid
+  epFileLocation: zenzenzense_ep.mid
   colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
   index: 2

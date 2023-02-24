@@ -5220,7 +5220,7 @@ MonoBehaviour:
   cam: {fileID: 384607497}
   cameraController: {fileID: 384607499}
   laser: {fileID: 996783538}
-  turnSmoothTime: 4
+  turnSmoothTime: 2.5
   drag: 4
   maxVel: 10
   shootForce: 5.5
