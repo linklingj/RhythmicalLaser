@@ -118,24 +118,28 @@ public class DataManager : MonoBehaviour
             new Save_MusicData(1, "Attention", false, 0, 0, 0, -10),
             new Save_MusicData(2, "BOCA", false, 0, 0, 0, -10),
             new Save_MusicData(3, "LOONATIC", false, 0, 0, 0, -10),
+            new Save_MusicData(4, "Unknown", false, 0, 0, 0, -10)
         };
 
         Save_MusicData[] himeMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Sugar Song To Bitter Step", false, 0, 0, 0, -10),
             new Save_MusicData(2, "ZenZenZenSe", false, 0, 0, 0, -10),
             new Save_MusicData(3, "Into The Night", false, 0, 0, 0, -10),
+            new Save_MusicData(4, "Unknown", false, 0, 0, 0, -10)
         };
 
         Save_MusicData[] jimmyMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Blinding Lights", false, 0, 0, 0, -10),
-            new Save_MusicData(2, "We Will Rock You", false, 0, 0, 0, -10),
+            new Save_MusicData(2, "Levitating", false, 0, 0, 0, -10),
             new Save_MusicData(3, "Back in Black", false, 0, 0, 0, -10),
+            new Save_MusicData(4, "Unknown", false, 0, 0, 0, -10)
         };
 
         Save_MusicData[] ismayaMusics = new Save_MusicData[] {
             new Save_MusicData(1, "Green Greens", false, 0, 0, 0, -10),
             new Save_MusicData(2, "Last Surprise", false, 0, 0, 0, -10),
             new Save_MusicData(3, "Splattack", false, 0, 0, 0, -10),
+            new Save_MusicData(4, "Unknown", false, 0, 0, 0, -10)
         };
 
         defaultData.characterDatas = new Save_CharacterData[] {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestMusic
   m_EditorClassIdentifier: 
   title: Test
-  artist: Jay
+  artist: Unknown
   bpm: 102
   difficulty: 0
   difficultyLvl: 1
@@ -21,5 +21,5 @@ MonoBehaviour:
   volume: 0.5
   midiFileLocation: testMusic.mid
   epFileLocation: test_ep.mid
-  colorScheme: {fileID: 11400000, guid: 4e3b7dd908b249646be398ce9759c6ed, type: 2}
+  colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
   index: 1

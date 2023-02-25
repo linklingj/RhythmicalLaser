@@ -7,7 +7,8 @@ public class CreditScreen : ScreenManager
 {
     [SerializeField] GameObject[] buttons;
     
-    const string CJHLink = "https://github.com/linklingj";
+    const string githubLink = "https://github.com/linklingj";
+    const string instagramLink = "https://www.instagram.com/linklingj";
 
     void Start() {
         ShowButtons();
@@ -26,6 +27,16 @@ public class CreditScreen : ScreenManager
     }
     
     public override void Button(int n) {
-        
+        if (n == 0) {
+            Application.OpenURL(githubLink);
+        }
+
+        if (n == 1) {
+            Application.OpenURL(instagramLink);
+        }
+
+        if (n == 2) {
+            GameManager.Instance.ToTitle();
+        }
     }
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082fead10fc99914aa549c33bda71f7c, type: 3}
+  m_Name: Levitating
+  m_EditorClassIdentifier: 
+  title: Levitating
+  artist: Dua Lipa (feat. DaBaby)
+  bpm: 103
+  difficulty: 0
+  difficultyLvl: 2
+  audio: {fileID: 8300000, guid: 8e52c73b4505e0e4a809d13e6dbde351, type: 3}
+  volume: 0.5
+  midiFileLocation: levitating.mid
+  epFileLocation: levitating_ep.mid
+  colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
+  index: 2

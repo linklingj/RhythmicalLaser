@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public float maxVel;
     public float shootForce;
     public float laserForce;
+    public float laserTime;
     [Header("hp")]
     public int maxHP;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     Vector2 lookDir;
     float turnSmoothVelocity;
     bool freezeDir;
+    float timer;
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -28,17 +30,28 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         rb.drag = drag;
         freezeDir = false;
+        timer = 0;
+        laserTime = 1 / ((float)GameManager.Instance.selectedMusic.bpm / 15);
     }
 
     void Update() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        timer -= Time.deltaTime;
+        if (timer > 0) {
+            freezeDir = true;
+            laser.SetActive(true);
+        }
+        else {
+            freezeDir = false;
+            laser.SetActive(false);
+        }
         //temporary
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            Kick();
-        }
-        if (Input.GetKeyDown(KeyCode.W)) {
-            Snare();
-        }
+        // if (Input.GetKeyDown(KeyCode.Q)) {
+        //     Kick();
+        // }
+        // if (Input.GetKeyDown(KeyCode.W)) {
+        //     Snare();
+        // }
     }
     void FixedUpdate() {
         if (!freezeDir)
@@ -62,8 +75,9 @@ public class PlayerController : MonoBehaviour {
         //rb.velocity = -transform.right * laserForce;
         rb.AddForce(-lookDir.normalized * laserForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
+        timer = laserTime;
         //temporary script
-        StartCoroutine("Laser");
+        // StartCoroutine("Laser");
     }
 
     
