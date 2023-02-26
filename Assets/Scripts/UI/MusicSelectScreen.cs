@@ -114,10 +114,12 @@ public class MusicSelectScreen : ScreenManager2D
 
 
     public override void StartGame() {
+        SFXPlayer.Instance.UISOund(3);
         StartCoroutine(Transition2());
         LeanTween.color(colorBg.GetComponent<RectTransform>(), characters[characterNum].musicCards[index_c].music.colorScheme.BG, transitionTime);
     }
     public override void Cancel() {
+        SFXPlayer.Instance.UISOund(2);
         readyToStart = false;
         transition.Play("hideStartBtn");
     }
@@ -126,5 +128,34 @@ public class MusicSelectScreen : ScreenManager2D
         transition.Play("pressStartBtn");
         yield return new WaitForSeconds(transitionTime+0.1f);
         GameManager.Instance.Play(characters[characterNum].musicCards[index_c].music);
+    }
+    
+    public void Row0(int c) {
+        Button(0, c);
+    }
+    public void Row1(int c) {
+        Button(1, c);
+    }
+    public void Swipe(int d) {
+        if (d > 0) {
+            if (index_c < maxIndex_c[index_r]) {
+                index_c++;
+            } else {
+                index_c = 0;
+            }
+        }
+        else {
+            if (index_c > 0) {
+                index_c--;
+            } else {
+                index_c = maxIndex_c[index_r];
+            }
+        }
+        CheckForChange(d);
+    }
+
+    public void StartTest() {
+        if (readyToStart)
+            StartGame();
     }
 }

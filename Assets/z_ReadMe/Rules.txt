@@ -2,7 +2,7 @@
 Scriptable Object Color Rule
 
 Player1: player main color
-Player2: player direction
+Player2: player direction, blast effect
 Player3: boundary color
 Laser1: main laser
 Laser2:

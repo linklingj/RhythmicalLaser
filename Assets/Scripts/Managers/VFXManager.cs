@@ -95,6 +95,10 @@ public class VFXManager : MonoBehaviour
         else
             StartCoroutine(Blast2(pos));
     }
+    
+    public void PlayerDash(Vector3 pos, float rotation) {
+        StartCoroutine(Flash(pos, rotation));
+    }
 
     public void EnemyHit(Vector3 pos) {
         StartCoroutine(Blast1(pos));
@@ -140,6 +144,17 @@ public class VFXManager : MonoBehaviour
         yield return new WaitForSeconds(effectFrames[3] / 60);
         e.SetActive(false);
         ObjectPool.instance.blast3Queue.Enqueue(e);
+    }
+
+    IEnumerator Flash(Vector3 pos, float rotation) {
+        GameObject e = ObjectPool.instance.flashQueue.Dequeue();
+        e.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        e.transform.position = pos;
+        e.SetActive(true);
+        e.GetComponent<Animator>().Play("flash");
+        yield return new WaitForSeconds(0.09f);
+        e.SetActive(false);
+        ObjectPool.instance.flashQueue.Enqueue(e);
     }
 
     private void OnDestroy() {

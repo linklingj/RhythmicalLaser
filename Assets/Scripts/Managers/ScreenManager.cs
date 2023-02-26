@@ -7,7 +7,6 @@ public abstract class ScreenManager : MonoBehaviour
     [SerializeField] bool keyDown;
     [SerializeField] int maxIndex;
     public int index;
-    public AudioSource audioSource;
 
     private void Start() {
         index = 0;

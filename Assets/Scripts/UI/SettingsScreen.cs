@@ -86,4 +86,24 @@ public class SettingsScreen : ScreenManager2D
         yield return new WaitForSeconds(transitionTime);
         GameManager.Instance.ToCharacterSelect();
     }
+
+    //버튼의 onClick가 두개의 인자를 지원하지 않기 때문에 만든 함수
+    public void Row0(int c) {
+        Button(0, c);
+    }
+    public void Row1(int c) {
+        Button(1, c);
+    }
+    public void Row2(int c) {
+        Button(2, c);
+    }
+    public void Row3(int c) {
+        Button(3, c);
+    }
+    public void Row4(int c) {
+        Button(4, c);
+    }
+    public void Row5(int c) {
+        Button(5, c);
+    }
 }

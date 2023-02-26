@@ -5,19 +5,24 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public Camera cam;
     public CameraController cameraController;
+    public VFXManager vfxManager;
     public GameObject laser;
     [Header("Movement")]
     public float turnSmoothTime;
     public float drag;
     public float maxVel;
     public float shootForce;
+    [Header("Laser")]
     public float laserForce;
+
+    public float laserDurationBeat;
     public float laserTime;
     [Header("hp")]
     public int maxHP;
 
     Rigidbody2D rb;
     Animator anim;
+    Animator laserAnim;
     Vector2 mousePos;
     Vector2 lookDir;
     float turnSmoothVelocity;
@@ -26,12 +31,14 @@ public class PlayerController : MonoBehaviour {
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        laserAnim = laser.GetComponent<Animator>();
     }
     void Start() {
         rb.drag = drag;
         freezeDir = false;
         timer = 0;
-        laserTime = 1 / ((float)GameManager.Instance.selectedMusic.bpm / 15);
+        laserTime = 1 / ((float)GameManager.Instance.selectedMusic.bpm / (60 / laserDurationBeat));
+        laserAnim.speed = 1 / laserTime;
     }
 
     void Update() {
@@ -46,21 +53,21 @@ public class PlayerController : MonoBehaviour {
             laser.SetActive(false);
         }
         //temporary
-        // if (Input.GetKeyDown(KeyCode.Q)) {
-        //     Kick();
-        // }
-        // if (Input.GetKeyDown(KeyCode.W)) {
-        //     Snare();
-        // }
+         /*if (Input.GetKeyDown(KeyCode.Q)) {
+             Kick();
+         }
+         if (Input.GetKeyDown(KeyCode.W)) {
+             Snare();
+         }*/
     }
     void FixedUpdate() {
         if (!freezeDir)
-            LookMouse();
+            LookMouse(turnSmoothTime);
     }
-    void LookMouse() {
+    void LookMouse(float tsTime) {
         lookDir = mousePos - rb.position;
         float targetAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * turnSmoothTime);
+        float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, targetAngle, ref turnSmoothVelocity, Time.smoothDeltaTime * tsTime);
         rb.rotation = angle;
     }
     public void Kick() {
@@ -69,23 +76,17 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(-lookDir.normalized * shootForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
         anim.Play("Dash");
+        vfxManager.PlayerDash(transform.position + transform.right * 0.4f, rb.rotation);
     }
     public void Snare() {
         cameraController.Shake(2);
+        LookMouse(0f);
+        laser.SetActive(true);
+        laserAnim.Play("Laser");
         //rb.velocity = -transform.right * laserForce;
         rb.AddForce(-lookDir.normalized * laserForce, ForceMode2D.Impulse);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVel);
+        anim.Play("Squish");
         timer = laserTime;
-        //temporary script
-        // StartCoroutine("Laser");
-    }
-
-    
-    IEnumerator Laser() {
-        freezeDir = true;
-        laser.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        freezeDir = false;
-        laser.SetActive(false);
     }
 }

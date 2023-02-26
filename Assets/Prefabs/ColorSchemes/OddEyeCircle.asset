@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b837269763614f90b151ead3b5f5a, type: 3}
+  m_Name: OddEyeCircle
+  m_EditorClassIdentifier: 
+  player1:
+    serializedVersion: 2
+    rgba: 4289143833
+  player2:
+    serializedVersion: 2
+    rgba: 4289143833
+  player3:
+    serializedVersion: 2
+    rgba: 4282456303
+  laser1:
+    serializedVersion: 2
+    rgba: 4287769434
+  laser2:
+    serializedVersion: 2
+    rgba: 4287769434
+  enemy1:
+    serializedVersion: 2
+    rgba: 4282456303
+  enemy2:
+    serializedVersion: 2
+    rgba: 4282456303
+  BG:
+    serializedVersion: 2
+    rgba: 4293059298
+  UI1:
+    serializedVersion: 2
+    rgba: 4287769434
+  UI2:
+    serializedVersion: 2
+    rgba: 4293360064
+  UI3:
+    serializedVersion: 2
+    rgba: 10000536
+  noteL:
+    serializedVersion: 2
+    rgba: 4282456303
+  noteR:
+    serializedVersion: 2
+    rgba: 4282456303

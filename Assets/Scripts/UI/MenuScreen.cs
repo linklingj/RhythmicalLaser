@@ -77,5 +77,30 @@ public class MenuScreen : ScreenManager2D
     public override void Cancel() {
         Debug.Log("Error");
     }
-
+    
+    //버튼의 onClick가 두개의 인자를 지원하지 않기 때문에 만든 함수
+    public void Row0(int c) {
+        Button(0, c);
+    }
+    public void Row1(int c) {
+        Button(1, c);
+        Debug.Log("VAR");
+    }
+    public void Swipe(int d) {
+        if (d > 0) {
+            if (index_c < maxIndex_c[index_r]) {
+                index_c++;
+            } else {
+                index_c = 0;
+            }
+        }
+        else {
+            if (index_c > 0) {
+                index_c--;
+            } else {
+                index_c = maxIndex_c[index_r];
+            }
+        }
+        CheckForChange(d);
+    }
 }

@@ -12,7 +12,6 @@ public abstract class ScreenManager2D : MonoBehaviour
     public int index_c;
     public int save_index;
     public bool readyToStart;
-    public AudioSource audioSource;
 
     bool changed;
 
@@ -25,11 +24,9 @@ public abstract class ScreenManager2D : MonoBehaviour
         if (readyToStart) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 StartGame();
-                SFXPlayer.Instance.UISOund(3);
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 Cancel();
-                SFXPlayer.Instance.UISOund(2);
             }
             return;
         }
