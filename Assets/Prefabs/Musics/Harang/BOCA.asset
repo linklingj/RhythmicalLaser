@@ -21,5 +21,5 @@ MonoBehaviour:
   volume: 0.5
   midiFileLocation: BOCA.mid
   epFileLocation: BOCA_ep.mid
-  colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
+  colorScheme: {fileID: 11400000, guid: b3b474196653cc7429c79a2ae1bebae1, type: 2}
   index: 2
