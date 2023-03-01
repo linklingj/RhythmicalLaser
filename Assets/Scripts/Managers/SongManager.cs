@@ -74,7 +74,6 @@ public class SongManager : MonoBehaviour
 
         noteManager.SetTimeStamps(array);
         
-        //noteManager.timePerBar = (float)midiFile.GetTempoMap().GetTimeSpan(midiFile.GetTrackChunks()[0].GetNotes().GetTimeSpan()).TotalSeconds / (float)midiFile.GetTrackChunks()[0].GetNotes().GetTimeSpan().GetBars();
         var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(array[0].Time, midiFile.GetTempoMap());
         noteManager.barSpawnTime = (double)metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f;
 
@@ -100,7 +99,7 @@ public class SongManager : MonoBehaviour
     }
 
     IEnumerator WaitForSongFinish() {
-        yield return new WaitUntil(() => Instance.audioSource.isPlaying == false);
+        yield return new WaitUntil(() => Instance.audioSource.isPlaying == false && Instance.audioSource.time > Instance.audioSource.clip.length - 0.3f);
         GameManager.Instance.MusicFinished();
     }
 }
