@@ -572,7 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286696069}
   m_Layer: 5
-  m_Name: Taro
+  m_Name: Hime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1296,7 +1296,7 @@ PrefabInstance:
     - target: {fileID: 1969769319796205844, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a51f83d9a7692c0409b8cc56fa20e9dc, type: 3}
+      objectReference: {fileID: 21300000, guid: 832d88a1a5328054c9c6fd24f275916a, type: 3}
     - target: {fileID: 1969769321003378075, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1383,12 +1383,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1969769321106958344, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
       propertyPath: m_Name
-      value: Into the Light
+      value: Racing Into the Light
       objectReference: {fileID: 0}
     - target: {fileID: 5089606660174164441, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
       propertyPath: music
       value: 
-      objectReference: {fileID: 11400000, guid: 04737ce3231ed9b46acb3c7444d8d15e, type: 2}
+      objectReference: {fileID: 11400000, guid: e2555f3f2516c4c42be82ad6f945eda2, type: 2}
     - target: {fileID: 5089606660174164441, guid: 07cb68398c7a3fe4bb9b3ba09d05489b, type: 3}
       propertyPath: description
       value: 

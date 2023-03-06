@@ -20,5 +20,6 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: a34fca054fe07554a9e021e462c2334f, type: 3}
   volume: 0.8
   midiFileLocation: sugar_song_to_bitter_step.mid
+  epFileLocation: sugar_song_to_bitter_step_ep.mid
   colorScheme: {fileID: 11400000, guid: 9bbc293d93720844ba5b8dc4c22a5686, type: 2}
   index: 1

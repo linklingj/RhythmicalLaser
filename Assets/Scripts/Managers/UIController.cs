@@ -18,8 +18,11 @@ public class UIController : MonoBehaviour
     [SerializeField] SpriteRenderer bgR;
     [SerializeField] Image[] bgs;
     [SerializeField] GameObject heartPrefab;
+    [SerializeField]  GameObject[] heartObjs;
     [SerializeField] SpriteRenderer playerR, playerDirR, bounderyR, laserR;
     [SerializeField] Material blastMat, flashMat;
+    [SerializeField] Transform feedbackPos;
+    [SerializeField] GameObject feedbackPrefab;
     public ColorScheme currentColor;
 
     private List<GameObject> hearts;
@@ -28,6 +31,7 @@ public class UIController : MonoBehaviour
         GameManager.OnGameStateChange += OnGameStateChange;
         GameManager.OnPlayerHit += PlayerHit;
         GameManager.OnNoteMiss += NoteMiss;
+        GameManager.OnNoteHit += NoteHit;
         hearts = new List<GameObject>();
     }
 
@@ -58,6 +62,8 @@ public class UIController : MonoBehaviour
 
         progressBarImg.color = currentColor.UI1;
         progressBarBg.color = currentColor.UI3;
+        foreach (GameObject h in heartObjs)
+            h.GetComponent<Image>().color = currentColor.UI1;
 
         rightBar.color = currentColor.UI1;
         
@@ -87,6 +93,7 @@ public class UIController : MonoBehaviour
     }
 
     void UpdateHearts() {
+        /*
         int curHp = hearts.Count;
         if (curHp == GameManager.Instance.hp)
             return;
@@ -109,16 +116,50 @@ public class UIController : MonoBehaviour
                     Destroy(h);
                 }
             }
+        }*/
+        for (int q = 0; q < heartObjs.Length; q++)
+        {
+            if (GameManager.Instance.hp > q)
+                heartObjs[q].SetActive(true);
+            else
+                heartObjs[q].SetActive(false);
         }
     }
     
     private void NoteMiss() {
         combo_t.color = currentColor.UI1;
+        GenerateFeedback(1);
+    }
+    
+    private void NoteHit() {
+        GenerateFeedback(0);
     }
 
+    void GenerateFeedback(int index)
+    {
+        GameObject feedback = Instantiate(feedbackPrefab, feedbackPos.position, Quaternion.identity);
+        feedback.transform.SetParent(feedbackPos);
+        if (index == 0)
+        {
+            feedback.GetComponent<TextMeshProUGUI>().text = "Perfect";
+            feedback.GetComponent<TextMeshProUGUI>().color = currentColor.UI2;
+        }
+        else
+        {
+            feedback.GetComponent<TextMeshProUGUI>().text = "Miss";
+            feedback.GetComponent<TextMeshProUGUI>().color = Color.red;
+        }
+
+        LeanTween.alphaCanvas(feedback.GetComponent<CanvasGroup>(), 0, 0.5f);
+        LeanTween.moveLocal(feedback, new Vector3(0, 30, 0), 0.5f).setEase(LeanTweenType.easeOutQuad);
+        Destroy(feedback, 0.5f);
+    }
+    
     private void OnDestroy() {
         GameManager.OnGameStateChange -= OnGameStateChange;
         GameManager.OnPlayerHit -= PlayerHit;
         GameManager.OnNoteMiss -= NoteMiss;
+        GameManager.OnNoteHit -= NoteHit;
     }
+
 }
