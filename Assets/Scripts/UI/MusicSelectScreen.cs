@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 [System.Serializable]
 public class Character {
@@ -15,6 +16,7 @@ public class MusicSelectScreen : ScreenManager2D
     [SerializeField] Transform[] cardPositions;
     [SerializeField] CanvasGroup fade;
     [SerializeField] GameObject colorBg;
+    [SerializeField] GameObject mouseDetect;
     public Animator transition;
     public float transitionTime;
     [SerializeField] Color32[] difficultyColors;
@@ -157,5 +159,13 @@ public class MusicSelectScreen : ScreenManager2D
     public void StartTest() {
         if (readyToStart)
             StartGame();
+    }
+
+    void Update()
+    {
+        if (readyToStart)
+            mouseDetect.SetActive(false);
+        else
+            mouseDetect.SetActive(true);
     }
 }
