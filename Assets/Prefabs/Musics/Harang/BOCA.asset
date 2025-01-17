@@ -16,7 +16,7 @@ MonoBehaviour:
   artist: Dreamcatcher
   bpm: 100
   difficulty: 1
-  difficultyLvl: 5
+  difficultyLvl: 7
   audio: {fileID: 8300000, guid: 39f4951438cd6974ab9d744f9160682c, type: 3}
   volume: 0.5
   midiFileLocation: BOCA.mid

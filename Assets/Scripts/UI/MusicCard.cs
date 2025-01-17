@@ -10,6 +10,7 @@ public class MusicCard : MenuButton2D {
     public string description;
     //상대값, 0: 중앙, 1: 오른쪽, -1: 왼쪽
     public int posSave;
+    public int version;
 
     [SerializeField] TextMeshProUGUI nameText1, nameText2, artistText, levelText, maxScoreText, maxComboText, maxRPText, rankText;
     [SerializeField] GameObject levelImg;

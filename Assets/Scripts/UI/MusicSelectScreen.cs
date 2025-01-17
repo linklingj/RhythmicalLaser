@@ -12,6 +12,7 @@ public class Character {
 public class MusicSelectScreen : ScreenManager2D
 {
     public int characterNum;
+    private int fixedCharacterNum;
     public List<Character> characters;
     [SerializeField] Transform[] cardPositions;
     [SerializeField] CanvasGroup fade;
@@ -20,12 +21,14 @@ public class MusicSelectScreen : ScreenManager2D
     public Animator transition;
     public float transitionTime;
     [SerializeField] Color32[] difficultyColors;
+    public int version = 1; //0:오리지널 저작권곡 1: 저작권 없는 출시용
 
     public override void Initialize() {
         readyToStart = false;
         characterNum = GameManager.Instance.selectedCharacter;
+        fixedCharacterNum = GameManager.Instance.selectedCharacter + version*4;
         for (int i = 0; i < characters.Count; i++) {
-            if (i == characterNum) {
+            if (i == fixedCharacterNum) {
                 int k = 0;
                 foreach(MusicCard card in characters[i].musicCards) {
                     card.gameObject.SetActive(true);
@@ -69,7 +72,7 @@ public class MusicSelectScreen : ScreenManager2D
 
     public override void CheckForChange(float dir) {
         if (index_r != 0) return;
-        for (int i = 0; i < characters[characterNum].musicCards.Count; i++) {
+        for (int i = 0; i < characters[fixedCharacterNum].musicCards.Count; i++) {
             int pos = i - index_c;
             if (pos == maxIndex_c[0]) {
                 pos = -1;
@@ -82,14 +85,12 @@ public class MusicSelectScreen : ScreenManager2D
                 d = -1;
             else if (dir < -0.2f)
                 d = 1;
-            else
-                d = 0;
 
             int pos_before = Mathf.Clamp(pos - d, -2, 2);
             int pos_after = Mathf.Clamp(pos, -2, 2);
-            characters[characterNum].musicCards[i].SetPos(cardPositions[pos_before + 2].position, cardPositions[pos_after + 2].position);
+            characters[fixedCharacterNum].musicCards[i].SetPos(cardPositions[pos_before + 2].position, cardPositions[pos_after + 2].position);
         }
-        SFXPlayer.Instance.UISOund(1);
+        SFXPlayer.Instance.UISound(1);
     }
 
 
@@ -106,23 +107,25 @@ public class MusicSelectScreen : ScreenManager2D
                 GameManager.Instance.ToSettings();
             }
         }
-        SFXPlayer.Instance.UISOund(0);
+        SFXPlayer.Instance.UISound(0);
     }
 
     IEnumerator Wait() {
         yield return new WaitForEndOfFrame();
         readyToStart = true;
+        mouseDetect.SetActive(false);
     }
 
 
     public override void StartGame() {
-        SFXPlayer.Instance.UISOund(3);
+        SFXPlayer.Instance.UISound(3);
         StartCoroutine(Transition2());
-        LeanTween.color(colorBg.GetComponent<RectTransform>(), characters[characterNum].musicCards[index_c].music.colorScheme.BG, transitionTime);
+        LeanTween.color(colorBg.GetComponent<RectTransform>(), characters[fixedCharacterNum].musicCards[index_c].music.colorScheme.BG, transitionTime);
     }
     public override void Cancel() {
-        SFXPlayer.Instance.UISOund(2);
+        SFXPlayer.Instance.UISound(2);
         readyToStart = false;
+        mouseDetect.SetActive(true);
         transition.Play("hideStartBtn");
     }
 
@@ -159,13 +162,5 @@ public class MusicSelectScreen : ScreenManager2D
     public void StartTest() {
         if (readyToStart)
             StartGame();
-    }
-
-    void Update()
-    {
-        if (readyToStart)
-            mouseDetect.SetActive(false);
-        else
-            mouseDetect.SetActive(true);
     }
 }

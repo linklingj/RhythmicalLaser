@@ -56,7 +56,7 @@ public class SettingsScreen : ScreenManager2D
             StartCoroutine(nameof(Transition3));
         }
         UpdateText();
-        SFXPlayer.Instance.UISOund(0);
+        SFXPlayer.Instance.UISound(0);
     }
 
     private void UpdateText() {
@@ -68,7 +68,7 @@ public class SettingsScreen : ScreenManager2D
 
     public override void CheckForChange(float horizontal) {
         if (index_r == 4 || index_r == 5) return;
-        SFXPlayer.Instance.UISOund(0);
+        SFXPlayer.Instance.UISound(0);
     }
 
     public override void StartGame() {

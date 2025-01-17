@@ -15,8 +15,8 @@ MonoBehaviour:
   title: Levitating
   artist: Dua Lipa (feat. DaBaby)
   bpm: 103
-  difficulty: 0
-  difficultyLvl: 2
+  difficulty: 1
+  difficultyLvl: 4
   audio: {fileID: 8300000, guid: 8e52c73b4505e0e4a809d13e6dbde351, type: 3}
   volume: 0.5
   midiFileLocation: levitating.mid

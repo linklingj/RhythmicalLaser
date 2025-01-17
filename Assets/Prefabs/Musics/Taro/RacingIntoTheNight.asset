@@ -15,8 +15,8 @@ MonoBehaviour:
   title: Racing Into the Night
   artist: Yoasobi
   bpm: 130
-  difficulty: 0
-  difficultyLvl: 2
+  difficulty: 1
+  difficultyLvl: 5
   audio: {fileID: 8300000, guid: 5c18d6a0e38c41447940e8f91e5a0d39, type: 3}
   volume: 0.5
   midiFileLocation: into_the_night.mid

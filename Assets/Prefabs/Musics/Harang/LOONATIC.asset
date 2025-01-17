@@ -16,7 +16,7 @@ MonoBehaviour:
   artist: Loona
   bpm: 150
   difficulty: 1
-  difficultyLvl: 5
+  difficultyLvl: 6
   audio: {fileID: 8300000, guid: d95777411a0624d4583fc9740ff74645, type: 3}
   volume: 0.5
   midiFileLocation: LOONATIC.mid

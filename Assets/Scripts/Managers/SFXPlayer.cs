@@ -49,7 +49,7 @@ public class SFXPlayer : MonoBehaviour {
             audioSource.PlayOneShot(hitSounds[sfxSet].fail);*/
     }
 
-    public void UISOund(int n) {
+    public void UISound(int n) {
         audioSource.PlayOneShot(uiSound[n]);
     }
     

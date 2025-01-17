@@ -31,6 +31,7 @@ public abstract class ScreenManager2D : MonoBehaviour
             return;
         }
 
+
         changed = false;
         if (Input.GetAxis("Vertical") != 0) {
             if (!keyDown_r) {
